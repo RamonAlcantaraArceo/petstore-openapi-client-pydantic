@@ -11,49 +11,54 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import pytest
 
-from openapi_client.models.pet import Pet  # noqa: E501
+from openapi_client.models.pet import Pet
 
 class TestPet:
     """Pet unit test stubs"""
 
-    def setup_method(self):
-        pass
+    def make_instance(self, include_optional: bool) -> Pet:
+        """Create an Pet instance for testing.
 
-    def teardown_method(self):
-        pass
+        Args:
+            include_optional (bool):
+                If False, only the required parameters should be included.
+                If True, both required and optional parameters should be included.
 
-    def make_instance(self, include_optional) -> Pet:
-        """Test Pet
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `Pet`
-        """
-        model = Pet()  # noqa: E501
-        if include_optional:
-            return Pet(
-                name = '0',
-                photo_urls = [
+        Returns:
+            Pet: A populated Pet model instance.
+
+        TODO:
+            Replace the placeholder example values below with meaningful test data
+            appropriate for your API. These are only illustrative defaults.
+
+        Example:
+            if include_optional:
+                return Pet(
+                    name = '0',
+                    photo_urls = [
                     ''
                     ],
-                category = openapi_client.models.category.Category(
+                    category = openapi_client.models.category.Category(
                     id = 56, 
                     name = '', ),
-                tags = [
+                    tags = [
                     openapi_client.models.tag.Tag(
                         id = 56, 
                         name = '', )
                     ],
-                status = 'available',
-                id = 56
+                    status = 'available',
+                    id = 56
+                )
+            else:
+                return Pet(
+                    name = '0',
             )
-        else:
-            return Pet(
-                name = '0',
-        )
         """
+        raise NotImplementedError("Populate example values before using this helper.")
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     def testPet(self):
         """Test Pet"""
         # inst_req_only = self.make_instance(include_optional=False)

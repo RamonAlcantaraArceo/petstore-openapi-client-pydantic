@@ -11,18 +11,15 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import pytest
 
-from openapi_client.models.pet_status import PetStatus  # noqa: E501
+from openapi_client.models.pet_status import PetStatus
 
 class TestPetStatus:
     """PetStatus unit test stubs"""
 
-    def setup_method(self):
-        pass
-
-    def teardown_method(self):
-        pass
-
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     def testPetStatus(self):
         """Test PetStatus"""
         # inst = PetStatus()
+        # assert inst

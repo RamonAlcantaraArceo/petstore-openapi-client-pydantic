@@ -28,59 +28,59 @@ async def pet_api_client(api_client: ApiClient):
 class TestPetApi:
     """PetApi unit test stubs"""
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_add_pet_api_v1_pet_post(self, pet_api_client: PetApi) -> None:
         """Test case for add_pet_api_v1_pet_post
 
         Add Pet  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_delete_pet_api_v1_pet_pet_id_delete(self, pet_api_client: PetApi) -> None:
         """Test case for delete_pet_api_v1_pet_pet_id_delete
 
         Delete Pet  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_find_pets_by_status_api_v1_pet_find_by_status_get(self, pet_api_client: PetApi) -> None:
         """Test case for find_pets_by_status_api_v1_pet_find_by_status_get
 
         Find Pets By Status  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_find_pets_by_tags_api_v1_pet_find_by_tags_get(self, pet_api_client: PetApi) -> None:
         """Test case for find_pets_by_tags_api_v1_pet_find_by_tags_get
 
         Find Pets By Tags  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_get_pet_by_id_api_v1_pet_pet_id_get(self, pet_api_client: PetApi) -> None:
         """Test case for get_pet_by_id_api_v1_pet_pet_id_get
 
         Get Pet By Id  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_update_pet_api_v1_pet_put(self, pet_api_client: PetApi) -> None:
         """Test case for update_pet_api_v1_pet_put
 
         Update Pet  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_update_pet_with_form_api_v1_pet_pet_id_post(self, pet_api_client: PetApi) -> None:
         """Test case for update_pet_with_form_api_v1_pet_pet_id_post
 
         Update Pet With Form  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_upload_file_api_v1_pet_pet_id_upload_file_post(self, pet_api_client: PetApi) -> None:
         """Test case for upload_file_api_v1_pet_pet_id_upload_file_post
 
         Upload File  # noqa: E501
         """
-        pass
 

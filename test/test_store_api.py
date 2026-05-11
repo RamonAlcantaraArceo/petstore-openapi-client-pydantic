@@ -28,31 +28,31 @@ async def store_api_client(api_client: ApiClient):
 class TestStoreApi:
     """StoreApi unit test stubs"""
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_delete_order_api_v1_store_order_order_id_delete(self, store_api_client: StoreApi) -> None:
         """Test case for delete_order_api_v1_store_order_order_id_delete
 
         Delete Order  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_get_inventory_api_v1_store_inventory_get(self, store_api_client: StoreApi) -> None:
         """Test case for get_inventory_api_v1_store_inventory_get
 
         Get Inventory  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_get_order_by_id_api_v1_store_order_order_id_get(self, store_api_client: StoreApi) -> None:
         """Test case for get_order_by_id_api_v1_store_order_order_id_get
 
         Get Order By Id  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_place_order_api_v1_store_order_post(self, store_api_client: StoreApi) -> None:
         """Test case for place_order_api_v1_store_order_post
 
         Place Order  # noqa: E501
         """
-        pass
 

@@ -11,46 +11,51 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import pytest
 
-from openapi_client.models.validation_error import ValidationError  # noqa: E501
+from openapi_client.models.validation_error import ValidationError
 
 class TestValidationError:
     """ValidationError unit test stubs"""
 
-    def setup_method(self):
-        pass
+    def make_instance(self, include_optional: bool) -> ValidationError:
+        """Create an ValidationError instance for testing.
 
-    def teardown_method(self):
-        pass
+        Args:
+            include_optional (bool):
+                If False, only the required parameters should be included.
+                If True, both required and optional parameters should be included.
 
-    def make_instance(self, include_optional) -> ValidationError:
-        """Test ValidationError
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `ValidationError`
-        """
-        model = ValidationError()  # noqa: E501
-        if include_optional:
-            return ValidationError(
-                loc = [
+        Returns:
+            ValidationError: A populated ValidationError model instance.
+
+        TODO:
+            Replace the placeholder example values below with meaningful test data
+            appropriate for your API. These are only illustrative defaults.
+
+        Example:
+            if include_optional:
+                return ValidationError(
+                    loc = [
                     null
                     ],
-                msg = '',
-                type = '',
-                input = None,
-                ctx = openapi_client.models.context.Context()
+                    msg = '',
+                    type = '',
+                    input = None,
+                    ctx = openapi_client.models.context.Context()
+                )
+            else:
+                return ValidationError(
+                    loc = [
+                    null
+                    ],
+                    msg = '',
+                    type = '',
             )
-        else:
-            return ValidationError(
-                loc = [
-                    null
-                    ],
-                msg = '',
-                type = '',
-        )
         """
+        raise NotImplementedError("Populate example values before using this helper.")
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     def testValidationError(self):
         """Test ValidationError"""
         # inst_req_only = self.make_instance(include_optional=False)

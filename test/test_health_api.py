@@ -28,10 +28,10 @@ async def health_api_client(api_client: ApiClient):
 class TestHealthApi:
     """HealthApi unit test stubs"""
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_health_check_health_get(self, health_api_client: HealthApi) -> None:
         """Test case for health_check_health_get
 
         Health Check  # noqa: E501
         """
-        pass
 

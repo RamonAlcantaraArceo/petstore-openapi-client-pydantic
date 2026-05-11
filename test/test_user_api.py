@@ -28,52 +28,52 @@ async def user_api_client(api_client: ApiClient):
 class TestUserApi:
     """UserApi unit test stubs"""
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_create_user_api_v1_user_post(self, user_api_client: UserApi) -> None:
         """Test case for create_user_api_v1_user_post
 
         Create User  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_create_users_with_list_api_v1_user_create_with_list_post(self, user_api_client: UserApi) -> None:
         """Test case for create_users_with_list_api_v1_user_create_with_list_post
 
         Create Users With List  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_delete_user_api_v1_user_username_delete(self, user_api_client: UserApi) -> None:
         """Test case for delete_user_api_v1_user_username_delete
 
         Delete User  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_get_user_by_name_api_v1_user_username_get(self, user_api_client: UserApi) -> None:
         """Test case for get_user_by_name_api_v1_user_username_get
 
         Get User By Name  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_login_user_api_v1_user_login_get(self, user_api_client: UserApi) -> None:
         """Test case for login_user_api_v1_user_login_get
 
         Login User  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_logout_user_api_v1_user_logout_get(self, user_api_client: UserApi) -> None:
         """Test case for logout_user_api_v1_user_logout_get
 
         Logout User  # noqa: E501
         """
-        pass
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_update_user_api_v1_user_username_put(self, user_api_client: UserApi) -> None:
         """Test case for update_user_api_v1_user_username_put
 
         Update User  # noqa: E501
         """
-        pass
 
