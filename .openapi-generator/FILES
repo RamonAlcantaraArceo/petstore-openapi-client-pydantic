@@ -1,4 +1,3 @@
-.github/workflows/python.yml
 README.md
 docs/Category.md
 docs/HTTPValidationError.md

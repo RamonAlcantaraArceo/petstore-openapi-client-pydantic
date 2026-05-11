@@ -25,3 +25,5 @@
 .travis.yml
 .gitlab-ci.yml
 .gitignore
+
+.github/workflows/python.yml
