@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.order_status import OrderStatus  # noqa: E501
 
 class TestOrderStatus:

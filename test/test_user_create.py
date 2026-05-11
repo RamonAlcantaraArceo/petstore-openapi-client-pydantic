@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.user_create import UserCreate  # noqa: E501
 
 class TestUserCreate:

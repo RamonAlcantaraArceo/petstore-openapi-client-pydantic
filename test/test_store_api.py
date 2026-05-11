@@ -11,7 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
+import pytest
 
 from openapi_client.api.store_api import StoreApi  # noqa: E501
 
@@ -19,34 +19,38 @@ from openapi_client.api.store_api import StoreApi  # noqa: E501
 class TestStoreApi:
     """StoreApi unit test stubs"""
 
-    def setup_method(self) -> None:
+    async def setup_method(self) -> None:
         self.api = StoreApi()
 
-    def teardown_method(self) -> None:
-        self.api.api_client.close()
+    async def teardown_method(self) -> None:
+        await self.api.api_client.close()
 
-    def test_delete_order_api_v1_store_order_order_id_delete(self) -> None:
+    @pytest.mark.asyncio
+    async def test_delete_order_api_v1_store_order_order_id_delete(self) -> None:
         """Test case for delete_order_api_v1_store_order_order_id_delete
 
         Delete Order  # noqa: E501
         """
         pass
 
-    def test_get_inventory_api_v1_store_inventory_get(self) -> None:
+    @pytest.mark.asyncio
+    async def test_get_inventory_api_v1_store_inventory_get(self) -> None:
         """Test case for get_inventory_api_v1_store_inventory_get
 
         Get Inventory  # noqa: E501
         """
         pass
 
-    def test_get_order_by_id_api_v1_store_order_order_id_get(self) -> None:
+    @pytest.mark.asyncio
+    async def test_get_order_by_id_api_v1_store_order_order_id_get(self) -> None:
         """Test case for get_order_by_id_api_v1_store_order_order_id_get
 
         Get Order By Id  # noqa: E501
         """
         pass
 
-    def test_place_order_api_v1_store_order_post(self) -> None:
+    @pytest.mark.asyncio
+    async def test_place_order_api_v1_store_order_post(self) -> None:
         """Test case for place_order_api_v1_store_order_post
 
         Place Order  # noqa: E501

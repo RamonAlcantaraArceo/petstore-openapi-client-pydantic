@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.tag import Tag  # noqa: E501
 
 class TestTag:

@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.http_validation_error import HTTPValidationError  # noqa: E501
 
 class TestHTTPValidationError:

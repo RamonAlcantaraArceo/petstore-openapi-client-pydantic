@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.category import Category  # noqa: E501
 
 class TestCategory:

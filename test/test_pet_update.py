@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.pet_update import PetUpdate  # noqa: E501
 
 class TestPetUpdate:

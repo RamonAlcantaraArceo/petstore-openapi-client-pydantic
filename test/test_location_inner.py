@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.location_inner import LocationInner  # noqa: E501
 
 class TestLocationInner:

@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.order_create import OrderCreate  # noqa: E501
 
 class TestOrderCreate:

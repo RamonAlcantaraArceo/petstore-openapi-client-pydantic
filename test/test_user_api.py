@@ -11,7 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
+import pytest
 
 from openapi_client.api.user_api import UserApi  # noqa: E501
 
@@ -19,55 +19,62 @@ from openapi_client.api.user_api import UserApi  # noqa: E501
 class TestUserApi:
     """UserApi unit test stubs"""
 
-    def setup_method(self) -> None:
+    async def setup_method(self) -> None:
         self.api = UserApi()
 
-    def teardown_method(self) -> None:
-        self.api.api_client.close()
+    async def teardown_method(self) -> None:
+        await self.api.api_client.close()
 
-    def test_create_user_api_v1_user_post(self) -> None:
+    @pytest.mark.asyncio
+    async def test_create_user_api_v1_user_post(self) -> None:
         """Test case for create_user_api_v1_user_post
 
         Create User  # noqa: E501
         """
         pass
 
-    def test_create_users_with_list_api_v1_user_create_with_list_post(self) -> None:
+    @pytest.mark.asyncio
+    async def test_create_users_with_list_api_v1_user_create_with_list_post(self) -> None:
         """Test case for create_users_with_list_api_v1_user_create_with_list_post
 
         Create Users With List  # noqa: E501
         """
         pass
 
-    def test_delete_user_api_v1_user_username_delete(self) -> None:
+    @pytest.mark.asyncio
+    async def test_delete_user_api_v1_user_username_delete(self) -> None:
         """Test case for delete_user_api_v1_user_username_delete
 
         Delete User  # noqa: E501
         """
         pass
 
-    def test_get_user_by_name_api_v1_user_username_get(self) -> None:
+    @pytest.mark.asyncio
+    async def test_get_user_by_name_api_v1_user_username_get(self) -> None:
         """Test case for get_user_by_name_api_v1_user_username_get
 
         Get User By Name  # noqa: E501
         """
         pass
 
-    def test_login_user_api_v1_user_login_get(self) -> None:
+    @pytest.mark.asyncio
+    async def test_login_user_api_v1_user_login_get(self) -> None:
         """Test case for login_user_api_v1_user_login_get
 
         Login User  # noqa: E501
         """
         pass
 
-    def test_logout_user_api_v1_user_logout_get(self) -> None:
+    @pytest.mark.asyncio
+    async def test_logout_user_api_v1_user_logout_get(self) -> None:
         """Test case for logout_user_api_v1_user_logout_get
 
         Logout User  # noqa: E501
         """
         pass
 
-    def test_update_user_api_v1_user_username_put(self) -> None:
+    @pytest.mark.asyncio
+    async def test_update_user_api_v1_user_username_put(self) -> None:
         """Test case for update_user_api_v1_user_username_put
 
         Update User  # noqa: E501

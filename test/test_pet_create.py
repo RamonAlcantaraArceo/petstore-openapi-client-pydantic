@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.pet_create import PetCreate  # noqa: E501
 
 class TestPetCreate:

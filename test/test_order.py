@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.order import Order  # noqa: E501
 
 class TestOrder:

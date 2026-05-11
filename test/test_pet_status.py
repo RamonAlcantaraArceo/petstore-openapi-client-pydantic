@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.pet_status import PetStatus  # noqa: E501
 
 class TestPetStatus:

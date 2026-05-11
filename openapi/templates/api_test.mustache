@@ -2,6 +2,7 @@
 
 {{>partial_header}}
 
+import pytest
 
 from {{apiPackage}}.{{classFilename}} import {{classname}}  # noqa: E501
 
@@ -9,28 +10,15 @@ from {{apiPackage}}.{{classFilename}} import {{classname}}  # noqa: E501
 class {{#operations}}Test{{classname}}:
     """{{classname}} unit test stubs"""
 
-    {{#asyncio}}
     async def setup_method(self) -> None:
         self.api = {{classname}}()
 
     async def teardown_method(self) -> None:
         await self.api.api_client.close()
-    {{/asyncio}}
-    {{^asyncio}}
-    def setup_method(self) -> None:
-        self.api = {{classname}}()
-
-    def teardown_method(self) -> None:
-        self.api.api_client.close()
-    {{/asyncio}}
 
     {{#operation}}
-    {{#asyncio}}
+    @pytest.mark.asyncio
     async def test_{{operationId}}(self) -> None:
-    {{/asyncio}}
-    {{^asyncio}}
-    def test_{{operationId}}(self) -> None:
-    {{/asyncio}}
         """Test case for {{{operationId}}}
 
 {{#summary}}
@@ -39,5 +27,5 @@ class {{#operations}}Test{{classname}}:
         """
         pass
 
-   {{/operation}}
+    {{/operation}}
 {{/operations}}

@@ -12,7 +12,6 @@
 """  # noqa: E501
 
 
-
 from openapi_client.models.user import User  # noqa: E501
 
 class TestUser:
