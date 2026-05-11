@@ -1,6 +1,6 @@
 # openapi_client.StoreApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *http://localhost:8000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -35,7 +35,7 @@ import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
     host = "http://localhost:8000"
@@ -125,7 +125,7 @@ import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
     host = "http://localhost:8000"
@@ -212,7 +212,7 @@ from openapi_client.models.order import Order
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
     host = "http://localhost:8000"
@@ -305,7 +305,7 @@ from openapi_client.models.order_create import OrderCreate
 from openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
     host = "http://localhost:8000"

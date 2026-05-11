@@ -3,8 +3,18 @@
     "info": {
         "title": "Petstore API",
         "description": "A production-ready Petstore API built with FastAPI.",
-        "version": "v1"
+        "version": "v1",
+        "contact": {
+            "name": "Ramon Alcantara Arceo",
+            "email": "ramalc.ms@outlook.com"
+        }
     },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Local development server"
+        }
+    ],
     "paths": {
         "/api/v1/pet": {
             "put": {
