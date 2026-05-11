@@ -45,3 +45,28 @@ class TestValidationError:
 
         assert error.input == "abc"
         assert error.ctx == {"limit": 10}
+
+    def test_validation_error_serialization_round_trip(self) -> None:
+        error = ValidationError(
+            loc=[LocationInner("body"), LocationInner("field")],
+            msg="field required",
+            type="missing",
+            input=None,
+            ctx={"source": "test"},
+        )
+
+        as_dict = error.to_dict()
+        assert as_dict["msg"] == "field required"
+        assert as_dict["type"] == "missing"
+        assert as_dict["loc"] == ["body", "field"]
+
+        from_dict = ValidationError.from_dict(as_dict)
+        assert from_dict.msg == error.msg
+        assert from_dict.type == error.type
+
+        as_json = error.to_json()
+        from_json = ValidationError.from_json(as_json)
+        assert from_json.msg == error.msg
+        assert from_json.type == error.type
+
+        assert "field required" in error.to_str()

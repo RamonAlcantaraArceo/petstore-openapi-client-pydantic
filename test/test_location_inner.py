@@ -25,3 +25,15 @@ class TestLocationInner:
         location = LocationInner(5)
 
         assert location.actual_instance == 5
+
+    def test_location_inner_serialization_round_trip(self) -> None:
+        location = LocationInner("body")
+
+        as_json = location.to_json()
+        from_json = LocationInner.from_json(as_json)
+        assert from_json.actual_instance == "body"
+
+        as_dict = location.to_dict()
+        assert as_dict == "body"
+
+        assert "body" in location.to_str()

@@ -40,3 +40,29 @@ class TestUser:
         assert user.phone == "555-1000"
         assert user.user_status == 1
         assert user.id == 9
+
+    def test_user_serialization_round_trip(self) -> None:
+        user = User(
+            username="jdoe",
+            first_name="John",
+            last_name="Doe",
+            email="jdoe@example.com",
+            phone="555-1000",
+            user_status=1,
+            id=9,
+        )
+
+        as_dict = user.to_dict()
+        assert as_dict["username"] == "jdoe"
+        assert as_dict["id"] == 9
+
+        from_dict = User.from_dict(as_dict)
+        assert from_dict.username == user.username
+        assert from_dict.id == user.id
+
+        as_json = user.to_json()
+        from_json = User.from_json(as_json)
+        assert from_json.username == user.username
+        assert from_json.id == user.id
+
+        assert "jdoe" in user.to_str()

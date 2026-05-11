@@ -24,6 +24,5 @@ async def configuration():
 
 @pytest_asyncio.fixture()
 async def api_client(configuration: Configuration):
-    api = ApiClient(configuration=configuration)
-    yield api
-    await api.close()
+    async with ApiClient(configuration=configuration) as api:
+        yield api

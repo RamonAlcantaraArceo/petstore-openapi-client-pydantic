@@ -40,3 +40,29 @@ class TestUserUpdate:
         assert user_update.phone == "555-3000"
         assert user_update.user_status == 3
         assert user_update.password == "new-secret"
+
+    def test_user_update_serialization_round_trip(self) -> None:
+        user_update = UserUpdate(
+            username="updated-user",
+            first_name="Updated",
+            last_name="User",
+            email="updated@example.com",
+            phone="555-3000",
+            user_status=3,
+            password="new-secret",
+        )
+
+        as_dict = user_update.to_dict()
+        assert as_dict["username"] == "updated-user"
+        assert as_dict["password"] == "new-secret"
+
+        from_dict = UserUpdate.from_dict(as_dict)
+        assert from_dict.username == user_update.username
+        assert from_dict.password == user_update.password
+
+        as_json = user_update.to_json()
+        from_json = UserUpdate.from_json(as_json)
+        assert from_json.username == user_update.username
+        assert from_json.password == user_update.password
+
+        assert "updated-user" in user_update.to_str()

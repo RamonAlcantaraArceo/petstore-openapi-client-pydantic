@@ -27,3 +27,18 @@ class TestCategory:
 
         assert category.id is None
         assert category.name is None
+
+    def test_category_serialization_round_trip(self) -> None:
+        category = Category(id=3, name="cats")
+
+        as_dict = category.to_dict()
+        assert as_dict == {"id": 3, "name": "cats"}
+
+        from_dict = Category.from_dict(as_dict)
+        assert from_dict == category
+
+        as_json = category.to_json()
+        from_json = Category.from_json(as_json)
+        assert from_json == category
+
+        assert "cats" in category.to_str()

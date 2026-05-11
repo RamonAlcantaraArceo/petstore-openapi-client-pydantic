@@ -13,6 +13,8 @@
 
 from datetime import datetime
 
+import pytest
+
 from openapi_client.models.order_create import OrderCreate
 from openapi_client.models.order_status import OrderStatus
 
@@ -40,3 +42,35 @@ class TestOrderCreate:
         assert order_create.ship_date == ship_date
         assert order_create.status == OrderStatus.APPROVED
         assert order_create.complete is False
+
+    def test_order_create_serialization_round_trip(self) -> None:
+        ship_date = datetime(2024, 1, 2, 3, 4, 5)
+        order_create = OrderCreate(
+            pet_id=20,
+            quantity=5,
+            ship_date=ship_date,
+            status=OrderStatus.APPROVED,
+            complete=False,
+        )
+
+        as_dict = order_create.to_dict()
+        assert as_dict["pet_id"] == 20
+        assert as_dict["status"] == "approved"
+
+        from_dict = OrderCreate.from_dict(as_dict)
+        assert from_dict.pet_id == order_create.pet_id
+        assert from_dict.status == order_create.status
+
+        # Generated model currently does not JSON-encode datetime in to_json.
+        with pytest.raises(TypeError):
+            order_create.to_json()
+
+        json_payload = (
+            '{"pet_id": 20, "quantity": 5, "ship_date": "2024-01-02T03:04:05", '
+            '"status": "approved", "complete": false}'
+        )
+        from_json = OrderCreate.from_json(json_payload)
+        assert from_json.pet_id == order_create.pet_id
+        assert from_json.status == order_create.status
+
+        assert "approved" in order_create.to_str()

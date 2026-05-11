@@ -34,3 +34,26 @@ class TestHTTPValidationError:
         assert http_error.detail is not None
         assert len(http_error.detail) == 1
         assert http_error.detail[0].msg == "field required"
+
+    def test_http_validation_error_serialization_round_trip(self) -> None:
+        detail_item = ValidationError(
+            loc=[LocationInner("body"), LocationInner("name")],
+            msg="field required",
+            type="missing",
+        )
+        http_error = HTTPValidationError(detail=[detail_item])
+
+        as_dict = http_error.to_dict()
+        assert "detail" in as_dict
+        assert as_dict["detail"][0]["msg"] == "field required"
+
+        from_dict = HTTPValidationError.from_dict(as_dict)
+        assert from_dict.detail is not None
+        assert from_dict.detail[0].msg == "field required"
+
+        as_json = http_error.to_json()
+        from_json = HTTPValidationError.from_json(as_json)
+        assert from_json.detail is not None
+        assert from_json.detail[0].msg == "field required"
+
+        assert "field required" in http_error.to_str()

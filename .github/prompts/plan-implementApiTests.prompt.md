@@ -67,6 +67,9 @@ async def test_add_pet_api_v1_pet_post(self, pet_api_client: PetApi) -> None:
 - Generated methods have 2 flavors: one that returns just the response, and one with `_with_http_info()` that also returns status and headers. Use the simpler one unless you need to assert on status or headers.
 - Some methods that use enums, the method signature may require passing the enum value directly (e.g., `PetStatus.AVAILABLE` instead of `"available"`). sometimes it accepts only the string value. Check the method signature and adjust accordingly.
 - If method fails for any other reason add the marker "@pytest.mark.xfail(reason="Investigation Pending")" to the test method and add a comment describing the failure.
+- For model tests, create at least 3 tests when applicable: required fields validation, optional fields population, and serialization round-trip.
+- Serialization round-trip should verify `to_dict`/`from_dict` and `to_json`/`from_json` preserve key fields and aliases (for example `photo_urls` -> `photoUrls`).
+- Add a light `to_str` assertion to ensure debug string output includes a key field value.
 
 ### Related Files
 

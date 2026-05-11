@@ -48,3 +48,30 @@ class TestPet:
         assert pet.tags is not None
         assert pet.tags[0].name == "flying"
         assert pet.status == PetStatus.SOLD
+
+    def test_pet_serialization_round_trip(self) -> None:
+        pet = Pet(
+            id=8,
+            name="pet-serialize",
+            photo_urls=["https://example.com/pet.png"],
+            category=Category(id=1, name="birds"),
+            tags=[Tag(id=1, name="flying")],
+            status=PetStatus.SOLD,
+        )
+
+        as_dict = pet.to_dict()
+        assert as_dict["id"] == 8
+        assert as_dict["name"] == "pet-serialize"
+        assert as_dict["status"] == "sold"
+
+        from_dict = Pet.from_dict(as_dict)
+        assert from_dict.id == pet.id
+        assert from_dict.name == pet.name
+        assert from_dict.status == pet.status
+
+        as_json = pet.to_json()
+        from_json = Pet.from_json(as_json)
+        assert from_json.id == pet.id
+        assert from_json.status == pet.status
+
+        assert "pet-serialize" in pet.to_str()

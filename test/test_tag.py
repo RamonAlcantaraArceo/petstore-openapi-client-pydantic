@@ -27,3 +27,18 @@ class TestTag:
 
         assert tag.id is None
         assert tag.name is None
+
+    def test_tag_serialization_round_trip(self) -> None:
+        tag = Tag(id=4, name="active")
+
+        as_dict = tag.to_dict()
+        assert as_dict == {"id": 4, "name": "active"}
+
+        from_dict = Tag.from_dict(as_dict)
+        assert from_dict == tag
+
+        as_json = tag.to_json()
+        from_json = Tag.from_json(as_json)
+        assert from_json == tag
+
+        assert "active" in tag.to_str()

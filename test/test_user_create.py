@@ -40,3 +40,29 @@ class TestUserCreate:
         assert user_create.phone == "555-2000"
         assert user_create.user_status == 2
         assert user_create.password == "secret"
+
+    def test_user_create_serialization_round_trip(self) -> None:
+        user_create = UserCreate(
+            username="new-user",
+            first_name="New",
+            last_name="User",
+            email="new@example.com",
+            phone="555-2000",
+            user_status=2,
+            password="secret",
+        )
+
+        as_dict = user_create.to_dict()
+        assert as_dict["username"] == "new-user"
+        assert as_dict["password"] == "secret"
+
+        from_dict = UserCreate.from_dict(as_dict)
+        assert from_dict.username == user_create.username
+        assert from_dict.password == user_create.password
+
+        as_json = user_create.to_json()
+        from_json = UserCreate.from_json(as_json)
+        assert from_json.username == user_create.username
+        assert from_json.password == user_create.password
+
+        assert "new-user" in user_create.to_str()
