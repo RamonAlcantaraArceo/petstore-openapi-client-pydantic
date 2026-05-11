@@ -1,8 +1,7 @@
 
 
 help:
-	docker run --rm \
-	-v ${PWD}:/local openapitools/openapi-generator-cli --help
+	docker run --rm --help
 
 interactive:
 	docker run --rm -it \
