@@ -28,6 +28,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -37,7 +38,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -51,19 +52,24 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.StoreApi(api_client)
-    order_id = 56 # int | 
+async def main():
 
-    try:
-        # Delete Order
-        api_response = await api_instance.delete_order_api_v1_store_order_order_id_delete(order_id)
-        print("The response of StoreApi->delete_order_api_v1_store_order_order_id_delete:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling StoreApi->delete_order_api_v1_store_order_order_id_delete: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.StoreApi(api_client)
+        order_id = 56 # int | 
+
+        try:
+            # Delete Order
+            api_response = await api_instance.delete_order_api_v1_store_order_order_id_delete(order_id)
+            print("The response of StoreApi->delete_order_api_v1_store_order_order_id_delete:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling StoreApi->delete_order_api_v1_store_order_order_id_delete: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
@@ -112,6 +118,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -121,7 +128,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -135,18 +142,23 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.StoreApi(api_client)
+async def main():
 
-    try:
-        # Get Inventory
-        api_response = await api_instance.get_inventory_api_v1_store_inventory_get()
-        print("The response of StoreApi->get_inventory_api_v1_store_inventory_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling StoreApi->get_inventory_api_v1_store_inventory_get: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.StoreApi(api_client)
+
+        try:
+            # Get Inventory
+            api_response = await api_instance.get_inventory_api_v1_store_inventory_get()
+            print("The response of StoreApi->get_inventory_api_v1_store_inventory_get:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling StoreApi->get_inventory_api_v1_store_inventory_get: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
@@ -192,6 +204,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -202,7 +215,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -216,19 +229,24 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.StoreApi(api_client)
-    order_id = 56 # int | 
+async def main():
 
-    try:
-        # Get Order By Id
-        api_response = await api_instance.get_order_by_id_api_v1_store_order_order_id_get(order_id)
-        print("The response of StoreApi->get_order_by_id_api_v1_store_order_order_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling StoreApi->get_order_by_id_api_v1_store_order_order_id_get: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.StoreApi(api_client)
+        order_id = 56 # int | 
+
+        try:
+            # Get Order By Id
+            api_response = await api_instance.get_order_by_id_api_v1_store_order_order_id_get(order_id)
+            print("The response of StoreApi->get_order_by_id_api_v1_store_order_order_id_get:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling StoreApi->get_order_by_id_api_v1_store_order_order_id_get: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
@@ -278,6 +296,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -289,7 +308,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -303,19 +322,24 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.StoreApi(api_client)
-    order_create = openapi_client.OrderCreate() # OrderCreate | 
+async def main():
 
-    try:
-        # Place Order
-        api_response = await api_instance.place_order_api_v1_store_order_post(order_create)
-        print("The response of StoreApi->place_order_api_v1_store_order_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling StoreApi->place_order_api_v1_store_order_post: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.StoreApi(api_client)
+        order_create = openapi_client.OrderCreate() # OrderCreate | 
+
+        try:
+            # Place Order
+            api_response = await api_instance.place_order_api_v1_store_order_post(order_create)
+            print("The response of StoreApi->place_order_api_v1_store_order_post:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling StoreApi->place_order_api_v1_store_order_post: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 

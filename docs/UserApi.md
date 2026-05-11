@@ -31,6 +31,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -42,7 +43,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -56,19 +57,24 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.UserApi(api_client)
-    user_create = openapi_client.UserCreate() # UserCreate | 
+async def main():
 
-    try:
-        # Create User
-        api_response = await api_instance.create_user_api_v1_user_post(user_create)
-        print("The response of UserApi->create_user_api_v1_user_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->create_user_api_v1_user_post: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.UserApi(api_client)
+        user_create = openapi_client.UserCreate() # UserCreate | 
+
+        try:
+            # Create User
+            api_response = await api_instance.create_user_api_v1_user_post(user_create)
+            print("The response of UserApi->create_user_api_v1_user_post:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling UserApi->create_user_api_v1_user_post: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
@@ -118,6 +124,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -129,7 +136,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -143,19 +150,24 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.UserApi(api_client)
-    user_create = [openapi_client.UserCreate()] # List[UserCreate] | 
+async def main():
 
-    try:
-        # Create Users With List
-        api_response = await api_instance.create_users_with_list_api_v1_user_create_with_list_post(user_create)
-        print("The response of UserApi->create_users_with_list_api_v1_user_create_with_list_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->create_users_with_list_api_v1_user_create_with_list_post: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.UserApi(api_client)
+        user_create = [openapi_client.UserCreate()] # List[UserCreate] | 
+
+        try:
+            # Create Users With List
+            api_response = await api_instance.create_users_with_list_api_v1_user_create_with_list_post(user_create)
+            print("The response of UserApi->create_users_with_list_api_v1_user_create_with_list_post:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling UserApi->create_users_with_list_api_v1_user_create_with_list_post: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
@@ -205,6 +217,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -214,7 +227,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -228,19 +241,24 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.UserApi(api_client)
-    username = 'username_example' # str | 
+async def main():
 
-    try:
-        # Delete User
-        api_response = await api_instance.delete_user_api_v1_user_username_delete(username)
-        print("The response of UserApi->delete_user_api_v1_user_username_delete:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->delete_user_api_v1_user_username_delete: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.UserApi(api_client)
+        username = 'username_example' # str | 
+
+        try:
+            # Delete User
+            api_response = await api_instance.delete_user_api_v1_user_username_delete(username)
+            print("The response of UserApi->delete_user_api_v1_user_username_delete:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling UserApi->delete_user_api_v1_user_username_delete: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
@@ -290,6 +308,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -300,7 +319,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -314,19 +333,24 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.UserApi(api_client)
-    username = 'username_example' # str | 
+async def main():
 
-    try:
-        # Get User By Name
-        api_response = await api_instance.get_user_by_name_api_v1_user_username_get(username)
-        print("The response of UserApi->get_user_by_name_api_v1_user_username_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->get_user_by_name_api_v1_user_username_get: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.UserApi(api_client)
+        username = 'username_example' # str | 
+
+        try:
+            # Get User By Name
+            api_response = await api_instance.get_user_by_name_api_v1_user_username_get(username)
+            print("The response of UserApi->get_user_by_name_api_v1_user_username_get:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling UserApi->get_user_by_name_api_v1_user_username_get: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
@@ -377,6 +401,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -386,7 +411,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -400,20 +425,25 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.UserApi(api_client)
-    username = 'username_example' # str | The username for login
-    password = 'password_example' # str | The password for login
+async def main():
 
-    try:
-        # Login User
-        api_response = await api_instance.login_user_api_v1_user_login_get(username, password)
-        print("The response of UserApi->login_user_api_v1_user_login_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->login_user_api_v1_user_login_get: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.UserApi(api_client)
+        username = 'username_example' # str | The username for login
+        password = 'password_example' # str | The password for login
+
+        try:
+            # Login User
+            api_response = await api_instance.login_user_api_v1_user_login_get(username, password)
+            print("The response of UserApi->login_user_api_v1_user_login_get:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling UserApi->login_user_api_v1_user_login_get: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
@@ -463,6 +493,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -472,7 +503,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -486,18 +517,23 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.UserApi(api_client)
+async def main():
 
-    try:
-        # Logout User
-        api_response = await api_instance.logout_user_api_v1_user_logout_get()
-        print("The response of UserApi->logout_user_api_v1_user_logout_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->logout_user_api_v1_user_logout_get: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.UserApi(api_client)
+
+        try:
+            # Logout User
+            api_response = await api_instance.logout_user_api_v1_user_logout_get()
+            print("The response of UserApi->logout_user_api_v1_user_logout_get:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling UserApi->logout_user_api_v1_user_logout_get: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
@@ -544,6 +580,7 @@ Returns:
 
 * Api Key Authentication (APIKeyHeader):
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -555,7 +592,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -569,20 +606,25 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.UserApi(api_client)
-    username = 'username_example' # str | 
-    user_update = openapi_client.UserUpdate() # UserUpdate | 
+async def main():
 
-    try:
-        # Update User
-        api_response = await api_instance.update_user_api_v1_user_username_put(username, user_update)
-        print("The response of UserApi->update_user_api_v1_user_username_put:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->update_user_api_v1_user_username_put: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.UserApi(api_client)
+        username = 'username_example' # str | 
+        user_update = openapi_client.UserUpdate() # UserUpdate | 
+
+        try:
+            # Update User
+            api_response = await api_instance.update_user_api_v1_user_username_put(username, user_update)
+            print("The response of UserApi->update_user_api_v1_user_username_put:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling UserApi->update_user_api_v1_user_username_put: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 

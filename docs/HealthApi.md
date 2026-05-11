@@ -20,6 +20,7 @@ Returns:
 ### Example
 
 ```python
+import asyncio 
 import time
 import os
 import openapi_client
@@ -29,22 +30,27 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8000"
 )
 
 
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.HealthApi(api_client)
+async def main():
 
-    try:
-        # Health Check
-        api_response = await api_instance.health_check_health_get()
-        print("The response of HealthApi->health_check_health_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling HealthApi->health_check_health_get: %s\n" % e)
+    # Enter a context with an instance of the API client
+    async with openapi_client.ApiClient(configuration) as api_client:
+        # Create an instance of the API class
+        api_instance = openapi_client.HealthApi(api_client)
+
+        try:
+            # Health Check
+            api_response = await api_instance.health_check_health_get()
+            print("The response of HealthApi->health_check_health_get:\n")
+            pprint(api_response)
+        except Exception as e:
+            print("Exception when calling HealthApi->health_check_health_get: %s\n" % e)
+
+if __name__ == '__main__':
+    asyncio.run(main())
 ```
 
 
