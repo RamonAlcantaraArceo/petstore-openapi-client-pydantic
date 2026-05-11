@@ -20,6 +20,7 @@ class {{#operations}}Test{{classname}}:
     """{{classname}} unit test stubs"""
 
     {{#operation}}
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     async def test_{{operationId}}(self, {{classFilename}}_client: {{classname}}) -> None:
         """Test case for {{{operationId}}}
 
@@ -27,7 +28,6 @@ class {{#operations}}Test{{classname}}:
         {{{.}}}  # noqa: E501
 {{/summary}}
         """
-        pass
 
     {{/operation}}
 {{/operations}}

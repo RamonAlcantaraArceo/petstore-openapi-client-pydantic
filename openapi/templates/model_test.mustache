@@ -2,46 +2,51 @@
 
 {{>partial_header}}
 
+import pytest
 
 {{#models}}
 {{#model}}
-from {{modelPackage}}.{{classFilename}} import {{classname}}  # noqa: E501
+from {{modelPackage}}.{{classFilename}} import {{classname}}
 
 class Test{{classname}}:
     """{{classname}} unit test stubs"""
-
-    def setup_method(self):
-        pass
-
-    def teardown_method(self):
-        pass
 {{^isEnum}}
 
-    def make_instance(self, include_optional) -> {{classname}}:
-        """Test {{classname}}
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `{{{classname}}}`
-        """
-        model = {{classname}}()  # noqa: E501
-        if include_optional:
-            return {{classname}}(
-                {{#vars}}
-                {{name}} = {{{example}}}{{^example}}None{{/example}}{{^-last}},{{/-last}}
-                {{/vars}}
+    def make_instance(self, include_optional: bool) -> {{classname}}:
+        """Create an {{classname}} instance for testing.
+
+        Args:
+            include_optional (bool):
+                If False, only the required parameters should be included.
+                If True, both required and optional parameters should be included.
+
+        Returns:
+            {{classname}}: A populated {{classname}} model instance.
+
+        TODO:
+            Replace the placeholder example values below with meaningful test data
+            appropriate for your API. These are only illustrative defaults.
+
+        Example:
+            if include_optional:
+                return {{classname}}(
+                    {{#vars}}
+                    {{name}} = {{{example}}}{{^example}}None{{/example}}{{^-last}},{{/-last}}
+                    {{/vars}}
+                )
+            else:
+                return {{classname}}(
+                    {{#vars}}
+                    {{#required}}
+                    {{name}} = {{{example}}}{{^example}}None{{/example}},
+                    {{/required}}
+                    {{/vars}}
             )
-        else:
-            return {{classname}}(
-                {{#vars}}
-                {{#required}}
-                {{name}} = {{{example}}}{{^example}}None{{/example}},
-                {{/required}}
-                {{/vars}}
-        )
         """
+        raise NotImplementedError("Populate example values before using this helper.")
 {{/isEnum}}
 
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
     def test{{classname}}(self):
         """Test {{classname}}"""
 {{^isEnum}}
@@ -50,6 +55,7 @@ class Test{{classname}}:
 {{/isEnum}}
 {{#isEnum}}
         # inst = {{{classname}}}()
+        # assert inst
 {{/isEnum}}
 {{/model}}
 {{/models}}
