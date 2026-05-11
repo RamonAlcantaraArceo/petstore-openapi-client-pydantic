@@ -11,47 +11,32 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
-
 from openapi_client.models.user_update import UserUpdate
 
 class TestUserUpdate:
-    """UserUpdate unit test stubs"""
+    """UserUpdate model tests."""
 
-    def make_instance(self, include_optional: bool) -> UserUpdate:
-        """Create an UserUpdate instance for testing.
+    def test_user_update_allows_empty_instance(self) -> None:
+        user_update = UserUpdate()
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert user_update.username is None
+        assert user_update.password is None
 
-        Returns:
-            UserUpdate: A populated UserUpdate model instance.
+    def test_user_update_with_optional_fields(self) -> None:
+        user_update = UserUpdate(
+            username="updated-user",
+            first_name="Updated",
+            last_name="User",
+            email="updated@example.com",
+            phone="555-3000",
+            user_status=3,
+            password="new-secret",
+        )
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return UserUpdate(
-                    username = '',
-                    first_name = '',
-                    last_name = '',
-                    email = '',
-                    phone = '',
-                    user_status = 56,
-                    password = ''
-                )
-            else:
-                return UserUpdate(
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testUserUpdate(self):
-        """Test UserUpdate"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert user_update.username == "updated-user"
+        assert user_update.first_name == "Updated"
+        assert user_update.last_name == "User"
+        assert user_update.email == "updated@example.com"
+        assert user_update.phone == "555-3000"
+        assert user_update.user_status == 3
+        assert user_update.password == "new-secret"

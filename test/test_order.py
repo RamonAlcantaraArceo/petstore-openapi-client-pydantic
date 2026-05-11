@@ -11,46 +11,34 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
+from datetime import datetime
 
 from openapi_client.models.order import Order
+from openapi_client.models.order_status import OrderStatus
 
 class TestOrder:
-    """Order unit test stubs"""
+    """Order model tests."""
 
-    def make_instance(self, include_optional: bool) -> Order:
-        """Create an Order instance for testing.
+    def test_order_allows_empty_instance(self) -> None:
+        order = Order()
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert order.id is None
+        assert order.status is None
 
-        Returns:
-            Order: A populated Order model instance.
+    def test_order_with_optional_fields(self) -> None:
+        ship_date = datetime(2024, 1, 2, 3, 4, 5)
+        order = Order(
+            pet_id=10,
+            quantity=2,
+            ship_date=ship_date,
+            status=OrderStatus.PLACED,
+            complete=True,
+            id=100,
+        )
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return Order(
-                    pet_id = 56,
-                    quantity = 56,
-                    ship_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                    status = 'placed',
-                    complete = True,
-                    id = 56
-                )
-            else:
-                return Order(
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testOrder(self):
-        """Test Order"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert order.pet_id == 10
+        assert order.quantity == 2
+        assert order.ship_date == ship_date
+        assert order.status == OrderStatus.PLACED
+        assert order.complete is True
+        assert order.id == 100

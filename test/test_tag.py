@@ -11,42 +11,19 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
-
 from openapi_client.models.tag import Tag
 
 class TestTag:
-    """Tag unit test stubs"""
+    """Tag model tests."""
 
-    def make_instance(self, include_optional: bool) -> Tag:
-        """Create an Tag instance for testing.
+    def test_tag_optional_fields(self) -> None:
+        tag = Tag(id=2, name="friendly")
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert tag.id == 2
+        assert tag.name == "friendly"
 
-        Returns:
-            Tag: A populated Tag model instance.
+    def test_tag_allows_empty_instance(self) -> None:
+        tag = Tag()
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return Tag(
-                    id = 56,
-                    name = ''
-                )
-            else:
-                return Tag(
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testTag(self):
-        """Test Tag"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert tag.id is None
+        assert tag.name is None

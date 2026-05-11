@@ -11,45 +11,32 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
+from datetime import datetime
 
 from openapi_client.models.order_create import OrderCreate
+from openapi_client.models.order_status import OrderStatus
 
 class TestOrderCreate:
-    """OrderCreate unit test stubs"""
+    """OrderCreate model tests."""
 
-    def make_instance(self, include_optional: bool) -> OrderCreate:
-        """Create an OrderCreate instance for testing.
+    def test_order_create_allows_empty_instance(self) -> None:
+        order_create = OrderCreate()
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert order_create.pet_id is None
+        assert order_create.quantity is None
 
-        Returns:
-            OrderCreate: A populated OrderCreate model instance.
+    def test_order_create_with_optional_fields(self) -> None:
+        ship_date = datetime(2024, 1, 2, 3, 4, 5)
+        order_create = OrderCreate(
+            pet_id=20,
+            quantity=5,
+            ship_date=ship_date,
+            status=OrderStatus.APPROVED,
+            complete=False,
+        )
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return OrderCreate(
-                    pet_id = 56,
-                    quantity = 56,
-                    ship_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                    status = 'placed',
-                    complete = True
-                )
-            else:
-                return OrderCreate(
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testOrderCreate(self):
-        """Test OrderCreate"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert order_create.pet_id == 20
+        assert order_create.quantity == 5
+        assert order_create.ship_date == ship_date
+        assert order_create.status == OrderStatus.APPROVED
+        assert order_create.complete is False

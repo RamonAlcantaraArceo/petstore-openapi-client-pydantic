@@ -11,40 +11,17 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
-
 from openapi_client.models.location_inner import LocationInner
 
 class TestLocationInner:
-    """LocationInner unit test stubs"""
+    """LocationInner model tests."""
 
-    def make_instance(self, include_optional: bool) -> LocationInner:
-        """Create an LocationInner instance for testing.
+    def test_location_inner_with_string(self) -> None:
+        location = LocationInner("body")
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert location.actual_instance == "body"
 
-        Returns:
-            LocationInner: A populated LocationInner model instance.
+    def test_location_inner_with_int(self) -> None:
+        location = LocationInner(5)
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return LocationInner(
-                )
-            else:
-                return LocationInner(
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testLocationInner(self):
-        """Test LocationInner"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert location.actual_instance == 5

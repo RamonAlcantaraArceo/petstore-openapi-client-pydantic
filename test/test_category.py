@@ -11,42 +11,19 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
-
 from openapi_client.models.category import Category
 
 class TestCategory:
-    """Category unit test stubs"""
+    """Category model tests."""
 
-    def make_instance(self, include_optional: bool) -> Category:
-        """Create an Category instance for testing.
+    def test_category_optional_fields(self) -> None:
+        category = Category(id=1, name="dogs")
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert category.id == 1
+        assert category.name == "dogs"
 
-        Returns:
-            Category: A populated Category model instance.
+    def test_category_allows_empty_instance(self) -> None:
+        category = Category()
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return Category(
-                    id = 56,
-                    name = ''
-                )
-            else:
-                return Category(
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testCategory(self):
-        """Test Category"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert category.id is None
+        assert category.name is None

@@ -1,3 +1,5 @@
+import os
+
 import pytest_asyncio
 
 from openapi_client import ApiClient, Configuration
@@ -12,7 +14,11 @@ def _get_default_host() -> str:
 
 @pytest_asyncio.fixture()
 async def configuration():
-    configuration = Configuration(host=_get_default_host())
+    # Default to local dev key while still allowing overrides from environment.
+    api_key = os.getenv("API_KEY", "dev-api-key")
+    configuration = Configuration(
+        host=_get_default_host(), api_key={"APIKeyHeader": api_key}
+    )
     yield configuration
 
 

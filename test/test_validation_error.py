@@ -13,50 +13,35 @@
 
 import pytest
 
+from openapi_client.models.location_inner import LocationInner
 from openapi_client.models.validation_error import ValidationError
 
 class TestValidationError:
-    """ValidationError unit test stubs"""
+    """ValidationError model tests."""
 
-    def make_instance(self, include_optional: bool) -> ValidationError:
-        """Create an ValidationError instance for testing.
+    def test_validation_error_requires_loc_msg_type(self) -> None:
+        with pytest.raises(ValueError):
+            ValidationError()
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+    def test_validation_error_with_required_only(self) -> None:
+        error = ValidationError(
+            loc=[LocationInner("body"), LocationInner("field")],
+            msg="field required",
+            type="missing",
+        )
 
-        Returns:
-            ValidationError: A populated ValidationError model instance.
+        assert len(error.loc) == 2
+        assert error.msg == "field required"
+        assert error.type == "missing"
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
+    def test_validation_error_with_optional_fields(self) -> None:
+        error = ValidationError(
+            loc=[LocationInner("query"), LocationInner("limit")],
+            msg="invalid",
+            type="value_error",
+            input="abc",
+            ctx={"limit": 10},
+        )
 
-        Example:
-            if include_optional:
-                return ValidationError(
-                    loc = [
-                    null
-                    ],
-                    msg = '',
-                    type = '',
-                    input = None,
-                    ctx = openapi_client.models.context.Context()
-                )
-            else:
-                return ValidationError(
-                    loc = [
-                    null
-                    ],
-                    msg = '',
-                    type = '',
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testValidationError(self):
-        """Test ValidationError"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert error.input == "abc"
+        assert error.ctx == {"limit": 10}

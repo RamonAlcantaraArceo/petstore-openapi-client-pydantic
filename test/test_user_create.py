@@ -11,47 +11,32 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
-
 from openapi_client.models.user_create import UserCreate
 
 class TestUserCreate:
-    """UserCreate unit test stubs"""
+    """UserCreate model tests."""
 
-    def make_instance(self, include_optional: bool) -> UserCreate:
-        """Create an UserCreate instance for testing.
+    def test_user_create_allows_empty_instance(self) -> None:
+        user_create = UserCreate()
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert user_create.username is None
+        assert user_create.password is None
 
-        Returns:
-            UserCreate: A populated UserCreate model instance.
+    def test_user_create_with_optional_fields(self) -> None:
+        user_create = UserCreate(
+            username="new-user",
+            first_name="New",
+            last_name="User",
+            email="new@example.com",
+            phone="555-2000",
+            user_status=2,
+            password="secret",
+        )
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return UserCreate(
-                    username = '',
-                    first_name = '',
-                    last_name = '',
-                    email = '',
-                    phone = '',
-                    user_status = 56,
-                    password = ''
-                )
-            else:
-                return UserCreate(
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testUserCreate(self):
-        """Test UserCreate"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert user_create.username == "new-user"
+        assert user_create.first_name == "New"
+        assert user_create.last_name == "User"
+        assert user_create.email == "new@example.com"
+        assert user_create.phone == "555-2000"
+        assert user_create.user_status == 2
+        assert user_create.password == "secret"

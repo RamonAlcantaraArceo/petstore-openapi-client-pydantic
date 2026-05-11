@@ -11,50 +11,26 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
-
 from openapi_client.models.http_validation_error import HTTPValidationError
+from openapi_client.models.location_inner import LocationInner
+from openapi_client.models.validation_error import ValidationError
 
 class TestHTTPValidationError:
-    """HTTPValidationError unit test stubs"""
+    """HTTPValidationError model tests."""
 
-    def make_instance(self, include_optional: bool) -> HTTPValidationError:
-        """Create an HTTPValidationError instance for testing.
+    def test_http_validation_error_allows_empty_instance(self) -> None:
+        http_error = HTTPValidationError()
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert http_error.detail is None
 
-        Returns:
-            HTTPValidationError: A populated HTTPValidationError model instance.
+    def test_http_validation_error_with_detail(self) -> None:
+        detail_item = ValidationError(
+            loc=[LocationInner("body"), LocationInner("name")],
+            msg="field required",
+            type="missing",
+        )
+        http_error = HTTPValidationError(detail=[detail_item])
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return HTTPValidationError(
-                    detail = [
-                    openapi_client.models.validation_error.ValidationError(
-                        loc = [
-                            null
-                            ], 
-                        msg = '', 
-                        type = '', 
-                        input = null, 
-                        ctx = openapi_client.models.context.Context(), )
-                    ]
-                )
-            else:
-                return HTTPValidationError(
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testHTTPValidationError(self):
-        """Test HTTPValidationError"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert http_error.detail is not None
+        assert len(http_error.detail) == 1
+        assert http_error.detail[0].msg == "field required"

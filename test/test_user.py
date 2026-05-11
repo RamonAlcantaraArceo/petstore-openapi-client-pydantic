@@ -11,47 +11,32 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
-
 from openapi_client.models.user import User
 
 class TestUser:
-    """User unit test stubs"""
+    """User model tests."""
 
-    def make_instance(self, include_optional: bool) -> User:
-        """Create an User instance for testing.
+    def test_user_allows_empty_instance(self) -> None:
+        user = User()
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert user.username is None
+        assert user.id is None
 
-        Returns:
-            User: A populated User model instance.
+    def test_user_with_optional_fields(self) -> None:
+        user = User(
+            username="jdoe",
+            first_name="John",
+            last_name="Doe",
+            email="jdoe@example.com",
+            phone="555-1000",
+            user_status=1,
+            id=9,
+        )
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return User(
-                    username = '',
-                    first_name = '',
-                    last_name = '',
-                    email = '',
-                    phone = '',
-                    user_status = 56,
-                    id = 56
-                )
-            else:
-                return User(
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testUser(self):
-        """Test User"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert user.username == "jdoe"
+        assert user.first_name == "John"
+        assert user.last_name == "Doe"
+        assert user.email == "jdoe@example.com"
+        assert user.phone == "555-1000"
+        assert user.user_status == 1
+        assert user.id == 9

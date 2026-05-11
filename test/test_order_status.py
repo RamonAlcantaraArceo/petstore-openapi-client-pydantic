@@ -11,15 +11,15 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import pytest
-
 from openapi_client.models.order_status import OrderStatus
 
 class TestOrderStatus:
-    """OrderStatus unit test stubs"""
+    """OrderStatus enum tests."""
 
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testOrderStatus(self):
-        """Test OrderStatus"""
-        # inst = OrderStatus()
-        # assert inst
+    def test_order_status_values(self) -> None:
+        assert OrderStatus.PLACED.value == "placed"
+        assert OrderStatus.APPROVED.value == "approved"
+        assert OrderStatus.DELIVERED.value == "delivered"
+
+    def test_order_status_from_value(self) -> None:
+        assert OrderStatus("approved") == OrderStatus.APPROVED

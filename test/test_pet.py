@@ -13,53 +13,38 @@
 
 import pytest
 
+from openapi_client.models.category import Category
 from openapi_client.models.pet import Pet
+from openapi_client.models.pet_status import PetStatus
+from openapi_client.models.tag import Tag
 
 class TestPet:
-    """Pet unit test stubs"""
+    """Pet model tests."""
 
-    def make_instance(self, include_optional: bool) -> Pet:
-        """Create an Pet instance for testing.
+    def test_pet_requires_name(self) -> None:
+        with pytest.raises(ValueError):
+            Pet()
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+    def test_pet_with_required_only(self) -> None:
+        pet = Pet(name="pet-required")
 
-        Returns:
-            Pet: A populated Pet model instance.
+        assert pet.name == "pet-required"
+        assert pet.id is None
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
+    def test_pet_with_optional_fields(self) -> None:
+        pet = Pet(
+            id=7,
+            name="pet-optional",
+            photo_urls=["https://example.com/pet.png"],
+            category=Category(id=1, name="birds"),
+            tags=[Tag(id=1, name="flying")],
+            status=PetStatus.SOLD,
+        )
 
-        Example:
-            if include_optional:
-                return Pet(
-                    name = '0',
-                    photo_urls = [
-                    ''
-                    ],
-                    category = openapi_client.models.category.Category(
-                    id = 56, 
-                    name = '', ),
-                    tags = [
-                    openapi_client.models.tag.Tag(
-                        id = 56, 
-                        name = '', )
-                    ],
-                    status = 'available',
-                    id = 56
-                )
-            else:
-                return Pet(
-                    name = '0',
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
-
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testPet(self):
-        """Test Pet"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert pet.id == 7
+        assert pet.photo_urls == ["https://example.com/pet.png"]
+        assert pet.category is not None
+        assert pet.category.name == "birds"
+        assert pet.tags is not None
+        assert pet.tags[0].name == "flying"
+        assert pet.status == PetStatus.SOLD
