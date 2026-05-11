@@ -11,6 +11,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+from __future__ import annotations
 
 
 from setuptools import setup, find_packages  # noqa: H301
