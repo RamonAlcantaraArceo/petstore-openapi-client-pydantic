@@ -12,18 +12,16 @@
 """  # noqa: E501
 
 
-import unittest
-import datetime
 
 from openapi_client.models.pet import Pet  # noqa: E501
 
-class TestPet(unittest.TestCase):
+class TestPet:
     """Pet unit test stubs"""
 
-    def setUp(self):
+    def setup_method(self):
         pass
 
-    def tearDown(self):
+    def teardown_method(self):
         pass
 
     def make_instance(self, include_optional) -> Pet:
@@ -61,6 +59,3 @@ class TestPet(unittest.TestCase):
         """Test Pet"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
-
-if __name__ == '__main__':
-    unittest.main()

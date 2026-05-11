@@ -12,18 +12,17 @@
 """  # noqa: E501
 
 
-import unittest
 
 from openapi_client.api.store_api import StoreApi  # noqa: E501
 
 
-class TestStoreApi(unittest.TestCase):
+class TestStoreApi:
     """StoreApi unit test stubs"""
 
-    def setUp(self) -> None:
+    def setup_method(self) -> None:
         self.api = StoreApi()
 
-    def tearDown(self) -> None:
+    def teardown_method(self) -> None:
         self.api.api_client.close()
 
     def test_delete_order_api_v1_store_order_order_id_delete(self) -> None:
@@ -54,6 +53,3 @@ class TestStoreApi(unittest.TestCase):
         """
         pass
 
-
-if __name__ == '__main__':
-    unittest.main()

@@ -1,0 +1,43 @@
+# coding: utf-8
+
+{{>partial_header}}
+
+
+from {{apiPackage}}.{{classFilename}} import {{classname}}  # noqa: E501
+
+
+class {{#operations}}Test{{classname}}:
+    """{{classname}} unit test stubs"""
+
+    {{#asyncio}}
+    async def setup_method(self) -> None:
+        self.api = {{classname}}()
+
+    async def teardown_method(self) -> None:
+        await self.api.api_client.close()
+    {{/asyncio}}
+    {{^asyncio}}
+    def setup_method(self) -> None:
+        self.api = {{classname}}()
+
+    def teardown_method(self) -> None:
+        self.api.api_client.close()
+    {{/asyncio}}
+
+    {{#operation}}
+    {{#asyncio}}
+    async def test_{{operationId}}(self) -> None:
+    {{/asyncio}}
+    {{^asyncio}}
+    def test_{{operationId}}(self) -> None:
+    {{/asyncio}}
+        """Test case for {{{operationId}}}
+
+{{#summary}}
+        {{{.}}}  # noqa: E501
+{{/summary}}
+        """
+        pass
+
+   {{/operation}}
+{{/operations}}

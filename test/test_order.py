@@ -12,18 +12,16 @@
 """  # noqa: E501
 
 
-import unittest
-import datetime
 
 from openapi_client.models.order import Order  # noqa: E501
 
-class TestOrder(unittest.TestCase):
+class TestOrder:
     """Order unit test stubs"""
 
-    def setUp(self):
+    def setup_method(self):
         pass
 
-    def tearDown(self):
+    def teardown_method(self):
         pass
 
     def make_instance(self, include_optional) -> Order:
@@ -52,6 +50,3 @@ class TestOrder(unittest.TestCase):
         """Test Order"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
-
-if __name__ == '__main__':
-    unittest.main()

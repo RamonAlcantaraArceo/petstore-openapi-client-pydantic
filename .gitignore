@@ -68,3 +68,4 @@ target/
 # OpenAPI Generator
 .templates/
 tmp/
+tmp-gen/

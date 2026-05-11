@@ -12,18 +12,17 @@
 """  # noqa: E501
 
 
-import unittest
 
 from openapi_client.api.user_api import UserApi  # noqa: E501
 
 
-class TestUserApi(unittest.TestCase):
+class TestUserApi:
     """UserApi unit test stubs"""
 
-    def setUp(self) -> None:
+    def setup_method(self) -> None:
         self.api = UserApi()
 
-    def tearDown(self) -> None:
+    def teardown_method(self) -> None:
         self.api.api_client.close()
 
     def test_create_user_api_v1_user_post(self) -> None:
@@ -75,6 +74,3 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
-
-if __name__ == '__main__':
-    unittest.main()

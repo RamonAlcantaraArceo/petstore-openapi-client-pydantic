@@ -12,18 +12,16 @@
 """  # noqa: E501
 
 
-import unittest
-import datetime
 
 from openapi_client.models.http_validation_error import HTTPValidationError  # noqa: E501
 
-class TestHTTPValidationError(unittest.TestCase):
+class TestHTTPValidationError:
     """HTTPValidationError unit test stubs"""
 
-    def setUp(self):
+    def setup_method(self):
         pass
 
-    def tearDown(self):
+    def teardown_method(self):
         pass
 
     def make_instance(self, include_optional) -> HTTPValidationError:
@@ -56,6 +54,3 @@ class TestHTTPValidationError(unittest.TestCase):
         """Test HTTPValidationError"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
-
-if __name__ == '__main__':
-    unittest.main()

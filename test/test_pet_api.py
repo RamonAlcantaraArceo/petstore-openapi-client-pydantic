@@ -12,18 +12,17 @@
 """  # noqa: E501
 
 
-import unittest
 
 from openapi_client.api.pet_api import PetApi  # noqa: E501
 
 
-class TestPetApi(unittest.TestCase):
+class TestPetApi:
     """PetApi unit test stubs"""
 
-    def setUp(self) -> None:
+    def setup_method(self) -> None:
         self.api = PetApi()
 
-    def tearDown(self) -> None:
+    def teardown_method(self) -> None:
         self.api.api_client.close()
 
     def test_add_pet_api_v1_pet_post(self) -> None:
@@ -82,6 +81,3 @@ class TestPetApi(unittest.TestCase):
         """
         pass
 
-
-if __name__ == '__main__':
-    unittest.main()

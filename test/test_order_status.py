@@ -12,23 +12,18 @@
 """  # noqa: E501
 
 
-import unittest
-import datetime
 
 from openapi_client.models.order_status import OrderStatus  # noqa: E501
 
-class TestOrderStatus(unittest.TestCase):
+class TestOrderStatus:
     """OrderStatus unit test stubs"""
 
-    def setUp(self):
+    def setup_method(self):
         pass
 
-    def tearDown(self):
+    def teardown_method(self):
         pass
 
     def testOrderStatus(self):
         """Test OrderStatus"""
         # inst = OrderStatus()
-
-if __name__ == '__main__':
-    unittest.main()

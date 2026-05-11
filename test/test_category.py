@@ -12,18 +12,16 @@
 """  # noqa: E501
 
 
-import unittest
-import datetime
 
 from openapi_client.models.category import Category  # noqa: E501
 
-class TestCategory(unittest.TestCase):
+class TestCategory:
     """Category unit test stubs"""
 
-    def setUp(self):
+    def setup_method(self):
         pass
 
-    def tearDown(self):
+    def teardown_method(self):
         pass
 
     def make_instance(self, include_optional) -> Category:
@@ -48,6 +46,3 @@ class TestCategory(unittest.TestCase):
         """Test Category"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
-
-if __name__ == '__main__':
-    unittest.main()

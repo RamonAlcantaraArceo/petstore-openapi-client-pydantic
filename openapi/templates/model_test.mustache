@@ -1,0 +1,55 @@
+# coding: utf-8
+
+{{>partial_header}}
+
+
+{{#models}}
+{{#model}}
+from {{modelPackage}}.{{classFilename}} import {{classname}}  # noqa: E501
+
+class Test{{classname}}:
+    """{{classname}} unit test stubs"""
+
+    def setup_method(self):
+        pass
+
+    def teardown_method(self):
+        pass
+{{^isEnum}}
+
+    def make_instance(self, include_optional) -> {{classname}}:
+        """Test {{classname}}
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `{{{classname}}}`
+        """
+        model = {{classname}}()  # noqa: E501
+        if include_optional:
+            return {{classname}}(
+                {{#vars}}
+                {{name}} = {{{example}}}{{^example}}None{{/example}}{{^-last}},{{/-last}}
+                {{/vars}}
+            )
+        else:
+            return {{classname}}(
+                {{#vars}}
+                {{#required}}
+                {{name}} = {{{example}}}{{^example}}None{{/example}},
+                {{/required}}
+                {{/vars}}
+        )
+        """
+{{/isEnum}}
+
+    def test{{classname}}(self):
+        """Test {{classname}}"""
+{{^isEnum}}
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
+{{/isEnum}}
+{{#isEnum}}
+        # inst = {{{classname}}}()
+{{/isEnum}}
+{{/model}}
+{{/models}}

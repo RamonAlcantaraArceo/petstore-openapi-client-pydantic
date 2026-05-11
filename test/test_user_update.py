@@ -12,18 +12,16 @@
 """  # noqa: E501
 
 
-import unittest
-import datetime
 
 from openapi_client.models.user_update import UserUpdate  # noqa: E501
 
-class TestUserUpdate(unittest.TestCase):
+class TestUserUpdate:
     """UserUpdate unit test stubs"""
 
-    def setUp(self):
+    def setup_method(self):
         pass
 
-    def tearDown(self):
+    def teardown_method(self):
         pass
 
     def make_instance(self, include_optional) -> UserUpdate:
@@ -53,6 +51,3 @@ class TestUserUpdate(unittest.TestCase):
         """Test UserUpdate"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
-
-if __name__ == '__main__':
-    unittest.main()

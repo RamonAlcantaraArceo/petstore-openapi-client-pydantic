@@ -12,18 +12,17 @@
 """  # noqa: E501
 
 
-import unittest
 
 from openapi_client.api.health_api import HealthApi  # noqa: E501
 
 
-class TestHealthApi(unittest.TestCase):
+class TestHealthApi:
     """HealthApi unit test stubs"""
 
-    def setUp(self) -> None:
+    def setup_method(self) -> None:
         self.api = HealthApi()
 
-    def tearDown(self) -> None:
+    def teardown_method(self) -> None:
         self.api.api_client.close()
 
     def test_health_check_health_get(self) -> None:
@@ -33,6 +32,3 @@ class TestHealthApi(unittest.TestCase):
         """
         pass
 
-
-if __name__ == '__main__':
-    unittest.main()

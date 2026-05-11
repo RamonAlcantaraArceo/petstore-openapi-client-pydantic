@@ -1,7 +1,7 @@
 
 
 help:
-	docker run --rm --help
+	docker run --rm openapitools/openapi-generator-cli help generate
 
 interactive:
 	docker run --rm -it \
@@ -12,7 +12,18 @@ generate:
 	-v ${PWD}:/local openapitools/openapi-generator-cli generate \
 	--generator-name python-pydantic-v1 \
 	--input-spec /local/openapi/openapi.json \
+	--template-dir /local/openapi/templates \
 	--output /local \
+	--config /local/openapi/config.json
+
+generate-debug:
+	rm -rf tmp-gen/test
+	docker run --rm \
+	-v ${PWD}:/local openapitools/openapi-generator-cli generate \
+	--generator-name python-pydantic-v1 \
+	--input-spec /local/openapi/openapi.json \
+	--template-dir /local/openapi/templates \
+	--output /local/tmp-gen \
 	--config /local/openapi/config.json
 
 get-templates:
