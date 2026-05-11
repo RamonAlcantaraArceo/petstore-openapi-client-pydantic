@@ -221,6 +221,7 @@ import time
 import os
 import openapi_client
 from openapi_client.models.pet import Pet
+from openapi_client.models.pet_status import PetStatus
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -247,7 +248,7 @@ async def main():
     async with openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
         api_instance = openapi_client.PetApi(api_client)
-        status = 'available' # str | Status values to filter by (optional) (default to 'available')
+        status = openapi_client.PetStatus() # PetStatus | Status values to filter by (optional)
 
         try:
             # Find Pets By Status
@@ -267,7 +268,7 @@ if __name__ == '__main__':
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | **str**| Status values to filter by | [optional] [default to &#39;available&#39;]
+ **status** | [**PetStatus**](.md)| Status values to filter by | [optional] 
 
 ### Return type
 

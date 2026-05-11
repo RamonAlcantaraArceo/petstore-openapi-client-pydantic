@@ -89,7 +89,7 @@ class TestPetApi:
         )
 
         pets = await pet_api_client.find_pets_by_status_api_v1_pet_find_by_status_get(
-            status=PetStatus.AVAILABLE.value
+            status= "foobar"#PetStatus.AVAILABLE.value
         )
 
         assert isinstance(pets, list)

@@ -127,10 +127,7 @@
                         "in": "query",
                         "required": false,
                         "schema": {
-                            "type": "string",
-                            "description": "Status values to filter by",
-                            "default": "available",
-                            "title": "Status"
+                            "$ref": "#/components/schemas/PetStatus"
                         },
                         "description": "Status values to filter by"
                     }

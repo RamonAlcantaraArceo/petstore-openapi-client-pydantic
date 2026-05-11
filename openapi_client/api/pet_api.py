@@ -28,6 +28,7 @@ from typing import Dict, List, Optional
 
 from openapi_client.models.pet import Pet
 from openapi_client.models.pet_create import PetCreate
+from openapi_client.models.pet_status import PetStatus
 from openapi_client.models.pet_update import PetUpdate
 
 from openapi_client.api_client import ApiClient
@@ -308,13 +309,13 @@ class PetApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    async def find_pets_by_status_api_v1_pet_find_by_status_get(self, status : Annotated[Optional[StrictStr], Field(description="Status values to filter by")] = None, **kwargs) -> List[Pet]:  # noqa: E501
+    async def find_pets_by_status_api_v1_pet_find_by_status_get(self, status : Annotated[Optional[PetStatus], Field(description="Status values to filter by")] = None, **kwargs) -> List[Pet]:  # noqa: E501
         """Find Pets By Status  # noqa: E501
 
         Find pets by status.  Args:     status: Availability status to filter by.     service: Injected PetService.  Returns:     List of pets matching the given status.  # noqa: E501
 
         :param status: Status values to filter by
-        :type status: str
+        :type status: PetStatus
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -331,13 +332,13 @@ class PetApi:
         return await self.find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(status, **kwargs)  # noqa: E501
 
     @validate_arguments
-    async def find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="Status values to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(self, status : Annotated[Optional[PetStatus], Field(description="Status values to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Find Pets By Status  # noqa: E501
 
         Find pets by status.  Args:     status: Availability status to filter by.     service: Injected PetService.  Returns:     List of pets matching the given status.  # noqa: E501
 
         :param status: Status values to filter by
-        :type status: str
+        :type status: PetStatus
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -395,7 +396,7 @@ class PetApi:
         # process the query parameters
         _query_params = []
         if _params.get('status') is not None:  # noqa: E501
-            _query_params.append(('status', _params['status']))
+            _query_params.append(('status', _params['status'].value))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
