@@ -6,12 +6,9 @@ from openapi_client import ApiClient, Configuration
 def _get_default_host() -> str:
     """Prefer generated server URL; fall back to localhost:8000."""
     host = Configuration().host
-    if host == "http://localhost":
-        return "http://localhost:8000"
-    if host == "https://localhost":
-        return "https://localhost:8000"
-    return host
-
+    if host:
+        return host
+    return "http://localhost:8000"
 
 @pytest_asyncio.fixture()
 async def configuration():
