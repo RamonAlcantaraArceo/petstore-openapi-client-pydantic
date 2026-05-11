@@ -8,6 +8,7 @@ interactive:
 	-v ${PWD}:/local openapitools/openapi-generator-cli bash
 
 generate:
+	rm -f test/test_*.py
 	docker run --rm \
 	-v ${PWD}:/local openapitools/openapi-generator-cli generate \
 	--generator-name python-pydantic-v1 \
@@ -15,6 +16,7 @@ generate:
 	--template-dir /local/openapi/templates \
 	--output /local \
 	--config /local/openapi/config.json
+	cp openapi/templates/conftest.py test/conftest.py
 
 generate-debug:
 	rm -rf tmp-gen/test
@@ -25,6 +27,7 @@ generate-debug:
 	--template-dir /local/openapi/templates \
 	--output /local/tmp-gen \
 	--config /local/openapi/config.json
+	cp openapi/templates/conftest.py tmp-gen/test/conftest.py
 
 get-templates:
 	docker run --rm \

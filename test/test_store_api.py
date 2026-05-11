@@ -12,45 +12,44 @@
 """  # noqa: E501
 
 import pytest
+import pytest_asyncio
 
 from openapi_client.api.store_api import StoreApi  # noqa: E501
+from openapi_client import ApiClient
 
 
+@pytest_asyncio.fixture()
+async def store_api_client(api_client: ApiClient):
+    api = StoreApi(api_client=api_client)
+    yield api
+
+
+@pytest.mark.asyncio
 class TestStoreApi:
     """StoreApi unit test stubs"""
 
-    async def setup_method(self) -> None:
-        self.api = StoreApi()
-
-    async def teardown_method(self) -> None:
-        await self.api.api_client.close()
-
-    @pytest.mark.asyncio
-    async def test_delete_order_api_v1_store_order_order_id_delete(self) -> None:
+    async def test_delete_order_api_v1_store_order_order_id_delete(self, store_api_client: StoreApi) -> None:
         """Test case for delete_order_api_v1_store_order_order_id_delete
 
         Delete Order  # noqa: E501
         """
         pass
 
-    @pytest.mark.asyncio
-    async def test_get_inventory_api_v1_store_inventory_get(self) -> None:
+    async def test_get_inventory_api_v1_store_inventory_get(self, store_api_client: StoreApi) -> None:
         """Test case for get_inventory_api_v1_store_inventory_get
 
         Get Inventory  # noqa: E501
         """
         pass
 
-    @pytest.mark.asyncio
-    async def test_get_order_by_id_api_v1_store_order_order_id_get(self) -> None:
+    async def test_get_order_by_id_api_v1_store_order_order_id_get(self, store_api_client: StoreApi) -> None:
         """Test case for get_order_by_id_api_v1_store_order_order_id_get
 
         Get Order By Id  # noqa: E501
         """
         pass
 
-    @pytest.mark.asyncio
-    async def test_place_order_api_v1_store_order_post(self) -> None:
+    async def test_place_order_api_v1_store_order_post(self, store_api_client: StoreApi) -> None:
         """Test case for place_order_api_v1_store_order_post
 
         Place Order  # noqa: E501

@@ -3,22 +3,24 @@
 {{>partial_header}}
 
 import pytest
+import pytest_asyncio
 
 from {{apiPackage}}.{{classFilename}} import {{classname}}  # noqa: E501
+from openapi_client import ApiClient
 
 
+@pytest_asyncio.fixture()
+async def {{classFilename}}_client(api_client: ApiClient):
+    api = {{classname}}(api_client=api_client)
+    yield api
+
+
+@pytest.mark.asyncio
 class {{#operations}}Test{{classname}}:
     """{{classname}} unit test stubs"""
 
-    async def setup_method(self) -> None:
-        self.api = {{classname}}()
-
-    async def teardown_method(self) -> None:
-        await self.api.api_client.close()
-
     {{#operation}}
-    @pytest.mark.asyncio
-    async def test_{{operationId}}(self) -> None:
+    async def test_{{operationId}}(self, {{classFilename}}_client: {{classname}}) -> None:
         """Test case for {{{operationId}}}
 
 {{#summary}}

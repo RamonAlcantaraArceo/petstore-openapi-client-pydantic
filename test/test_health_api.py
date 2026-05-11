@@ -18,7 +18,6 @@ from openapi_client.api.health_api import HealthApi  # noqa: E501
 from openapi_client import ApiClient
 
 
-
 @pytest_asyncio.fixture()
 async def health_api_client(api_client: ApiClient):
     api = HealthApi(api_client=api_client)
@@ -35,3 +34,4 @@ class TestHealthApi:
         Health Check  # noqa: E501
         """
         pass
+
