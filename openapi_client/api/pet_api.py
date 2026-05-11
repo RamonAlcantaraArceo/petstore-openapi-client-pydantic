@@ -17,6 +17,7 @@ import io
 import warnings
 
 from pydantic import validate_arguments, ValidationError
+from typing import overload, Optional, Union, Awaitable
 
 from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr, conlist
@@ -48,20 +49,13 @@ class PetApi:
         self.api_client = api_client
 
     @validate_arguments
-    def add_pet_api_v1_pet_post(self, pet_create : PetCreate, **kwargs) -> Pet:  # noqa: E501
+    async def add_pet_api_v1_pet_post(self, pet_create : PetCreate, **kwargs) -> Pet:  # noqa: E501
         """Add Pet  # noqa: E501
 
         Add a new pet to the store.  Args:     pet: Pet data from request body.     service: Injected PetService.  Returns:     The created pet.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_pet_api_v1_pet_post(pet_create, async_req=True)
-        >>> result = thread.get()
 
         :param pet_create: (required)
         :type pet_create: PetCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -75,23 +69,16 @@ class PetApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the add_pet_api_v1_pet_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.add_pet_api_v1_pet_post_with_http_info(pet_create, **kwargs)  # noqa: E501
+        return await self.add_pet_api_v1_pet_post_with_http_info(pet_create, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_pet_api_v1_pet_post_with_http_info(self, pet_create : PetCreate, **kwargs) -> ApiResponse:  # noqa: E501
+    async def add_pet_api_v1_pet_post_with_http_info(self, pet_create : PetCreate, **kwargs) -> ApiResponse:  # noqa: E501
         """Add Pet  # noqa: E501
 
         Add a new pet to the store.  Args:     pet: Pet data from request body.     service: Injected PetService.  Returns:     The created pet.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_pet_api_v1_pet_post_with_http_info(pet_create, async_req=True)
-        >>> result = thread.get()
 
         :param pet_create: (required)
         :type pet_create: PetCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -122,7 +109,6 @@ class PetApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -178,7 +164,7 @@ class PetApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/pet', 'POST',
             _path_params,
             _query_params,
@@ -188,7 +174,6 @@ class PetApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -196,20 +181,13 @@ class PetApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_pet_api_v1_pet_pet_id_delete(self, pet_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
+    async def delete_pet_api_v1_pet_pet_id_delete(self, pet_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Delete Pet  # noqa: E501
 
         Delete a pet.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.  Returns:     Confirmation message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_pet_api_v1_pet_pet_id_delete(pet_id, async_req=True)
-        >>> result = thread.get()
 
         :param pet_id: (required)
         :type pet_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -223,23 +201,16 @@ class PetApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_pet_api_v1_pet_pet_id_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_pet_api_v1_pet_pet_id_delete_with_http_info(pet_id, **kwargs)  # noqa: E501
+        return await self.delete_pet_api_v1_pet_pet_id_delete_with_http_info(pet_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_pet_api_v1_pet_pet_id_delete_with_http_info(self, pet_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
+    async def delete_pet_api_v1_pet_pet_id_delete_with_http_info(self, pet_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete Pet  # noqa: E501
 
         Delete a pet.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.  Returns:     Confirmation message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_pet_api_v1_pet_pet_id_delete_with_http_info(pet_id, async_req=True)
-        >>> result = thread.get()
 
         :param pet_id: (required)
         :type pet_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -270,7 +241,6 @@ class PetApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -319,7 +289,7 @@ class PetApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/pet/{pet_id}', 'DELETE',
             _path_params,
             _query_params,
@@ -329,7 +299,6 @@ class PetApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -337,20 +306,13 @@ class PetApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_pets_by_status_api_v1_pet_find_by_status_get(self, status : Annotated[Optional[StrictStr], Field(description="Status values to filter by")] = None, **kwargs) -> List[Pet]:  # noqa: E501
+    async def find_pets_by_status_api_v1_pet_find_by_status_get(self, status : Annotated[Optional[StrictStr], Field(description="Status values to filter by")] = None, **kwargs) -> List[Pet]:  # noqa: E501
         """Find Pets By Status  # noqa: E501
 
         Find pets by status.  Args:     status: Availability status to filter by.     service: Injected PetService.  Returns:     List of pets matching the given status.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.find_pets_by_status_api_v1_pet_find_by_status_get(status, async_req=True)
-        >>> result = thread.get()
 
         :param status: Status values to filter by
         :type status: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -364,23 +326,16 @@ class PetApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(status, **kwargs)  # noqa: E501
+        return await self.find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(status, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="Status values to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="Status values to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Find Pets By Status  # noqa: E501
 
         Find pets by status.  Args:     status: Availability status to filter by.     service: Injected PetService.  Returns:     List of pets matching the given status.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(status, async_req=True)
-        >>> result = thread.get()
 
         :param status: Status values to filter by
         :type status: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -411,7 +366,6 @@ class PetApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -460,7 +414,7 @@ class PetApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/pet/findByStatus', 'GET',
             _path_params,
             _query_params,
@@ -470,7 +424,6 @@ class PetApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -478,20 +431,13 @@ class PetApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_pets_by_tags_api_v1_pet_find_by_tags_get(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> List[Pet]:  # noqa: E501
+    async def find_pets_by_tags_api_v1_pet_find_by_tags_get(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> List[Pet]:  # noqa: E501
         """Find Pets By Tags  # noqa: E501
 
         Find pets by tags.  Args:     tags: Tag names to filter by.     service: Injected PetService.  Returns:     List of pets matching any of the given tags.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.find_pets_by_tags_api_v1_pet_find_by_tags_get(tags, async_req=True)
-        >>> result = thread.get()
 
         :param tags: Tags to filter by (required)
         :type tags: List[str]
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -505,23 +451,16 @@ class PetApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(tags, **kwargs)  # noqa: E501
+        return await self.find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(tags, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> ApiResponse:  # noqa: E501
+    async def find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> ApiResponse:  # noqa: E501
         """Find Pets By Tags  # noqa: E501
 
         Find pets by tags.  Args:     tags: Tag names to filter by.     service: Injected PetService.  Returns:     List of pets matching any of the given tags.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(tags, async_req=True)
-        >>> result = thread.get()
 
         :param tags: Tags to filter by (required)
         :type tags: List[str]
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -552,7 +491,6 @@ class PetApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -602,7 +540,7 @@ class PetApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/pet/findByTags', 'GET',
             _path_params,
             _query_params,
@@ -612,7 +550,6 @@ class PetApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -620,20 +557,13 @@ class PetApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_pet_by_id_api_v1_pet_pet_id_get(self, pet_id : StrictInt, **kwargs) -> Pet:  # noqa: E501
+    async def get_pet_by_id_api_v1_pet_pet_id_get(self, pet_id : StrictInt, **kwargs) -> Pet:  # noqa: E501
         """Get Pet By Id  # noqa: E501
 
         Find pet by ID.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.  Returns:     The pet with the given ID.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_pet_by_id_api_v1_pet_pet_id_get(pet_id, async_req=True)
-        >>> result = thread.get()
 
         :param pet_id: (required)
         :type pet_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -647,23 +577,16 @@ class PetApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_pet_by_id_api_v1_pet_pet_id_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_pet_by_id_api_v1_pet_pet_id_get_with_http_info(pet_id, **kwargs)  # noqa: E501
+        return await self.get_pet_by_id_api_v1_pet_pet_id_get_with_http_info(pet_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_pet_by_id_api_v1_pet_pet_id_get_with_http_info(self, pet_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_pet_by_id_api_v1_pet_pet_id_get_with_http_info(self, pet_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Pet By Id  # noqa: E501
 
         Find pet by ID.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.  Returns:     The pet with the given ID.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_pet_by_id_api_v1_pet_pet_id_get_with_http_info(pet_id, async_req=True)
-        >>> result = thread.get()
 
         :param pet_id: (required)
         :type pet_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -694,7 +617,6 @@ class PetApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -743,7 +665,7 @@ class PetApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/pet/{pet_id}', 'GET',
             _path_params,
             _query_params,
@@ -753,7 +675,6 @@ class PetApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -761,20 +682,13 @@ class PetApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_pet_api_v1_pet_put(self, pet_update : PetUpdate, **kwargs) -> Pet:  # noqa: E501
+    async def update_pet_api_v1_pet_put(self, pet_update : PetUpdate, **kwargs) -> Pet:  # noqa: E501
         """Update Pet  # noqa: E501
 
         Update an existing pet.  Args:     pet: Updated pet data from request body.     service: Injected PetService.  Returns:     The updated pet.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_pet_api_v1_pet_put(pet_update, async_req=True)
-        >>> result = thread.get()
 
         :param pet_update: (required)
         :type pet_update: PetUpdate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -788,23 +702,16 @@ class PetApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_pet_api_v1_pet_put_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.update_pet_api_v1_pet_put_with_http_info(pet_update, **kwargs)  # noqa: E501
+        return await self.update_pet_api_v1_pet_put_with_http_info(pet_update, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_pet_api_v1_pet_put_with_http_info(self, pet_update : PetUpdate, **kwargs) -> ApiResponse:  # noqa: E501
+    async def update_pet_api_v1_pet_put_with_http_info(self, pet_update : PetUpdate, **kwargs) -> ApiResponse:  # noqa: E501
         """Update Pet  # noqa: E501
 
         Update an existing pet.  Args:     pet: Updated pet data from request body.     service: Injected PetService.  Returns:     The updated pet.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_pet_api_v1_pet_put_with_http_info(pet_update, async_req=True)
-        >>> result = thread.get()
 
         :param pet_update: (required)
         :type pet_update: PetUpdate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -835,7 +742,6 @@ class PetApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -891,7 +797,7 @@ class PetApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/pet', 'PUT',
             _path_params,
             _query_params,
@@ -901,7 +807,6 @@ class PetApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -909,15 +814,10 @@ class PetApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_pet_with_form_api_v1_pet_pet_id_post(self, pet_id : StrictInt, name : Optional[StrictStr] = None, status : Optional[StrictStr] = None, **kwargs) -> Pet:  # noqa: E501
+    async def update_pet_with_form_api_v1_pet_pet_id_post(self, pet_id : StrictInt, name : Optional[StrictStr] = None, status : Optional[StrictStr] = None, **kwargs) -> Pet:  # noqa: E501
         """Update Pet With Form  # noqa: E501
 
         Update a pet with form data.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.     name: New name for the pet.     status: New status for the pet.  Returns:     The updated pet.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_pet_with_form_api_v1_pet_pet_id_post(pet_id, name, status, async_req=True)
-        >>> result = thread.get()
 
         :param pet_id: (required)
         :type pet_id: int
@@ -925,8 +825,6 @@ class PetApi:
         :type name: str
         :param status:
         :type status: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -940,18 +838,13 @@ class PetApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_pet_with_form_api_v1_pet_pet_id_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.update_pet_with_form_api_v1_pet_pet_id_post_with_http_info(pet_id, name, status, **kwargs)  # noqa: E501
+        return await self.update_pet_with_form_api_v1_pet_pet_id_post_with_http_info(pet_id, name, status, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_pet_with_form_api_v1_pet_pet_id_post_with_http_info(self, pet_id : StrictInt, name : Optional[StrictStr] = None, status : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def update_pet_with_form_api_v1_pet_pet_id_post_with_http_info(self, pet_id : StrictInt, name : Optional[StrictStr] = None, status : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update Pet With Form  # noqa: E501
 
         Update a pet with form data.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.     name: New name for the pet.     status: New status for the pet.  Returns:     The updated pet.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_pet_with_form_api_v1_pet_pet_id_post_with_http_info(pet_id, name, status, async_req=True)
-        >>> result = thread.get()
 
         :param pet_id: (required)
         :type pet_id: int
@@ -959,8 +852,6 @@ class PetApi:
         :type name: str
         :param status:
         :type status: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -993,7 +884,6 @@ class PetApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -1055,7 +945,7 @@ class PetApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/pet/{pet_id}', 'POST',
             _path_params,
             _query_params,
@@ -1065,7 +955,6 @@ class PetApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -1073,15 +962,10 @@ class PetApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def upload_file_api_v1_pet_pet_id_upload_file_post(self, pet_id : StrictInt, file : Optional[StrictStr] = None, additional_metadata : Optional[StrictStr] = None, **kwargs) -> Dict[str, str]:  # noqa: E501
+    async def upload_file_api_v1_pet_pet_id_upload_file_post(self, pet_id : StrictInt, file : Optional[StrictStr] = None, additional_metadata : Optional[StrictStr] = None, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Upload File  # noqa: E501
 
         Upload an image for a pet.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.     file: The image file to upload.     additional_metadata: Optional metadata string.  Returns:     Confirmation message with file info.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.upload_file_api_v1_pet_pet_id_upload_file_post(pet_id, file, additional_metadata, async_req=True)
-        >>> result = thread.get()
 
         :param pet_id: (required)
         :type pet_id: int
@@ -1089,8 +973,6 @@ class PetApi:
         :type file: str
         :param additional_metadata:
         :type additional_metadata: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -1104,18 +986,13 @@ class PetApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info(pet_id, file, additional_metadata, **kwargs)  # noqa: E501
+        return await self.upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info(pet_id, file, additional_metadata, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info(self, pet_id : StrictInt, file : Optional[StrictStr] = None, additional_metadata : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info(self, pet_id : StrictInt, file : Optional[StrictStr] = None, additional_metadata : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload File  # noqa: E501
 
         Upload an image for a pet.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.     file: The image file to upload.     additional_metadata: Optional metadata string.  Returns:     Confirmation message with file info.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info(pet_id, file, additional_metadata, async_req=True)
-        >>> result = thread.get()
 
         :param pet_id: (required)
         :type pet_id: int
@@ -1123,8 +1000,6 @@ class PetApi:
         :type file: str
         :param additional_metadata:
         :type additional_metadata: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -1157,7 +1032,6 @@ class PetApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -1219,7 +1093,7 @@ class PetApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/pet/{pet_id}/uploadFile', 'POST',
             _path_params,
             _query_params,
@@ -1229,7 +1103,6 @@ class PetApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),

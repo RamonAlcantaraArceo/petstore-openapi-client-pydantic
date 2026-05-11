@@ -17,6 +17,7 @@ import io
 import warnings
 
 from pydantic import validate_arguments, ValidationError
+from typing import overload, Optional, Union, Awaitable
 
 from typing_extensions import Annotated
 from pydantic import Field, StrictStr, conlist
@@ -48,20 +49,13 @@ class UserApi:
         self.api_client = api_client
 
     @validate_arguments
-    def create_user_api_v1_user_post(self, user_create : UserCreate, **kwargs) -> User:  # noqa: E501
+    async def create_user_api_v1_user_post(self, user_create : UserCreate, **kwargs) -> User:  # noqa: E501
         """Create User  # noqa: E501
 
         Create a new user.  Args:     user: User data from request body.     service: Injected UserService.  Returns:     The created user.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_user_api_v1_user_post(user_create, async_req=True)
-        >>> result = thread.get()
 
         :param user_create: (required)
         :type user_create: UserCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -75,23 +69,16 @@ class UserApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_user_api_v1_user_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_user_api_v1_user_post_with_http_info(user_create, **kwargs)  # noqa: E501
+        return await self.create_user_api_v1_user_post_with_http_info(user_create, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_user_api_v1_user_post_with_http_info(self, user_create : UserCreate, **kwargs) -> ApiResponse:  # noqa: E501
+    async def create_user_api_v1_user_post_with_http_info(self, user_create : UserCreate, **kwargs) -> ApiResponse:  # noqa: E501
         """Create User  # noqa: E501
 
         Create a new user.  Args:     user: User data from request body.     service: Injected UserService.  Returns:     The created user.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_user_api_v1_user_post_with_http_info(user_create, async_req=True)
-        >>> result = thread.get()
 
         :param user_create: (required)
         :type user_create: UserCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -122,7 +109,6 @@ class UserApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -178,7 +164,7 @@ class UserApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/user', 'POST',
             _path_params,
             _query_params,
@@ -188,7 +174,6 @@ class UserApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -196,20 +181,13 @@ class UserApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_users_with_list_api_v1_user_create_with_list_post(self, user_create : conlist(UserCreate), **kwargs) -> List[User]:  # noqa: E501
+    async def create_users_with_list_api_v1_user_create_with_list_post(self, user_create : conlist(UserCreate), **kwargs) -> List[User]:  # noqa: E501
         """Create Users With List  # noqa: E501
 
         Create users from a list.  Args:     users: List of user data from request body.     service: Injected UserService.  Returns:     List of created users.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_users_with_list_api_v1_user_create_with_list_post(user_create, async_req=True)
-        >>> result = thread.get()
 
         :param user_create: (required)
         :type user_create: List[UserCreate]
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -223,23 +201,16 @@ class UserApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the create_users_with_list_api_v1_user_create_with_list_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.create_users_with_list_api_v1_user_create_with_list_post_with_http_info(user_create, **kwargs)  # noqa: E501
+        return await self.create_users_with_list_api_v1_user_create_with_list_post_with_http_info(user_create, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_users_with_list_api_v1_user_create_with_list_post_with_http_info(self, user_create : conlist(UserCreate), **kwargs) -> ApiResponse:  # noqa: E501
+    async def create_users_with_list_api_v1_user_create_with_list_post_with_http_info(self, user_create : conlist(UserCreate), **kwargs) -> ApiResponse:  # noqa: E501
         """Create Users With List  # noqa: E501
 
         Create users from a list.  Args:     users: List of user data from request body.     service: Injected UserService.  Returns:     List of created users.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_users_with_list_api_v1_user_create_with_list_post_with_http_info(user_create, async_req=True)
-        >>> result = thread.get()
 
         :param user_create: (required)
         :type user_create: List[UserCreate]
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -270,7 +241,6 @@ class UserApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -326,7 +296,7 @@ class UserApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/user/createWithList', 'POST',
             _path_params,
             _query_params,
@@ -336,7 +306,6 @@ class UserApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -344,20 +313,13 @@ class UserApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_user_api_v1_user_username_delete(self, username : StrictStr, **kwargs) -> Dict[str, str]:  # noqa: E501
+    async def delete_user_api_v1_user_username_delete(self, username : StrictStr, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Delete User  # noqa: E501
 
         Delete user by username.  Args:     username: The user's unique username.     service: Injected UserService.  Returns:     Confirmation message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_user_api_v1_user_username_delete(username, async_req=True)
-        >>> result = thread.get()
 
         :param username: (required)
         :type username: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -371,23 +333,16 @@ class UserApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_user_api_v1_user_username_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_user_api_v1_user_username_delete_with_http_info(username, **kwargs)  # noqa: E501
+        return await self.delete_user_api_v1_user_username_delete_with_http_info(username, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_user_api_v1_user_username_delete_with_http_info(self, username : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
+    async def delete_user_api_v1_user_username_delete_with_http_info(self, username : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete User  # noqa: E501
 
         Delete user by username.  Args:     username: The user's unique username.     service: Injected UserService.  Returns:     Confirmation message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_user_api_v1_user_username_delete_with_http_info(username, async_req=True)
-        >>> result = thread.get()
 
         :param username: (required)
         :type username: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -418,7 +373,6 @@ class UserApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -467,7 +421,7 @@ class UserApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/user/{username}', 'DELETE',
             _path_params,
             _query_params,
@@ -477,7 +431,6 @@ class UserApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -485,20 +438,13 @@ class UserApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_user_by_name_api_v1_user_username_get(self, username : StrictStr, **kwargs) -> User:  # noqa: E501
+    async def get_user_by_name_api_v1_user_username_get(self, username : StrictStr, **kwargs) -> User:  # noqa: E501
         """Get User By Name  # noqa: E501
 
         Get user by username.  Args:     username: The user's username.     service: Injected UserService.  Returns:     The user with the given username.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_user_by_name_api_v1_user_username_get(username, async_req=True)
-        >>> result = thread.get()
 
         :param username: (required)
         :type username: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -512,23 +458,16 @@ class UserApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_user_by_name_api_v1_user_username_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_user_by_name_api_v1_user_username_get_with_http_info(username, **kwargs)  # noqa: E501
+        return await self.get_user_by_name_api_v1_user_username_get_with_http_info(username, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_user_by_name_api_v1_user_username_get_with_http_info(self, username : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_user_by_name_api_v1_user_username_get_with_http_info(self, username : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get User By Name  # noqa: E501
 
         Get user by username.  Args:     username: The user's username.     service: Injected UserService.  Returns:     The user with the given username.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_user_by_name_api_v1_user_username_get_with_http_info(username, async_req=True)
-        >>> result = thread.get()
 
         :param username: (required)
         :type username: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -559,7 +498,6 @@ class UserApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -608,7 +546,7 @@ class UserApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/user/{username}', 'GET',
             _path_params,
             _query_params,
@@ -618,7 +556,6 @@ class UserApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -626,22 +563,15 @@ class UserApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def login_user_api_v1_user_login_get(self, username : Annotated[StrictStr, Field(..., description="The username for login")], password : Annotated[StrictStr, Field(..., description="The password for login")], **kwargs) -> Dict[str, str]:  # noqa: E501
+    async def login_user_api_v1_user_login_get(self, username : Annotated[StrictStr, Field(..., description="The username for login")], password : Annotated[StrictStr, Field(..., description="The password for login")], **kwargs) -> Dict[str, str]:  # noqa: E501
         """Login User  # noqa: E501
 
         Log user into the system.  Args:     username: The username to log in with.     password: The password to log in with.     service: Injected UserService.  Returns:     Dict containing the session token.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.login_user_api_v1_user_login_get(username, password, async_req=True)
-        >>> result = thread.get()
 
         :param username: The username for login (required)
         :type username: str
         :param password: The password for login (required)
         :type password: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -655,25 +585,18 @@ class UserApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the login_user_api_v1_user_login_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.login_user_api_v1_user_login_get_with_http_info(username, password, **kwargs)  # noqa: E501
+        return await self.login_user_api_v1_user_login_get_with_http_info(username, password, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def login_user_api_v1_user_login_get_with_http_info(self, username : Annotated[StrictStr, Field(..., description="The username for login")], password : Annotated[StrictStr, Field(..., description="The password for login")], **kwargs) -> ApiResponse:  # noqa: E501
+    async def login_user_api_v1_user_login_get_with_http_info(self, username : Annotated[StrictStr, Field(..., description="The username for login")], password : Annotated[StrictStr, Field(..., description="The password for login")], **kwargs) -> ApiResponse:  # noqa: E501
         """Login User  # noqa: E501
 
         Log user into the system.  Args:     username: The username to log in with.     password: The password to log in with.     service: Injected UserService.  Returns:     Dict containing the session token.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.login_user_api_v1_user_login_get_with_http_info(username, password, async_req=True)
-        >>> result = thread.get()
 
         :param username: The username for login (required)
         :type username: str
         :param password: The password for login (required)
         :type password: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -705,7 +628,6 @@ class UserApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -757,7 +679,7 @@ class UserApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/user/login', 'GET',
             _path_params,
             _query_params,
@@ -767,7 +689,6 @@ class UserApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -775,18 +696,11 @@ class UserApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def logout_user_api_v1_user_logout_get(self, **kwargs) -> Dict[str, str]:  # noqa: E501
+    async def logout_user_api_v1_user_logout_get(self, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Logout User  # noqa: E501
 
         Log out current logged-in user session.  Args:     service: Injected UserService.  Returns:     Confirmation message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.logout_user_api_v1_user_logout_get(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -800,21 +714,14 @@ class UserApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the logout_user_api_v1_user_logout_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.logout_user_api_v1_user_logout_get_with_http_info(**kwargs)  # noqa: E501
+        return await self.logout_user_api_v1_user_logout_get_with_http_info(**kwargs)  # noqa: E501
 
     @validate_arguments
-    def logout_user_api_v1_user_logout_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+    async def logout_user_api_v1_user_logout_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Logout User  # noqa: E501
 
         Log out current logged-in user session.  Args:     service: Injected UserService.  Returns:     Confirmation message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.logout_user_api_v1_user_logout_get_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -844,7 +751,6 @@ class UserApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -889,7 +795,7 @@ class UserApi:
             '200': "Dict[str, str]",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/user/logout', 'GET',
             _path_params,
             _query_params,
@@ -899,7 +805,6 @@ class UserApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -907,22 +812,15 @@ class UserApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_user_api_v1_user_username_put(self, username : StrictStr, user_update : UserUpdate, **kwargs) -> User:  # noqa: E501
+    async def update_user_api_v1_user_username_put(self, username : StrictStr, user_update : UserUpdate, **kwargs) -> User:  # noqa: E501
         """Update User  # noqa: E501
 
         Update user by username.  Args:     username: The user's current username.     user: Updated user data.     service: Injected UserService.  Returns:     The updated user.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_user_api_v1_user_username_put(username, user_update, async_req=True)
-        >>> result = thread.get()
 
         :param username: (required)
         :type username: str
         :param user_update: (required)
         :type user_update: UserUpdate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -936,25 +834,18 @@ class UserApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the update_user_api_v1_user_username_put_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.update_user_api_v1_user_username_put_with_http_info(username, user_update, **kwargs)  # noqa: E501
+        return await self.update_user_api_v1_user_username_put_with_http_info(username, user_update, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_user_api_v1_user_username_put_with_http_info(self, username : StrictStr, user_update : UserUpdate, **kwargs) -> ApiResponse:  # noqa: E501
+    async def update_user_api_v1_user_username_put_with_http_info(self, username : StrictStr, user_update : UserUpdate, **kwargs) -> ApiResponse:  # noqa: E501
         """Update User  # noqa: E501
 
         Update user by username.  Args:     username: The user's current username.     user: Updated user data.     service: Injected UserService.  Returns:     The updated user.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_user_api_v1_user_username_put_with_http_info(username, user_update, async_req=True)
-        >>> result = thread.get()
 
         :param username: (required)
         :type username: str
         :param user_update: (required)
         :type user_update: UserUpdate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -986,7 +877,6 @@ class UserApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -1045,7 +935,7 @@ class UserApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/user/{username}', 'PUT',
             _path_params,
             _query_params,
@@ -1055,7 +945,6 @@ class UserApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),

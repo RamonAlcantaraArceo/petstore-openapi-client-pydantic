@@ -52,14 +52,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.StoreApi(api_client)
     order_id = 56 # int | 
 
     try:
         # Delete Order
-        api_response = api_instance.delete_order_api_v1_store_order_order_id_delete(order_id)
+        api_response = await api_instance.delete_order_api_v1_store_order_order_id_delete(order_id)
         print("The response of StoreApi->delete_order_api_v1_store_order_order_id_delete:\n")
         pprint(api_response)
     except Exception as e:
@@ -136,13 +136,13 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.StoreApi(api_client)
 
     try:
         # Get Inventory
-        api_response = api_instance.get_inventory_api_v1_store_inventory_get()
+        api_response = await api_instance.get_inventory_api_v1_store_inventory_get()
         print("The response of StoreApi->get_inventory_api_v1_store_inventory_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -217,14 +217,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.StoreApi(api_client)
     order_id = 56 # int | 
 
     try:
         # Get Order By Id
-        api_response = api_instance.get_order_by_id_api_v1_store_order_order_id_get(order_id)
+        api_response = await api_instance.get_order_by_id_api_v1_store_order_order_id_get(order_id)
         print("The response of StoreApi->get_order_by_id_api_v1_store_order_order_id_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -304,14 +304,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.StoreApi(api_client)
     order_create = openapi_client.OrderCreate() # OrderCreate | 
 
     try:
         # Place Order
-        api_response = api_instance.place_order_api_v1_store_order_post(order_create)
+        api_response = await api_instance.place_order_api_v1_store_order_post(order_create)
         print("The response of StoreApi->place_order_api_v1_store_order_post:\n")
         pprint(api_response)
     except Exception as e:

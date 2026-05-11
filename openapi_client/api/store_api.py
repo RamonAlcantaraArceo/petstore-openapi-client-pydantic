@@ -17,6 +17,7 @@ import io
 import warnings
 
 from pydantic import validate_arguments, ValidationError
+from typing import overload, Optional, Union, Awaitable
 
 from pydantic import StrictInt
 
@@ -46,20 +47,13 @@ class StoreApi:
         self.api_client = api_client
 
     @validate_arguments
-    def delete_order_api_v1_store_order_order_id_delete(self, order_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
+    async def delete_order_api_v1_store_order_order_id_delete(self, order_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Delete Order  # noqa: E501
 
         Delete purchase order by ID.  Args:     order_id: The order's unique identifier.     service: Injected OrderService.  Returns:     Confirmation message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_order_api_v1_store_order_order_id_delete(order_id, async_req=True)
-        >>> result = thread.get()
 
         :param order_id: (required)
         :type order_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -73,23 +67,16 @@ class StoreApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the delete_order_api_v1_store_order_order_id_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.delete_order_api_v1_store_order_order_id_delete_with_http_info(order_id, **kwargs)  # noqa: E501
+        return await self.delete_order_api_v1_store_order_order_id_delete_with_http_info(order_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_order_api_v1_store_order_order_id_delete_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
+    async def delete_order_api_v1_store_order_order_id_delete_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete Order  # noqa: E501
 
         Delete purchase order by ID.  Args:     order_id: The order's unique identifier.     service: Injected OrderService.  Returns:     Confirmation message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_order_api_v1_store_order_order_id_delete_with_http_info(order_id, async_req=True)
-        >>> result = thread.get()
 
         :param order_id: (required)
         :type order_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -120,7 +107,6 @@ class StoreApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -169,7 +155,7 @@ class StoreApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/store/order/{order_id}', 'DELETE',
             _path_params,
             _query_params,
@@ -179,7 +165,6 @@ class StoreApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -187,18 +172,11 @@ class StoreApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_inventory_api_v1_store_inventory_get(self, **kwargs) -> Dict[str, int]:  # noqa: E501
+    async def get_inventory_api_v1_store_inventory_get(self, **kwargs) -> Dict[str, int]:  # noqa: E501
         """Get Inventory  # noqa: E501
 
         Return pet inventories by status.  Args:     service: Injected OrderService.  Returns:     Dict mapping status to count of pets with that status.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_inventory_api_v1_store_inventory_get(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -212,21 +190,14 @@ class StoreApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_inventory_api_v1_store_inventory_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_inventory_api_v1_store_inventory_get_with_http_info(**kwargs)  # noqa: E501
+        return await self.get_inventory_api_v1_store_inventory_get_with_http_info(**kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_inventory_api_v1_store_inventory_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_inventory_api_v1_store_inventory_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Inventory  # noqa: E501
 
         Return pet inventories by status.  Args:     service: Injected OrderService.  Returns:     Dict mapping status to count of pets with that status.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_inventory_api_v1_store_inventory_get_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -256,7 +227,6 @@ class StoreApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -301,7 +271,7 @@ class StoreApi:
             '200': "Dict[str, int]",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/store/inventory', 'GET',
             _path_params,
             _query_params,
@@ -311,7 +281,6 @@ class StoreApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -319,20 +288,13 @@ class StoreApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_order_by_id_api_v1_store_order_order_id_get(self, order_id : StrictInt, **kwargs) -> Order:  # noqa: E501
+    async def get_order_by_id_api_v1_store_order_order_id_get(self, order_id : StrictInt, **kwargs) -> Order:  # noqa: E501
         """Get Order By Id  # noqa: E501
 
         Find purchase order by ID.  Args:     order_id: The order's unique identifier (1–10).     service: Injected OrderService.  Returns:     The order with the given ID.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_order_by_id_api_v1_store_order_order_id_get(order_id, async_req=True)
-        >>> result = thread.get()
 
         :param order_id: (required)
         :type order_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -346,23 +308,16 @@ class StoreApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the get_order_by_id_api_v1_store_order_order_id_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.get_order_by_id_api_v1_store_order_order_id_get_with_http_info(order_id, **kwargs)  # noqa: E501
+        return await self.get_order_by_id_api_v1_store_order_order_id_get_with_http_info(order_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_order_by_id_api_v1_store_order_order_id_get_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_order_by_id_api_v1_store_order_order_id_get_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Order By Id  # noqa: E501
 
         Find purchase order by ID.  Args:     order_id: The order's unique identifier (1–10).     service: Injected OrderService.  Returns:     The order with the given ID.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_order_by_id_api_v1_store_order_order_id_get_with_http_info(order_id, async_req=True)
-        >>> result = thread.get()
 
         :param order_id: (required)
         :type order_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -393,7 +348,6 @@ class StoreApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -442,7 +396,7 @@ class StoreApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/store/order/{order_id}', 'GET',
             _path_params,
             _query_params,
@@ -452,7 +406,6 @@ class StoreApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
@@ -460,20 +413,13 @@ class StoreApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def place_order_api_v1_store_order_post(self, order_create : OrderCreate, **kwargs) -> Order:  # noqa: E501
+    async def place_order_api_v1_store_order_post(self, order_create : OrderCreate, **kwargs) -> Order:  # noqa: E501
         """Place Order  # noqa: E501
 
         Place an order for a pet.  Args:     order: Order data from request body.     service: Injected OrderService.  Returns:     The placed order.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.place_order_api_v1_store_order_post(order_create, async_req=True)
-        >>> result = thread.get()
 
         :param order_create: (required)
         :type order_create: OrderCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -487,23 +433,16 @@ class StoreApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the place_order_api_v1_store_order_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.place_order_api_v1_store_order_post_with_http_info(order_create, **kwargs)  # noqa: E501
+        return await self.place_order_api_v1_store_order_post_with_http_info(order_create, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def place_order_api_v1_store_order_post_with_http_info(self, order_create : OrderCreate, **kwargs) -> ApiResponse:  # noqa: E501
+    async def place_order_api_v1_store_order_post_with_http_info(self, order_create : OrderCreate, **kwargs) -> ApiResponse:  # noqa: E501
         """Place Order  # noqa: E501
 
         Place an order for a pet.  Args:     order: Order data from request body.     service: Injected OrderService.  Returns:     The placed order.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.place_order_api_v1_store_order_post_with_http_info(order_create, async_req=True)
-        >>> result = thread.get()
 
         :param order_create: (required)
         :type order_create: OrderCreate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -534,7 +473,6 @@ class StoreApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -590,7 +528,7 @@ class StoreApi:
             '422': "HTTPValidationError",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/api/v1/store/order', 'POST',
             _path_params,
             _query_params,
@@ -600,7 +538,6 @@ class StoreApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),

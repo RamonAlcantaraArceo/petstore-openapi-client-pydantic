@@ -34,13 +34,13 @@ configuration = openapi_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.HealthApi(api_client)
 
     try:
         # Health Check
-        api_response = api_instance.health_check_health_get()
+        api_response = await api_instance.health_check_health_get()
         print("The response of HealthApi->health_check_health_get:\n")
         pprint(api_response)
     except Exception as e:

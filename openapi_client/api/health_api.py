@@ -17,6 +17,7 @@ import io
 import warnings
 
 from pydantic import validate_arguments, ValidationError
+from typing import overload, Optional, Union, Awaitable
 
 from typing import Any
 
@@ -42,18 +43,11 @@ class HealthApi:
         self.api_client = api_client
 
     @validate_arguments
-    def health_check_health_get(self, **kwargs) -> object:  # noqa: E501
+    async def health_check_health_get(self, **kwargs) -> object:  # noqa: E501
         """Health Check  # noqa: E501
 
         Return service health status.  Returns:     JSON response with status and storage mode.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.health_check_health_get(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
                timeout. It can also be a pair (tuple) of
@@ -67,21 +61,14 @@ class HealthApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the health_check_health_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.health_check_health_get_with_http_info(**kwargs)  # noqa: E501
+        return await self.health_check_health_get_with_http_info(**kwargs)  # noqa: E501
 
     @validate_arguments
-    def health_check_health_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+    async def health_check_health_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Health Check  # noqa: E501
 
         Return service health status.  Returns:     JSON response with status and storage mode.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.health_check_health_get_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
@@ -111,7 +98,6 @@ class HealthApi:
         ]
         _all_params.extend(
             [
-                'async_req',
                 '_return_http_data_only',
                 '_preload_content',
                 '_request_timeout',
@@ -156,7 +142,7 @@ class HealthApi:
             '200': "object",
         }
 
-        return self.api_client.call_api(
+        return await self.api_client.call_api(
             '/health', 'GET',
             _path_params,
             _query_params,
@@ -166,7 +152,6 @@ class HealthApi:
             files=_files,
             response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),

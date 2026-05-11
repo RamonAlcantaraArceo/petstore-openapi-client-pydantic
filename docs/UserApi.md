@@ -57,14 +57,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.UserApi(api_client)
     user_create = openapi_client.UserCreate() # UserCreate | 
 
     try:
         # Create User
-        api_response = api_instance.create_user_api_v1_user_post(user_create)
+        api_response = await api_instance.create_user_api_v1_user_post(user_create)
         print("The response of UserApi->create_user_api_v1_user_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -144,14 +144,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.UserApi(api_client)
     user_create = [openapi_client.UserCreate()] # List[UserCreate] | 
 
     try:
         # Create Users With List
-        api_response = api_instance.create_users_with_list_api_v1_user_create_with_list_post(user_create)
+        api_response = await api_instance.create_users_with_list_api_v1_user_create_with_list_post(user_create)
         print("The response of UserApi->create_users_with_list_api_v1_user_create_with_list_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -229,14 +229,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.UserApi(api_client)
     username = 'username_example' # str | 
 
     try:
         # Delete User
-        api_response = api_instance.delete_user_api_v1_user_username_delete(username)
+        api_response = await api_instance.delete_user_api_v1_user_username_delete(username)
         print("The response of UserApi->delete_user_api_v1_user_username_delete:\n")
         pprint(api_response)
     except Exception as e:
@@ -315,14 +315,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.UserApi(api_client)
     username = 'username_example' # str | 
 
     try:
         # Get User By Name
-        api_response = api_instance.get_user_by_name_api_v1_user_username_get(username)
+        api_response = await api_instance.get_user_by_name_api_v1_user_username_get(username)
         print("The response of UserApi->get_user_by_name_api_v1_user_username_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -401,7 +401,7 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.UserApi(api_client)
     username = 'username_example' # str | The username for login
@@ -409,7 +409,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Login User
-        api_response = api_instance.login_user_api_v1_user_login_get(username, password)
+        api_response = await api_instance.login_user_api_v1_user_login_get(username, password)
         print("The response of UserApi->login_user_api_v1_user_login_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -487,13 +487,13 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.UserApi(api_client)
 
     try:
         # Logout User
-        api_response = api_instance.logout_user_api_v1_user_logout_get()
+        api_response = await api_instance.logout_user_api_v1_user_logout_get()
         print("The response of UserApi->logout_user_api_v1_user_logout_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -570,7 +570,7 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.UserApi(api_client)
     username = 'username_example' # str | 
@@ -578,7 +578,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Update User
-        api_response = api_instance.update_user_api_v1_user_username_put(username, user_update)
+        api_response = await api_instance.update_user_api_v1_user_username_put(username, user_update)
         print("The response of UserApi->update_user_api_v1_user_username_put:\n")
         pprint(api_response)
     except Exception as e:

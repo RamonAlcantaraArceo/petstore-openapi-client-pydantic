@@ -58,14 +58,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.PetApi(api_client)
     pet_create = openapi_client.PetCreate() # PetCreate | 
 
     try:
         # Add Pet
-        api_response = api_instance.add_pet_api_v1_pet_post(pet_create)
+        api_response = await api_instance.add_pet_api_v1_pet_post(pet_create)
         print("The response of PetApi->add_pet_api_v1_pet_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -143,14 +143,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.PetApi(api_client)
     pet_id = 56 # int | 
 
     try:
         # Delete Pet
-        api_response = api_instance.delete_pet_api_v1_pet_pet_id_delete(pet_id)
+        api_response = await api_instance.delete_pet_api_v1_pet_pet_id_delete(pet_id)
         print("The response of PetApi->delete_pet_api_v1_pet_pet_id_delete:\n")
         pprint(api_response)
     except Exception as e:
@@ -229,14 +229,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.PetApi(api_client)
     status = 'available' # str | Status values to filter by (optional) (default to 'available')
 
     try:
         # Find Pets By Status
-        api_response = api_instance.find_pets_by_status_api_v1_pet_find_by_status_get(status=status)
+        api_response = await api_instance.find_pets_by_status_api_v1_pet_find_by_status_get(status=status)
         print("The response of PetApi->find_pets_by_status_api_v1_pet_find_by_status_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -315,14 +315,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.PetApi(api_client)
     tags = ['tags_example'] # List[str] | Tags to filter by
 
     try:
         # Find Pets By Tags
-        api_response = api_instance.find_pets_by_tags_api_v1_pet_find_by_tags_get(tags)
+        api_response = await api_instance.find_pets_by_tags_api_v1_pet_find_by_tags_get(tags)
         print("The response of PetApi->find_pets_by_tags_api_v1_pet_find_by_tags_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -401,14 +401,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.PetApi(api_client)
     pet_id = 56 # int | 
 
     try:
         # Get Pet By Id
-        api_response = api_instance.get_pet_by_id_api_v1_pet_pet_id_get(pet_id)
+        api_response = await api_instance.get_pet_by_id_api_v1_pet_pet_id_get(pet_id)
         print("The response of PetApi->get_pet_by_id_api_v1_pet_pet_id_get:\n")
         pprint(api_response)
     except Exception as e:
@@ -488,14 +488,14 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.PetApi(api_client)
     pet_update = openapi_client.PetUpdate() # PetUpdate | 
 
     try:
         # Update Pet
-        api_response = api_instance.update_pet_api_v1_pet_put(pet_update)
+        api_response = await api_instance.update_pet_api_v1_pet_put(pet_update)
         print("The response of PetApi->update_pet_api_v1_pet_put:\n")
         pprint(api_response)
     except Exception as e:
@@ -576,7 +576,7 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.PetApi(api_client)
     pet_id = 56 # int | 
@@ -585,7 +585,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Update Pet With Form
-        api_response = api_instance.update_pet_with_form_api_v1_pet_pet_id_post(pet_id, name=name, status=status)
+        api_response = await api_instance.update_pet_with_form_api_v1_pet_pet_id_post(pet_id, name=name, status=status)
         print("The response of PetApi->update_pet_with_form_api_v1_pet_pet_id_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -667,7 +667,7 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+async with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.PetApi(api_client)
     pet_id = 56 # int | 
@@ -676,7 +676,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Upload File
-        api_response = api_instance.upload_file_api_v1_pet_pet_id_upload_file_post(pet_id, file=file, additional_metadata=additional_metadata)
+        api_response = await api_instance.upload_file_api_v1_pet_pet_id_upload_file_post(pet_id, file=file, additional_metadata=additional_metadata)
         print("The response of PetApi->upload_file_api_v1_pet_pet_id_upload_file_post:\n")
         pprint(api_response)
     except Exception as e:
