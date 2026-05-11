@@ -1,0 +1,34 @@
+# Order
+
+Full order schema including server-assigned fields.  Attributes:     id: Order identifier.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**pet_id** | **int** |  | [optional] 
+**quantity** | **int** |  | [optional] 
+**ship_date** | **datetime** |  | [optional] 
+**status** | [**OrderStatus**](OrderStatus.md) |  | [optional] 
+**complete** | **bool** |  | [optional] 
+**id** | **int** |  | [optional] 
+
+## Example
+
+```python
+from openapi_client.models.order import Order
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of Order from a JSON string
+order_instance = Order.from_json(json)
+# print the JSON string representation of the object
+print Order.to_json()
+
+# convert the object into a dict
+order_dict = order_instance.to_dict()
+# create an instance of Order from a dict
+order_from_dict = Order.from_dict(order_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
