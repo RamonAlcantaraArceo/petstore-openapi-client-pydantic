@@ -23,7 +23,7 @@ import re  # noqa: F401
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr, ValidationError, validator
 from typing import Union, Any, List, TYPE_CHECKING
-from pydantic import StrictStr, Field
+from pydantic import StrictStr, Field, ConfigDict, field_validator
 
 LOCATIONINNER_ANY_OF_SCHEMAS = ["int", "str"]
 
@@ -40,10 +40,9 @@ class LocationInner(BaseModel):
         actual_instance: Union[int, str]
     else:
         actual_instance: Any
-    any_of_schemas: List[str] = Field(LOCATIONINNER_ANY_OF_SCHEMAS, const=True)
+    any_of_schemas: List[str] = LOCATIONINNER_ANY_OF_SCHEMAS
 
-    class Config:
-        validate_assignment = True
+    model_config = ConfigDict(validate_assignment=True)
 
     def __init__(self, *args, **kwargs) -> None:
         if args:
@@ -55,9 +54,9 @@ class LocationInner(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @validator('actual_instance')
+    @field_validator('actual_instance')
     def actual_instance_must_validate_anyof(cls, v):
-        instance = LocationInner.construct()
+        instance = LocationInner.model_construct()
         error_messages = []
         # validate data type: str
         try:
@@ -84,7 +83,7 @@ class LocationInner(BaseModel):
     @classmethod
     def from_json(cls, json_str: str) -> LocationInner:
         """Returns the object represented by the json string"""
-        instance = LocationInner.construct()
+        instance = LocationInner.model_construct()
         error_messages = []
         # deserialize data into str
         try:
@@ -136,6 +135,6 @@ class LocationInner(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.dict())
+        return pprint.pformat(self.model_dump())
 
 

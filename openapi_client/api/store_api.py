@@ -19,7 +19,7 @@ import io
 import warnings
 
 from aenum import Enum
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
 from pydantic import StrictInt
@@ -49,7 +49,7 @@ class StoreApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     async def delete_order_api_v1_store_order_order_id_delete(self, order_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Delete Order  # noqa: E501
 
@@ -72,7 +72,7 @@ class StoreApi:
             raise ValueError(message)
         return await self.delete_order_api_v1_store_order_order_id_delete_with_http_info(order_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def delete_order_api_v1_store_order_order_id_delete_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete Order  # noqa: E501
 
@@ -177,7 +177,7 @@ class StoreApi:
     async def delete_order_api_v1_store_order_order_id_delete_without_validation(self, order_id=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete Order — without pydantic validation  # noqa: E501
 
-        Like ``delete_order_api_v1_store_order_order_id_delete_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``delete_order_api_v1_store_order_order_id_delete_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -194,12 +194,12 @@ class StoreApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.delete_order_api_v1_store_order_order_id_delete_with_http_info.__wrapped__
         return await _impl(self, order_id, **kwargs)
 
-    @validate_arguments
+    @validate_call
     async def get_inventory_api_v1_store_inventory_get(self, **kwargs) -> List[Order]:  # noqa: E501
         """Get Inventory  # noqa: E501
 
@@ -220,7 +220,7 @@ class StoreApi:
             raise ValueError(message)
         return await self.get_inventory_api_v1_store_inventory_get_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def get_inventory_api_v1_store_inventory_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Inventory  # noqa: E501
 
@@ -318,7 +318,7 @@ class StoreApi:
     async def get_inventory_api_v1_store_inventory_get_without_validation(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Inventory — without pydantic validation  # noqa: E501
 
-        Like ``get_inventory_api_v1_store_inventory_get_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``get_inventory_api_v1_store_inventory_get_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -334,12 +334,12 @@ class StoreApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.get_inventory_api_v1_store_inventory_get_with_http_info.__wrapped__
         return await _impl(self, **kwargs)
 
-    @validate_arguments
+    @validate_call
     async def get_order_by_id_api_v1_store_order_order_id_get(self, order_id : StrictInt, **kwargs) -> Order:  # noqa: E501
         """Get Order By Id  # noqa: E501
 
@@ -362,7 +362,7 @@ class StoreApi:
             raise ValueError(message)
         return await self.get_order_by_id_api_v1_store_order_order_id_get_with_http_info(order_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def get_order_by_id_api_v1_store_order_order_id_get_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Order By Id  # noqa: E501
 
@@ -467,7 +467,7 @@ class StoreApi:
     async def get_order_by_id_api_v1_store_order_order_id_get_without_validation(self, order_id=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Order By Id — without pydantic validation  # noqa: E501
 
-        Like ``get_order_by_id_api_v1_store_order_order_id_get_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``get_order_by_id_api_v1_store_order_order_id_get_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -484,12 +484,12 @@ class StoreApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.get_order_by_id_api_v1_store_order_order_id_get_with_http_info.__wrapped__
         return await _impl(self, order_id, **kwargs)
 
-    @validate_arguments
+    @validate_call
     async def place_order_api_v1_store_order_post(self, order_create : OrderCreate, **kwargs) -> Order:  # noqa: E501
         """Place Order  # noqa: E501
 
@@ -512,7 +512,7 @@ class StoreApi:
             raise ValueError(message)
         return await self.place_order_api_v1_store_order_post_with_http_info(order_create, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def place_order_api_v1_store_order_post_with_http_info(self, order_create : OrderCreate, **kwargs) -> ApiResponse:  # noqa: E501
         """Place Order  # noqa: E501
 
@@ -624,7 +624,7 @@ class StoreApi:
     async def place_order_api_v1_store_order_post_without_validation(self, order_create=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Place Order — without pydantic validation  # noqa: E501
 
-        Like ``place_order_api_v1_store_order_post_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``place_order_api_v1_store_order_post_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -641,7 +641,7 @@ class StoreApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.place_order_api_v1_store_order_post_with_http_info.__wrapped__
         return await _impl(self, order_create, **kwargs)

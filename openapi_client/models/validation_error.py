@@ -21,28 +21,26 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, StrictStr
+from pydantic import ConfigDict, field_validator
 from openapi_client.models.location_inner import LocationInner
 
 class ValidationError(BaseModel):
     """
     ValidationError
     """
-    loc: conlist(LocationInner) = Field(...)
+    loc: List[LocationInner] = Field(...)
     msg: StrictStr = Field(...)
     type: StrictStr = Field(...)
     input: Optional[Any] = None
     ctx: Optional[Dict[str, Any]] = None
     __properties = ["loc", "msg", "type", "input", "ctx"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -55,7 +53,7 @@ class ValidationError(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -68,7 +66,7 @@ class ValidationError(BaseModel):
             _dict['loc'] = _items
         # set to None if input (nullable) is None
         # and __fields_set__ contains the field
-        if self.input is None and "input" in self.__fields_set__:
+        if self.input is None and "input" in self.model_fields_set:
             _dict['input'] = None
 
         return _dict
@@ -80,9 +78,9 @@ class ValidationError(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ValidationError.parse_obj(obj)
+            return ValidationError.model_validate(obj)
 
-        _obj = ValidationError.parse_obj({
+        _obj = ValidationError.model_validate({
             "loc": [LocationInner.from_dict(_item) for _item in obj.get("loc")] if obj.get("loc") is not None else None,
             "msg": obj.get("msg"),
             "type": obj.get("type"),

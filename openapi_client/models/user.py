@@ -22,6 +22,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, StrictInt, StrictStr
+from pydantic import ConfigDict, field_validator
 
 class User(BaseModel):
     """
@@ -36,14 +37,11 @@ class User(BaseModel):
     id: Optional[StrictInt] = None
     __properties = ["username", "first_name", "last_name", "email", "phone", "user_status", "id"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -56,43 +54,43 @@ class User(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
         # set to None if username (nullable) is None
         # and __fields_set__ contains the field
-        if self.username is None and "username" in self.__fields_set__:
+        if self.username is None and "username" in self.model_fields_set:
             _dict['username'] = None
 
         # set to None if first_name (nullable) is None
         # and __fields_set__ contains the field
-        if self.first_name is None and "first_name" in self.__fields_set__:
+        if self.first_name is None and "first_name" in self.model_fields_set:
             _dict['first_name'] = None
 
         # set to None if last_name (nullable) is None
         # and __fields_set__ contains the field
-        if self.last_name is None and "last_name" in self.__fields_set__:
+        if self.last_name is None and "last_name" in self.model_fields_set:
             _dict['last_name'] = None
 
         # set to None if email (nullable) is None
         # and __fields_set__ contains the field
-        if self.email is None and "email" in self.__fields_set__:
+        if self.email is None and "email" in self.model_fields_set:
             _dict['email'] = None
 
         # set to None if phone (nullable) is None
         # and __fields_set__ contains the field
-        if self.phone is None and "phone" in self.__fields_set__:
+        if self.phone is None and "phone" in self.model_fields_set:
             _dict['phone'] = None
 
         # set to None if user_status (nullable) is None
         # and __fields_set__ contains the field
-        if self.user_status is None and "user_status" in self.__fields_set__:
+        if self.user_status is None and "user_status" in self.model_fields_set:
             _dict['user_status'] = None
 
         # set to None if id (nullable) is None
         # and __fields_set__ contains the field
-        if self.id is None and "id" in self.__fields_set__:
+        if self.id is None and "id" in self.model_fields_set:
             _dict['id'] = None
 
         return _dict
@@ -104,9 +102,9 @@ class User(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return User.parse_obj(obj)
+            return User.model_validate(obj)
 
-        _obj = User.parse_obj({
+        _obj = User.model_validate({
             "username": obj.get("username"),
             "first_name": obj.get("first_name"),
             "last_name": obj.get("last_name"),

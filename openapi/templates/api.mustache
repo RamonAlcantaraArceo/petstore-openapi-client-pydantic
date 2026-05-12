@@ -8,7 +8,7 @@ import io
 import warnings
 
 from aenum import Enum
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 {{#asyncio}}
 from typing import overload, Optional, Union, Awaitable
 {{/asyncio}}
@@ -48,7 +48,7 @@ class {{classname}}:
         self.api_client = api_client
 {{#operation}}
 
-    @validate_arguments
+    @validate_call
 {{#asyncio}}
     async def {{operationId}}(self, {{#allParams}}{{paramName}} : {{#isEnumRef}}Annotated[{{^required}}Optional[{{/required}}{{dataType}}{{^required}}]{{/required}}, Field({{#required}}..., {{/required}}description="{{{description}}}")]{{/isEnumRef}}{{^isEnumRef}}{{{vendorExtensions.x-py-typing}}}{{/isEnumRef}}{{^required}} = None{{/required}}, {{/allParams}}**kwargs) -> {{{returnType}}}{{^returnType}}None{{/returnType}}:  # noqa: E501
 {{/asyncio}}
@@ -91,7 +91,7 @@ class {{classname}}:
             raise ValueError(message)
         return {{#asyncio}}await {{/asyncio}}self.{{operationId}}_with_http_info({{#allParams}}{{paramName}}, {{/allParams}}**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
 {{#asyncio}}
     async def {{operationId}}_with_http_info(self, {{#allParams}}{{paramName}} : {{#isEnumRef}}Annotated[{{^required}}Optional[{{/required}}{{dataType}}{{^required}}]{{/required}}, Field({{#required}}..., {{/required}}description="{{{description}}}")]{{/isEnumRef}}{{^isEnumRef}}{{{vendorExtensions.x-py-typing}}}{{/isEnumRef}}{{^required}} = None{{/required}}, {{/allParams}}**kwargs) -> ApiResponse:  # noqa: E501
 {{/asyncio}}
@@ -340,7 +340,7 @@ class {{classname}}:
 {{/asyncio}}
         """{{#isDeprecated}}(Deprecated) {{/isDeprecated}}{{{summary}}}{{^summary}}{{operationId}}{{/summary}} — without pydantic validation  # noqa: E501
 
-        Like ``{{operationId}}_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``{{operationId}}_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -359,7 +359,7 @@ class {{classname}}:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.{{operationId}}_with_http_info.__wrapped__
         return {{#asyncio}}await {{/asyncio}}_impl(self, {{#allParams}}{{paramName}}, {{/allParams}}**kwargs)

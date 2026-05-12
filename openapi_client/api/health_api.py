@@ -19,7 +19,7 @@ import io
 import warnings
 
 from aenum import Enum
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
 from typing import Any
@@ -45,7 +45,7 @@ class HealthApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     async def health_check_health_get(self, **kwargs) -> object:  # noqa: E501
         """Health Check  # noqa: E501
 
@@ -66,7 +66,7 @@ class HealthApi:
             raise ValueError(message)
         return await self.health_check_health_get_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def health_check_health_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Health Check  # noqa: E501
 
@@ -164,7 +164,7 @@ class HealthApi:
     async def health_check_health_get_without_validation(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Health Check — without pydantic validation  # noqa: E501
 
-        Like ``health_check_health_get_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``health_check_health_get_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -180,7 +180,7 @@ class HealthApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.health_check_health_get_with_http_info.__wrapped__
         return await _impl(self, **kwargs)

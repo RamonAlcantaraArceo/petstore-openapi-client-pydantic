@@ -21,7 +21,8 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic import ConfigDict, field_validator
 from openapi_client.models.category import Category
 from openapi_client.models.pet_status import PetStatus
 from openapi_client.models.tag import Tag
@@ -30,22 +31,19 @@ class PetUpdate(BaseModel):
     """
     Schema for updating an existing pet.  Attributes:     id: Pet identifier (required for updates).  # noqa: E501
     """
-    name: constr(strict=True, min_length=1) = Field(...)
-    photo_urls: Optional[conlist(StrictStr)] = Field(default=None, alias="photoUrls")
+    name: StrictStr = Field(..., min_length=1)
+    photo_urls: Optional[List[StrictStr]] = Field(default=None, alias="photoUrls")
     category: Optional[Category] = None
-    tags: Optional[conlist(Tag)] = None
+    tags: Optional[List[Tag]] = None
     status: Optional[PetStatus] = None
     id: StrictInt = Field(...)
     __properties = ["name", "photoUrls", "category", "tags", "status", "id"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -58,7 +56,7 @@ class PetUpdate(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -74,17 +72,17 @@ class PetUpdate(BaseModel):
             _dict['tags'] = _items
         # set to None if category (nullable) is None
         # and __fields_set__ contains the field
-        if self.category is None and "category" in self.__fields_set__:
+        if self.category is None and "category" in self.model_fields_set:
             _dict['category'] = None
 
         # set to None if tags (nullable) is None
         # and __fields_set__ contains the field
-        if self.tags is None and "tags" in self.__fields_set__:
+        if self.tags is None and "tags" in self.model_fields_set:
             _dict['tags'] = None
 
         # set to None if status (nullable) is None
         # and __fields_set__ contains the field
-        if self.status is None and "status" in self.__fields_set__:
+        if self.status is None and "status" in self.model_fields_set:
             _dict['status'] = None
 
         return _dict
@@ -96,9 +94,9 @@ class PetUpdate(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PetUpdate.parse_obj(obj)
+            return PetUpdate.model_validate(obj)
 
-        _obj = PetUpdate.parse_obj({
+        _obj = PetUpdate.model_validate({
             "name": obj.get("name"),
             "photo_urls": obj.get("photoUrls"),
             "category": Category.from_dict(obj.get("category")) if obj.get("category") is not None else None,

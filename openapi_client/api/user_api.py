@@ -19,11 +19,11 @@ import io
 import warnings
 
 from aenum import Enum
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
 from typing_extensions import Annotated
-from pydantic import Field, StrictStr, conlist
+from pydantic import Field, StrictStr
 
 from typing import Dict, List
 
@@ -51,7 +51,7 @@ class UserApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     async def create_user_api_v1_user_post(self, user_create : UserCreate, **kwargs) -> User:  # noqa: E501
         """Create User  # noqa: E501
 
@@ -74,7 +74,7 @@ class UserApi:
             raise ValueError(message)
         return await self.create_user_api_v1_user_post_with_http_info(user_create, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def create_user_api_v1_user_post_with_http_info(self, user_create : UserCreate, **kwargs) -> ApiResponse:  # noqa: E501
         """Create User  # noqa: E501
 
@@ -186,7 +186,7 @@ class UserApi:
     async def create_user_api_v1_user_post_without_validation(self, user_create=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create User — without pydantic validation  # noqa: E501
 
-        Like ``create_user_api_v1_user_post_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``create_user_api_v1_user_post_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -203,13 +203,13 @@ class UserApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.create_user_api_v1_user_post_with_http_info.__wrapped__
         return await _impl(self, user_create, **kwargs)
 
-    @validate_arguments
-    async def create_users_with_list_api_v1_user_create_with_list_post(self, user_create : conlist(UserCreate), **kwargs) -> List[User]:  # noqa: E501
+    @validate_call
+    async def create_users_with_list_api_v1_user_create_with_list_post(self, user_create : List[UserCreate], **kwargs) -> List[User]:  # noqa: E501
         """Create Users With List  # noqa: E501
 
         Create users from a list.  Args:     users: List of user data from request body.     service: Injected UserService.  Returns:     List of created users.  # noqa: E501
@@ -231,8 +231,8 @@ class UserApi:
             raise ValueError(message)
         return await self.create_users_with_list_api_v1_user_create_with_list_post_with_http_info(user_create, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    async def create_users_with_list_api_v1_user_create_with_list_post_with_http_info(self, user_create : conlist(UserCreate), **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    async def create_users_with_list_api_v1_user_create_with_list_post_with_http_info(self, user_create : List[UserCreate], **kwargs) -> ApiResponse:  # noqa: E501
         """Create Users With List  # noqa: E501
 
         Create users from a list.  Args:     users: List of user data from request body.     service: Injected UserService.  Returns:     List of created users.  # noqa: E501
@@ -343,7 +343,7 @@ class UserApi:
     async def create_users_with_list_api_v1_user_create_with_list_post_without_validation(self, user_create=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create Users With List — without pydantic validation  # noqa: E501
 
-        Like ``create_users_with_list_api_v1_user_create_with_list_post_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``create_users_with_list_api_v1_user_create_with_list_post_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -360,12 +360,12 @@ class UserApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.create_users_with_list_api_v1_user_create_with_list_post_with_http_info.__wrapped__
         return await _impl(self, user_create, **kwargs)
 
-    @validate_arguments
+    @validate_call
     async def delete_user_api_v1_user_username_delete(self, username : StrictStr, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Delete User  # noqa: E501
 
@@ -388,7 +388,7 @@ class UserApi:
             raise ValueError(message)
         return await self.delete_user_api_v1_user_username_delete_with_http_info(username, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def delete_user_api_v1_user_username_delete_with_http_info(self, username : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete User  # noqa: E501
 
@@ -493,7 +493,7 @@ class UserApi:
     async def delete_user_api_v1_user_username_delete_without_validation(self, username=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete User — without pydantic validation  # noqa: E501
 
-        Like ``delete_user_api_v1_user_username_delete_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``delete_user_api_v1_user_username_delete_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -510,12 +510,12 @@ class UserApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.delete_user_api_v1_user_username_delete_with_http_info.__wrapped__
         return await _impl(self, username, **kwargs)
 
-    @validate_arguments
+    @validate_call
     async def get_user_by_name_api_v1_user_username_get(self, username : StrictStr, **kwargs) -> User:  # noqa: E501
         """Get User By Name  # noqa: E501
 
@@ -538,7 +538,7 @@ class UserApi:
             raise ValueError(message)
         return await self.get_user_by_name_api_v1_user_username_get_with_http_info(username, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def get_user_by_name_api_v1_user_username_get_with_http_info(self, username : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get User By Name  # noqa: E501
 
@@ -643,7 +643,7 @@ class UserApi:
     async def get_user_by_name_api_v1_user_username_get_without_validation(self, username=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get User By Name — without pydantic validation  # noqa: E501
 
-        Like ``get_user_by_name_api_v1_user_username_get_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``get_user_by_name_api_v1_user_username_get_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -660,12 +660,12 @@ class UserApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.get_user_by_name_api_v1_user_username_get_with_http_info.__wrapped__
         return await _impl(self, username, **kwargs)
 
-    @validate_arguments
+    @validate_call
     async def login_user_api_v1_user_login_get(self, username : Annotated[StrictStr, Field(..., description="The username for login")], password : Annotated[StrictStr, Field(..., description="The password for login")], **kwargs) -> Dict[str, str]:  # noqa: E501
         """Login User  # noqa: E501
 
@@ -690,7 +690,7 @@ class UserApi:
             raise ValueError(message)
         return await self.login_user_api_v1_user_login_get_with_http_info(username, password, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def login_user_api_v1_user_login_get_with_http_info(self, username : Annotated[StrictStr, Field(..., description="The username for login")], password : Annotated[StrictStr, Field(..., description="The password for login")], **kwargs) -> ApiResponse:  # noqa: E501
         """Login User  # noqa: E501
 
@@ -807,7 +807,7 @@ class UserApi:
     async def login_user_api_v1_user_login_get_without_validation(self, username=None, password=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login User — without pydantic validation  # noqa: E501
 
-        Like ``login_user_api_v1_user_login_get_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``login_user_api_v1_user_login_get_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -825,12 +825,12 @@ class UserApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.login_user_api_v1_user_login_get_with_http_info.__wrapped__
         return await _impl(self, username, password, **kwargs)
 
-    @validate_arguments
+    @validate_call
     async def logout_user_api_v1_user_logout_get(self, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Logout User  # noqa: E501
 
@@ -851,7 +851,7 @@ class UserApi:
             raise ValueError(message)
         return await self.logout_user_api_v1_user_logout_get_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def logout_user_api_v1_user_logout_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Logout User  # noqa: E501
 
@@ -949,7 +949,7 @@ class UserApi:
     async def logout_user_api_v1_user_logout_get_without_validation(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Logout User — without pydantic validation  # noqa: E501
 
-        Like ``logout_user_api_v1_user_logout_get_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``logout_user_api_v1_user_logout_get_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -965,12 +965,12 @@ class UserApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.logout_user_api_v1_user_logout_get_with_http_info.__wrapped__
         return await _impl(self, **kwargs)
 
-    @validate_arguments
+    @validate_call
     async def update_user_api_v1_user_username_put(self, username : StrictStr, user_update : UserUpdate, **kwargs) -> User:  # noqa: E501
         """Update User  # noqa: E501
 
@@ -995,7 +995,7 @@ class UserApi:
             raise ValueError(message)
         return await self.update_user_api_v1_user_username_put_with_http_info(username, user_update, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     async def update_user_api_v1_user_username_put_with_http_info(self, username : StrictStr, user_update : UserUpdate, **kwargs) -> ApiResponse:  # noqa: E501
         """Update User  # noqa: E501
 
@@ -1113,7 +1113,7 @@ class UserApi:
     async def update_user_api_v1_user_username_put_without_validation(self, username=None, user_update=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update User — without pydantic validation  # noqa: E501
 
-        Like ``update_user_api_v1_user_username_put_with_http_info`` but bypasses ``@validate_arguments``
+        Like ``update_user_api_v1_user_username_put_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
@@ -1131,7 +1131,7 @@ class UserApi:
         :rtype: ApiResponse
         """
         # Retrieve the original undecorated implementation stored by pydantic's
-        # @validate_arguments on the _with_http_info method, then call it
+        # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
         _impl = self.update_user_api_v1_user_username_put_with_http_info.__wrapped__
         return await _impl(self, username, user_update, **kwargs)
