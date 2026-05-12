@@ -1,40 +1,54 @@
-[tool.poetry]
+[project]
 name = "{{{packageName}}}"
 version = "{{{packageVersion}}}"
 description = "{{{appName}}}"
-authors = ["{{infoName}}{{^infoName}}OpenAPI Generator Community{{/infoName}} <{{infoEmail}}{{^infoEmail}}team@openapitools.org{{/infoEmail}}>"]
-license = "{{{licenseInfo}}}{{^licenseInfo}}Unlicense{{/licenseInfo}}"
 readme = "README.md"
-repository = "https://{{{gitHost}}}/{{{gitUserId}}}/{{{gitRepoId}}}"
+requires-python = ">=3.10"
+authors = [{ name = "{{infoName}}{{^infoName}}OpenAPI Generator Community{{/infoName}}", email = "{{infoEmail}}{{^infoEmail}}team@openapitools.org{{/infoEmail}}" }]
+license = "{{{licenseInfo}}}{{^licenseInfo}}Unlicense{{/licenseInfo}}"
 keywords = ["OpenAPI", "OpenAPI-Generator", "{{{appName}}}"]
-include = ["{{packageName}}/py.typed"]
-
-[tool.poetry.dependencies]
-python = "^3.10"
-
-urllib3 = ">= 1.25.3"
-python-dateutil = ">=2.8.2"
+dependencies = [
+	"urllib3>=1.25.3",
+	"python-dateutil>=2.8.2",
 {{#asyncio}}
-aiohttp = ">= 3.8.4"
+	"aiohttp>=3.8.4",
 {{/asyncio}}
 {{#tornado}}
-tornado = ">=4.2,<5"
+	"tornado>=4.2,<5",
 {{/tornado}}
 {{#hasHttpSignatureMethods}}
-pem = ">= 19.3.0"
-pycryptodome = ">= 3.9.0"
+	"pem>=19.3.0",
+	"pycryptodome>=3.9.0",
 {{/hasHttpSignatureMethods}}
-pydantic = "^1.10.5, <2"
-aenum = ">=3.1.11"
+	"pydantic>=1.10.5,<2",
+	"aenum>=3.1.11",
+]
 
-[tool.poetry.dev-dependencies]
-pytest = ">=7.2.1"
-tox = ">=3.9.0"
-flake8 = ">=4.0.0"
+[project.urls]
+Repository = "https://{{{gitHost}}}/{{{gitUserId}}}/{{{gitRepoId}}}"
+
+[dependency-groups]
+dev = [
+	"pytest>=7.2.1",
+	"pytest-cov>=2.8.1",
+	"pytest-randomly>=3.12.0",
+{{#asyncio}}
+	"pytest-asyncio>=0.23.0",
+{{/asyncio}}
+	"tox>=3.9.0",
+	"flake8>=4.0.0",
+]
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = false
+packages = ["{{{packageName}}}"]
+
+[tool.setuptools.package-data]
+{{{packageName}}} = ["py.typed"]
 
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"

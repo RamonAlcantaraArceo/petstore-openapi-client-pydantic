@@ -10,6 +10,11 @@
             "templateType": "SupportingFiles",
             "destinationFilename": "conftest.py",
             "folder": "test"
+        },
+        "openapi-generator-ignore.mustache":{
+            "templateType": "SupportingFiles",
+            "destinationFilename": ".openapi-generator-ignore"
         }
-    }
+    },
+    "enablePostProcessFile": true
 }

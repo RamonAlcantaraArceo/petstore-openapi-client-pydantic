@@ -1,31 +1,43 @@
-[tool.poetry]
+[project]
 name = "openapi_client"
 version = "0.0.0"
 description = "Petstore API"
-authors = ["Ramon Alcantara Arceo <ramalc.ms@outlook.com>"]
-license = "Unlicense"
 readme = "README.md"
-repository = "https://github.com/RamonAlcantaraArceo/petstore-openapi-client-pydantic"
+requires-python = ">=3.10"
+authors = [{ name = "Ramon Alcantara Arceo", email = "ramalc.ms@outlook.com" }]
+license = "Unlicense"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Petstore API"]
-include = ["openapi_client/py.typed"]
+dependencies = [
+	"urllib3>=1.25.3",
+	"python-dateutil>=2.8.2",
+	"aiohttp>=3.8.4",
+	"pydantic>=1.10.5,<2",
+	"aenum>=3.1.11",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
+[project.urls]
+Repository = "https://github.com/RamonAlcantaraArceo/petstore-openapi-client-pydantic"
 
-urllib3 = ">= 1.25.3"
-python-dateutil = ">=2.8.2"
-aiohttp = ">= 3.8.4"
-pydantic = "^1.10.5, <2"
-aenum = ">=3.1.11"
-
-[tool.poetry.dev-dependencies]
-pytest = ">=7.2.1"
-tox = ">=3.9.0"
-flake8 = ">=4.0.0"
+[dependency-groups]
+dev = [
+	"pytest>=7.2.1",
+	"pytest-cov>=2.8.1",
+	"pytest-randomly>=3.12.0",
+	"pytest-asyncio>=0.23.0",
+	"tox>=3.9.0",
+	"flake8>=4.0.0",
+]
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = false
+packages = ["openapi_client"]
+
+[tool.setuptools.package-data]
+openapi_client = ["py.typed"]
 
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"

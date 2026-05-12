@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 README.md
 docs/Category.md
 docs/HTTPValidationError.md
@@ -49,8 +50,6 @@ openapi_client/py.typed
 openapi_client/rest.py
 pyproject.toml
 requirements.txt
-setup.cfg
-setup.py
 test-requirements.txt
 test/__init__.py
 test/conftest.py
