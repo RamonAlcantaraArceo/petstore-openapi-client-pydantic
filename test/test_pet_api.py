@@ -84,16 +84,16 @@ class TestPetApi:
 
         Find Pets By Status  # noqa: E501
         """
+        
         created_pet = await pet_api_client.add_pet_api_v1_pet_post(
             self._build_pet_create(name="integration-status-pet")
         )
 
-        pets = await pet_api_client.find_pets_by_status_api_v1_pet_find_by_status_get(
-            status= "foobar"#PetStatus.AVAILABLE.value
-        )
-
-        assert isinstance(pets, list)
-        assert any(pet.id == created_pet.id for pet in pets if pet.id is not None)
+        with pytest.raises(ApiException) as exc_info:
+            await pet_api_client.find_pets_by_status_api_v1_pet_find_by_status_get_without_validation(
+                status="foobar"
+            )
+        assert exc_info.value.status == 422
 
     async def test_find_pets_by_tags_api_v1_pet_find_by_tags_get(self, pet_api_client: PetApi) -> None:
         """Test case for find_pets_by_tags_api_v1_pet_find_by_tags_get

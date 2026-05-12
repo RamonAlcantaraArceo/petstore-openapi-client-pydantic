@@ -18,6 +18,7 @@ import re  # noqa: F401
 import io
 import warnings
 
+from aenum import Enum
 from pydantic import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
@@ -183,6 +184,31 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
+    async def add_pet_api_v1_pet_post_without_validation(self, pet_create=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Add Pet — without pydantic validation  # noqa: E501
+
+        Like ``add_pet_api_v1_pet_post_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``add_pet_api_v1_pet_post_with_http_info`` are forwarded verbatim.
+
+        :param pet_create: (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.add_pet_api_v1_pet_post_with_http_info.__wrapped__
+        return await _impl(self, pet_create, **kwargs)
+
     @validate_arguments
     async def delete_pet_api_v1_pet_pet_id_delete(self, pet_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Delete Pet  # noqa: E501
@@ -308,6 +334,31 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
+    async def delete_pet_api_v1_pet_pet_id_delete_without_validation(self, pet_id=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Delete Pet — without pydantic validation  # noqa: E501
+
+        Like ``delete_pet_api_v1_pet_pet_id_delete_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``delete_pet_api_v1_pet_pet_id_delete_with_http_info`` are forwarded verbatim.
+
+        :param pet_id: (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.delete_pet_api_v1_pet_pet_id_delete_with_http_info.__wrapped__
+        return await _impl(self, pet_id, **kwargs)
+
     @validate_arguments
     async def find_pets_by_status_api_v1_pet_find_by_status_get(self, status : Annotated[Optional[PetStatus], Field(description="Status values to filter by")] = None, **kwargs) -> List[Pet]:  # noqa: E501
         """Find Pets By Status  # noqa: E501
@@ -396,7 +447,10 @@ class PetApi:
         # process the query parameters
         _query_params = []
         if _params.get('status') is not None:  # noqa: E501
-            _query_params.append(('status', _params['status'].value))
+            if isinstance(_params['status'], Enum):
+                _query_params.append(('status', _params['status'].value))
+            else:
+                _query_params.append(('status', _params['status']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -432,6 +486,31 @@ class PetApi:
             _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    async def find_pets_by_status_api_v1_pet_find_by_status_get_without_validation(self, status=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Find Pets By Status — without pydantic validation  # noqa: E501
+
+        Like ``find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info`` are forwarded verbatim.
+
+        :param status: Status values to filter by (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info.__wrapped__
+        return await _impl(self, status, **kwargs)
 
     @validate_arguments
     async def find_pets_by_tags_api_v1_pet_find_by_tags_get(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> List[Pet]:  # noqa: E501
@@ -521,7 +600,10 @@ class PetApi:
         # process the query parameters
         _query_params = []
         if _params.get('tags') is not None:  # noqa: E501
-            _query_params.append(('tags', _params['tags']))
+            if isinstance(_params['tags'], Enum):
+                _query_params.append(('tags', _params['tags']))
+            else:
+                _query_params.append(('tags', _params['tags']))
             _collection_formats['tags'] = 'multi'
 
         # process the header parameters
@@ -558,6 +640,31 @@ class PetApi:
             _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    async def find_pets_by_tags_api_v1_pet_find_by_tags_get_without_validation(self, tags=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Find Pets By Tags — without pydantic validation  # noqa: E501
+
+        Like ``find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info`` are forwarded verbatim.
+
+        :param tags: Tags to filter by (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info.__wrapped__
+        return await _impl(self, tags, **kwargs)
 
     @validate_arguments
     async def get_pet_by_id_api_v1_pet_pet_id_get(self, pet_id : StrictInt, **kwargs) -> Pet:  # noqa: E501
@@ -683,6 +790,31 @@ class PetApi:
             _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    async def get_pet_by_id_api_v1_pet_pet_id_get_without_validation(self, pet_id=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Get Pet By Id — without pydantic validation  # noqa: E501
+
+        Like ``get_pet_by_id_api_v1_pet_pet_id_get_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``get_pet_by_id_api_v1_pet_pet_id_get_with_http_info`` are forwarded verbatim.
+
+        :param pet_id: (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.get_pet_by_id_api_v1_pet_pet_id_get_with_http_info.__wrapped__
+        return await _impl(self, pet_id, **kwargs)
 
     @validate_arguments
     async def update_pet_api_v1_pet_put(self, pet_update : PetUpdate, **kwargs) -> Pet:  # noqa: E501
@@ -815,6 +947,31 @@ class PetApi:
             _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    async def update_pet_api_v1_pet_put_without_validation(self, pet_update=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Update Pet — without pydantic validation  # noqa: E501
+
+        Like ``update_pet_api_v1_pet_put_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``update_pet_api_v1_pet_put_with_http_info`` are forwarded verbatim.
+
+        :param pet_update: (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.update_pet_api_v1_pet_put_with_http_info.__wrapped__
+        return await _impl(self, pet_update, **kwargs)
 
     @validate_arguments
     async def update_pet_with_form_api_v1_pet_pet_id_post(self, pet_id : StrictInt, name : Optional[StrictStr] = None, status : Optional[StrictStr] = None, **kwargs) -> Pet:  # noqa: E501
@@ -964,6 +1121,33 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
+    async def update_pet_with_form_api_v1_pet_pet_id_post_without_validation(self, pet_id=None, name=None, status=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Update Pet With Form — without pydantic validation  # noqa: E501
+
+        Like ``update_pet_with_form_api_v1_pet_pet_id_post_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``update_pet_with_form_api_v1_pet_pet_id_post_with_http_info`` are forwarded verbatim.
+
+        :param pet_id: (any value accepted — validation is skipped)
+        :param name: (any value accepted — validation is skipped)
+        :param status: (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.update_pet_with_form_api_v1_pet_pet_id_post_with_http_info.__wrapped__
+        return await _impl(self, pet_id, name, status, **kwargs)
+
     @validate_arguments
     async def upload_file_api_v1_pet_pet_id_upload_file_post(self, pet_id : StrictInt, file : Optional[StrictStr] = None, additional_metadata : Optional[StrictStr] = None, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Upload File  # noqa: E501
@@ -1111,3 +1295,30 @@ class PetApi:
             _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    async def upload_file_api_v1_pet_pet_id_upload_file_post_without_validation(self, pet_id=None, file=None, additional_metadata=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Upload File — without pydantic validation  # noqa: E501
+
+        Like ``upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info`` are forwarded verbatim.
+
+        :param pet_id: (any value accepted — validation is skipped)
+        :param file: (any value accepted — validation is skipped)
+        :param additional_metadata: (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info.__wrapped__
+        return await _impl(self, pet_id, file, additional_metadata, **kwargs)

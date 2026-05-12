@@ -18,6 +18,7 @@ import re  # noqa: F401
 import io
 import warnings
 
+from aenum import Enum
 from pydantic import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
@@ -159,3 +160,27 @@ class HealthApi:
             _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    async def health_check_health_get_without_validation(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Health Check — without pydantic validation  # noqa: E501
+
+        Like ``health_check_health_get_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``health_check_health_get_with_http_info`` are forwarded verbatim.
+
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.health_check_health_get_with_http_info.__wrapped__
+        return await _impl(self, **kwargs)

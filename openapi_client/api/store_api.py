@@ -18,6 +18,7 @@ import re  # noqa: F401
 import io
 import warnings
 
+from aenum import Enum
 from pydantic import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
@@ -173,6 +174,31 @@ class StoreApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
+    async def delete_order_api_v1_store_order_order_id_delete_without_validation(self, order_id=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Delete Order — without pydantic validation  # noqa: E501
+
+        Like ``delete_order_api_v1_store_order_order_id_delete_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``delete_order_api_v1_store_order_order_id_delete_with_http_info`` are forwarded verbatim.
+
+        :param order_id: (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.delete_order_api_v1_store_order_order_id_delete_with_http_info.__wrapped__
+        return await _impl(self, order_id, **kwargs)
+
     @validate_arguments
     async def get_inventory_api_v1_store_inventory_get(self, **kwargs) -> Dict[str, int]:  # noqa: E501
         """Get Inventory  # noqa: E501
@@ -288,6 +314,30 @@ class StoreApi:
             _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    async def get_inventory_api_v1_store_inventory_get_without_validation(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """Get Inventory — without pydantic validation  # noqa: E501
+
+        Like ``get_inventory_api_v1_store_inventory_get_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``get_inventory_api_v1_store_inventory_get_with_http_info`` are forwarded verbatim.
+
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.get_inventory_api_v1_store_inventory_get_with_http_info.__wrapped__
+        return await _impl(self, **kwargs)
 
     @validate_arguments
     async def get_order_by_id_api_v1_store_order_order_id_get(self, order_id : StrictInt, **kwargs) -> Order:  # noqa: E501
@@ -413,6 +463,31 @@ class StoreApi:
             _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    async def get_order_by_id_api_v1_store_order_order_id_get_without_validation(self, order_id=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Get Order By Id — without pydantic validation  # noqa: E501
+
+        Like ``get_order_by_id_api_v1_store_order_order_id_get_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``get_order_by_id_api_v1_store_order_order_id_get_with_http_info`` are forwarded verbatim.
+
+        :param order_id: (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.get_order_by_id_api_v1_store_order_order_id_get_with_http_info.__wrapped__
+        return await _impl(self, order_id, **kwargs)
 
     @validate_arguments
     async def place_order_api_v1_store_order_post(self, order_create : OrderCreate, **kwargs) -> Order:  # noqa: E501
@@ -545,3 +620,28 @@ class StoreApi:
             _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    async def place_order_api_v1_store_order_post_without_validation(self, order_create=None, **kwargs) -> ApiResponse:  # noqa: E501
+        """Place Order — without pydantic validation  # noqa: E501
+
+        Like ``place_order_api_v1_store_order_post_with_http_info`` but bypasses ``@validate_arguments``
+        pydantic validation entirely.  Intended for tests that need to send
+        deliberately invalid payloads and assert on the API's error responses.
+
+        All parameters are accepted as-is (no type checking).  The same kwargs
+        supported by ``place_order_api_v1_store_order_post_with_http_info`` are forwarded verbatim.
+
+        :param order_create: (any value accepted — validation is skipped)
+        :param _return_http_data_only: when True (default False), return only
+                                       the response data rather than an ApiResponse.
+        :param _preload_content: if False, raw HTTP body is preserved in
+                                 ApiResponse.raw_data.  Default is True.
+        :param _request_timeout: timeout for this request.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        # Retrieve the original undecorated implementation stored by pydantic's
+        # @validate_arguments on the _with_http_info method, then call it
+        # directly to skip all pydantic coercion / validation.
+        _impl = self.place_order_api_v1_store_order_post_with_http_info.__wrapped__
+        return await _impl(self, order_create, **kwargs)
