@@ -10,6 +10,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+from openapi_client.assertions import assert_that
 
 import pytest
 import pytest_asyncio
@@ -53,14 +54,14 @@ class TestPetApi:
 
         Add Pet  # noqa: E501
         """
-        created_pet = await pet_api_client.add_pet_api_v1_pet_post(
+        created_pet: Pet = await pet_api_client.add_pet_api_v1_pet_post(
             self._build_pet_create(name="integration-add-pet")
         )
 
-        assert isinstance(created_pet, Pet)
-        assert created_pet.id is not None
-        assert created_pet.name == "integration-add-pet"
-        assert created_pet.status == PetStatus.AVAILABLE
+        assert_that(created_pet).is_not_none().is_instance_of(Pet)
+        assert_that(created_pet.id).is_not_none()
+        assert_that(created_pet.name).equals("integration-add-pet")
+        assert_that(created_pet.status).equals(PetStatus.AVAILABLE)
 
     async def test_delete_pet_api_v1_pet_pet_id_delete(self, pet_api_client: PetApi) -> None:
         """Test case for delete_pet_api_v1_pet_pet_id_delete

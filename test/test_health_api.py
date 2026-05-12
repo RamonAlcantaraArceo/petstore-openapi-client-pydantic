@@ -16,7 +16,7 @@ import pytest_asyncio
 
 from openapi_client.api.health_api import HealthApi  # noqa: E501
 from openapi_client import ApiClient
-
+from openapi_client.assertions import assert_that
 
 @pytest_asyncio.fixture()
 async def health_api_client(api_client: ApiClient):
@@ -35,6 +35,7 @@ class TestHealthApi:
         """
         response = await health_api_client.health_check_health_get()
 
+        assert_that(response).is_not_none().is_instance_of(dict).has_key("status")
         assert response is not None
         if isinstance(response, dict):
             assert "status" in response
