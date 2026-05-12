@@ -2,7 +2,7 @@ import os
 
 import pytest_asyncio
 
-from openapi_client import ApiClient, Configuration
+from {{packageName}} import ApiClient, Configuration
 
 
 def _get_default_host() -> str:
@@ -10,7 +10,7 @@ def _get_default_host() -> str:
     host = Configuration().host
     if host:
         return host
-    return "http://localhost:8000"
+    return "{{{basePath}}}"
 
 @pytest_asyncio.fixture()
 async def configuration():

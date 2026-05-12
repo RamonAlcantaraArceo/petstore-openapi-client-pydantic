@@ -25,12 +25,12 @@ from typing import overload, Optional, Union, Awaitable
 from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr, conlist
 
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from openapi_client.models.pet import Pet
 from openapi_client.models.pet_create import PetCreate
-from openapi_client.models.pet_status import PetStatus
 from openapi_client.models.pet_update import PetUpdate
+from openapi_client.models.pet_status import PetStatus
 
 from openapi_client.api_client import ApiClient
 from openapi_client.api_response import ApiResponse

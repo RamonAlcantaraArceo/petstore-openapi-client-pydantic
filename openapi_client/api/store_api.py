@@ -24,7 +24,7 @@ from typing import overload, Optional, Union, Awaitable
 
 from pydantic import StrictInt
 
-from typing import Dict
+from typing import Dict, List
 
 from openapi_client.models.order import Order
 from openapi_client.models.order_create import OrderCreate
@@ -200,10 +200,10 @@ class StoreApi:
         return await _impl(self, order_id, **kwargs)
 
     @validate_arguments
-    async def get_inventory_api_v1_store_inventory_get(self, **kwargs) -> Dict[str, int]:  # noqa: E501
+    async def get_inventory_api_v1_store_inventory_get(self, **kwargs) -> List[Order]:  # noqa: E501
         """Get Inventory  # noqa: E501
 
-        Return pet inventories by status.  Args:     service: Injected OrderService.  Returns:     Dict mapping status to count of pets with that status.  # noqa: E501
+        Return all orders in the store.  Args:     service: Injected OrderService.  Returns:     List of all orders.  # noqa: E501
 
         :param _request_timeout: timeout setting for this request.
                If one number provided, it will be total request
@@ -212,7 +212,7 @@ class StoreApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Dict[str, int]
+        :rtype: List[Order]
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -224,7 +224,7 @@ class StoreApi:
     async def get_inventory_api_v1_store_inventory_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Inventory  # noqa: E501
 
-        Return pet inventories by status.  Args:     service: Injected OrderService.  Returns:     Dict mapping status to count of pets with that status.  # noqa: E501
+        Return all orders in the store.  Args:     service: Injected OrderService.  Returns:     List of all orders.  # noqa: E501
 
         :param _preload_content: if False, the ApiResponse.data will
                                  be set to none and raw_data will store the
@@ -246,7 +246,7 @@ class StoreApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Dict[str, int], status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(List[Order], status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -296,7 +296,7 @@ class StoreApi:
         _auth_settings = ['APIKeyHeader']  # noqa: E501
 
         _response_types_map = {
-            '200': "Dict[str, int]",
+            '200': "List[Order]",
         }
 
         return await self.api_client.call_api(

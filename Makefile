@@ -25,7 +25,7 @@ generate-debug:
 	--template-dir /local/openapi/templates \
 	--output /local/tmp-gen \
 	--config /local/openapi/config.json
-	cp openapi/templates/conftest.py tmp-gen/test/conftest.py
+
 
 get-templates:
 	docker run --rm \

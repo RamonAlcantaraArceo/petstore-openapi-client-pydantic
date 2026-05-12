@@ -66,11 +66,10 @@ class TestStoreApi:
         """
         inventory = await store_api_client.get_inventory_api_v1_store_inventory_get()
 
-        assert isinstance(inventory, dict)
-        assert all(isinstance(key, str) for key in inventory)
-        assert all(isinstance(value, int) for value in inventory.values())
+        assert isinstance(inventory, list)
+        assert all(isinstance(item, Order) for item in inventory)
 
-    @pytest.mark.xfail(reason="Investigation Pending")
+
     async def test_get_order_by_id_api_v1_store_order_order_id_get(self, store_api_client: StoreApi) -> None:
         """Test case for get_order_by_id_api_v1_store_order_order_id_get
 

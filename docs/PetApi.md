@@ -221,7 +221,6 @@ import time
 import os
 import openapi_client
 from openapi_client.models.pet import Pet
-from openapi_client.models.pet_status import PetStatus
 from openapi_client.rest import ApiException
 from pprint import pprint
 

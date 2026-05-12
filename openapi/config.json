@@ -3,5 +3,13 @@
     "gitUserId": "RamonAlcantaraArceo",
     "gitRepoId": "petstore-openapi-client-pydantic",
     "packageName": "openapi_client",
-    "packageVersion": "0.0.0"
+    "packageVersion": "0.0.0",
+    "additionalProperties":{},
+    "files":{
+        "conftest.mustache":{
+            "templateType": "SupportingFiles",
+            "destinationFilename": "conftest.py",
+            "folder": "test"
+        }
+    }
 }

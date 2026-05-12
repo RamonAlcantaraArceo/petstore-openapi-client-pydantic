@@ -102,17 +102,17 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_inventory_api_v1_store_inventory_get**
-> Dict[str, int] get_inventory_api_v1_store_inventory_get()
+> List[Order] get_inventory_api_v1_store_inventory_get()
 
 Get Inventory
 
-Return pet inventories by status.
+Return all orders in the store.
 
 Args:
     service: Injected OrderService.
 
 Returns:
-    Dict mapping status to count of pets with that status.
+    List of all orders.
 
 ### Example
 
@@ -122,6 +122,7 @@ import asyncio
 import time
 import os
 import openapi_client
+from openapi_client.models.order import Order
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -168,7 +169,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Dict[str, int]**
+[**List[Order]**](Order.md)
 
 ### Authorization
 

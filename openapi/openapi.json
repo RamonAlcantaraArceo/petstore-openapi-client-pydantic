@@ -3,11 +3,11 @@
     "info": {
         "title": "Petstore API",
         "description": "A production-ready Petstore API built with FastAPI.",
-        "version": "v1",
         "contact": {
             "name": "Ramon Alcantara Arceo",
             "email": "ramalc.ms@outlook.com"
-        }
+        },
+        "version": "v1"
     },
     "servers": [
         {
@@ -127,7 +127,9 @@
                         "in": "query",
                         "required": false,
                         "schema": {
-                            "$ref": "#/components/schemas/PetStatus"
+                            "$ref": "#/components/schemas/PetStatus",
+                            "description": "Status values to filter by",
+                            "default": "available"
                         },
                         "description": "Status values to filter by"
                     }
@@ -437,7 +439,7 @@
                     "store"
                 ],
                 "summary": "Get Inventory",
-                "description": "Return pet inventories by status.\n\nArgs:\n    service: Injected OrderService.\n\nReturns:\n    Dict mapping status to count of pets with that status.",
+                "description": "Return all orders in the store.\n\nArgs:\n    service: Injected OrderService.\n\nReturns:\n    List of all orders.",
                 "operationId": "get_inventory_api_v1_store_inventory_get",
                 "responses": {
                     "200": {
@@ -445,10 +447,10 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "additionalProperties": {
-                                        "type": "integer"
+                                    "items": {
+                                        "$ref": "#/components/schemas/Order"
                                     },
-                                    "type": "object",
+                                    "type": "array",
                                     "title": "Response Get Inventory Api V1 Store Inventory Get"
                                 }
                             }
