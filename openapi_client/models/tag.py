@@ -23,8 +23,9 @@ import json
 from typing import Optional
 from pydantic import BaseModel, StrictInt, StrictStr
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 
-class Tag(BaseModel):
+class Tag(AssertableModelMixin, BaseModel):
     """
     Pet tag.  Attributes:     id: Tag identifier.     name: Tag name.  # noqa: E501
     """

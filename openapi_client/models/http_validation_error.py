@@ -21,15 +21,16 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, conlist
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 from openapi_client.models.validation_error import ValidationError
 
-class HTTPValidationError(BaseModel):
+class HTTPValidationError(AssertableModelMixin, BaseModel):
     """
     HTTPValidationError
     """
-    detail: Optional[List[ValidationError]] = None
+    detail: Optional[conlist(ValidationError)] = None
     __properties = ["detail"]
 
     model_config = ConfigDict(populate_by_name=True, validate_assignment=True)

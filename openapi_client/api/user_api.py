@@ -23,7 +23,7 @@ from pydantic import validate_call, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
 from typing_extensions import Annotated
-from pydantic import Field, StrictStr
+from pydantic import Field, StrictStr, conlist
 
 from typing import Dict, List
 
@@ -209,7 +209,7 @@ class UserApi:
         return await _impl(self, user_create, **kwargs)
 
     @validate_call
-    async def create_users_with_list_api_v1_user_create_with_list_post(self, user_create : List[UserCreate], **kwargs) -> List[User]:  # noqa: E501
+    async def create_users_with_list_api_v1_user_create_with_list_post(self, user_create : conlist(UserCreate), **kwargs) -> List[User]:  # noqa: E501
         """Create Users With List  # noqa: E501
 
         Create users from a list.  Args:     users: List of user data from request body.     service: Injected UserService.  Returns:     List of created users.  # noqa: E501
@@ -232,7 +232,7 @@ class UserApi:
         return await self.create_users_with_list_api_v1_user_create_with_list_post_with_http_info(user_create, **kwargs)  # noqa: E501
 
     @validate_call
-    async def create_users_with_list_api_v1_user_create_with_list_post_with_http_info(self, user_create : List[UserCreate], **kwargs) -> ApiResponse:  # noqa: E501
+    async def create_users_with_list_api_v1_user_create_with_list_post_with_http_info(self, user_create : conlist(UserCreate), **kwargs) -> ApiResponse:  # noqa: E501
         """Create Users With List  # noqa: E501
 
         Create users from a list.  Args:     users: List of user data from request body.     service: Injected UserService.  Returns:     List of created users.  # noqa: E501

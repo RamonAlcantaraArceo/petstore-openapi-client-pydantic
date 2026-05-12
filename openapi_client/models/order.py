@@ -23,9 +23,10 @@ from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, StrictBool, StrictInt
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 from openapi_client.models.order_status import OrderStatus
 
-class Order(BaseModel):
+class Order(AssertableModelMixin, BaseModel):
     """
     Full order schema including server-assigned fields.  Attributes:     id: Order identifier.  # noqa: E501
     """

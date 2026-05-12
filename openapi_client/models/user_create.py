@@ -23,8 +23,9 @@ import json
 from typing import Optional
 from pydantic import BaseModel, StrictInt, StrictStr
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 
-class UserCreate(BaseModel):
+class UserCreate(AssertableModelMixin, BaseModel):
     """
     Schema for creating a new user.  Attributes:     password: User's plain-text password (hashed before storage).  # noqa: E501
     """

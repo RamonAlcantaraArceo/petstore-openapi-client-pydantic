@@ -23,8 +23,9 @@ import json
 from typing import Optional
 from pydantic import BaseModel, StrictInt, StrictStr
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 
-class Category(BaseModel):
+class Category(AssertableModelMixin, BaseModel):
     """
     Pet category.  Attributes:     id: Category identifier.     name: Category name.  # noqa: E501
     """

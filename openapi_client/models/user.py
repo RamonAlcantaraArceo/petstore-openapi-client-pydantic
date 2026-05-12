@@ -23,8 +23,9 @@ import json
 from typing import Optional
 from pydantic import BaseModel, StrictInt, StrictStr
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 
-class User(BaseModel):
+class User(AssertableModelMixin, BaseModel):
     """
     Full user schema including server-assigned fields.  Attributes:     id: User identifier.  # noqa: E501
     """

@@ -21,15 +21,16 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, StrictStr, conlist
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 from openapi_client.models.location_inner import LocationInner
 
-class ValidationError(BaseModel):
+class ValidationError(AssertableModelMixin, BaseModel):
     """
     ValidationError
     """
-    loc: List[LocationInner] = Field(...)
+    loc: conlist(LocationInner) = Field(...)
     msg: StrictStr = Field(...)
     type: StrictStr = Field(...)
     input: Optional[Any] = None

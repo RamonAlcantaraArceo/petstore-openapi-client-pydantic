@@ -21,20 +21,21 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, constr
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 from openapi_client.models.category import Category
 from openapi_client.models.pet_status import PetStatus
 from openapi_client.models.tag import Tag
 
-class PetUpdate(BaseModel):
+class PetUpdate(AssertableModelMixin, BaseModel):
     """
     Schema for updating an existing pet.  Attributes:     id: Pet identifier (required for updates).  # noqa: E501
     """
-    name: StrictStr = Field(..., min_length=1)
-    photo_urls: Optional[List[StrictStr]] = Field(default=None, alias="photoUrls")
+    name: constr(strict=True, min_length=1) = Field(...)
+    photo_urls: Optional[conlist(StrictStr)] = Field(default=None, alias="photoUrls")
     category: Optional[Category] = None
-    tags: Optional[List[Tag]] = None
+    tags: Optional[conlist(Tag)] = None
     status: Optional[PetStatus] = None
     id: StrictInt = Field(...)
     __properties = ["name", "photoUrls", "category", "tags", "status", "id"]

@@ -21,20 +21,21 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, StrictStr, conlist, constr
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 from openapi_client.models.category import Category
 from openapi_client.models.pet_status import PetStatus
 from openapi_client.models.tag import Tag
 
-class PetCreate(BaseModel):
+class PetCreate(AssertableModelMixin, BaseModel):
     """
     Schema for creating a new pet.  # noqa: E501
     """
-    name: StrictStr = Field(..., min_length=1)
-    photo_urls: Optional[List[StrictStr]] = Field(default=None, alias="photoUrls")
+    name: constr(strict=True, min_length=1) = Field(...)
+    photo_urls: Optional[conlist(StrictStr)] = Field(default=None, alias="photoUrls")
     category: Optional[Category] = None
-    tags: Optional[List[Tag]] = None
+    tags: Optional[conlist(Tag)] = None
     status: Optional[PetStatus] = None
     __properties = ["name", "photoUrls", "category", "tags", "status"]
 

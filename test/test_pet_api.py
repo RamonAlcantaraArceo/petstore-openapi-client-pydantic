@@ -44,7 +44,7 @@ class TestPetApi:
         tags = [Tag(name=tag_name)] if tag_name else None
         return PetCreate(
             name=name,
-            photo_urls=["https://example.com/pet.png"],
+            photoUrls=["https://example.com/pet.png"],
             status=status,
             tags=tags,
         )
@@ -176,7 +176,7 @@ class TestPetApi:
             PetUpdate(
                 id=created_pet.id,
                 name="integration-update-pet-new",
-                photo_urls=created_pet.photo_urls,
+                photoUrls=created_pet.photo_urls,
                 status=PetStatus.PENDING,
             )
         )

@@ -23,8 +23,9 @@ import json
 from typing import Optional
 from pydantic import BaseModel, StrictInt, StrictStr
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 
-class UserUpdate(BaseModel):
+class UserUpdate(AssertableModelMixin, BaseModel):
     """
     Schema for updating an existing user.  Attributes:     password: New password (optional).  # noqa: E501
     """

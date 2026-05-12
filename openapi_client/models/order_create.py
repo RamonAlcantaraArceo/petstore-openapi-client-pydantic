@@ -23,9 +23,10 @@ from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, StrictBool, StrictInt
 from pydantic import ConfigDict, field_validator
+from openapi_client.assertions import AssertableModelMixin
 from openapi_client.models.order_status import OrderStatus
 
-class OrderCreate(BaseModel):
+class OrderCreate(AssertableModelMixin, BaseModel):
     """
     Schema for creating a new order.  # noqa: E501
     """

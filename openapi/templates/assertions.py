@@ -16,6 +16,7 @@ Example
 
 from __future__ import annotations
 
+from enum import Enum
 from typing import Any, TypeVar
 
 T = TypeVar("T")
@@ -217,6 +218,135 @@ class FluentAssertion[T]:
             actual == expected
         ), f"Expected {self._desc}[{key!r}] == {expected!r}, got {actual!r}"
         return self
+
+
+class AssertableValue[T](FluentAssertion[T]):
+    """Transparent value wrapper that also exposes fluent assertions."""
+
+    @property
+    def raw(self) -> T:
+        """Return the wrapped value."""
+        return self._value
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._value, name)
+
+    def __getitem__(self, item: Any) -> Any:
+        return self._value[item]  # type: ignore[index]
+
+    def __iter__(self):
+        return iter(self._value)  # type: ignore[arg-type]
+
+    def __len__(self) -> int:
+        return len(self._value)  # type: ignore[arg-type]
+
+    def __contains__(self, item: Any) -> bool:
+        return item in self._value  # type: ignore[operator]
+
+    def __bool__(self) -> bool:
+        return bool(self._value)
+
+    def __str__(self) -> str:
+        return str(self._value)
+
+    def __repr__(self) -> str:
+        return repr(self._value)
+
+    def __eq__(self, other: Any) -> bool:
+        return self._value == other
+
+    def __ne__(self, other: Any) -> bool:
+        return self._value != other
+
+
+class AssertableModelMixin:
+    """Adds fluent assertions to pydantic models and model fields."""
+
+    def __getattribute__(self, name: str) -> Any:
+        value = object.__getattribute__(self, name)
+        if name.startswith("_"):
+            return value
+
+        # Keep generated model internals working with raw values.
+        if name in {"actual_instance", "anyof_schema_1_validator", "anyof_schema_2_validator"}:
+            if isinstance(value, AssertableValue):
+                return value.raw
+            return value
+
+        fields = getattr(type(self), "model_fields", {})
+        scalar_types = (type(None), bool, int, float, complex, str, bytes, Enum)
+        if name in fields and not isinstance(value, AssertableModelMixin) and not isinstance(value, scalar_types):
+            return AssertableValue(value, description=f"{type(self).__name__}.{name}")
+        return value
+
+    def equals(self, expected: Any) -> FluentAssertion[Any]:
+        return AssertableValue(self).equals(expected)
+
+    def not_equals(self, unexpected: Any) -> FluentAssertion[Any]:
+        return AssertableValue(self).not_equals(unexpected)
+
+    def is_none(self) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_none()
+
+    def is_not_none(self) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_not_none()
+
+    def is_true(self) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_true()
+
+    def is_false(self) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_false()
+
+    def is_instance_of(self, type_: type) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_instance_of(type_)
+
+    def is_greater_than(self, other: Any) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_greater_than(other)
+
+    def is_less_than(self, other: Any) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_less_than(other)
+
+    def is_greater_than_or_equal_to(self, other: Any) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_greater_than_or_equal_to(other)
+
+    def is_less_than_or_equal_to(self, other: Any) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_less_than_or_equal_to(other)
+
+    def contains(self, substring: str) -> FluentAssertion[Any]:
+        return AssertableValue(self).contains(substring)
+
+    def starts_with(self, prefix: str) -> FluentAssertion[Any]:
+        return AssertableValue(self).starts_with(prefix)
+
+    def ends_with(self, suffix: str) -> FluentAssertion[Any]:
+        return AssertableValue(self).ends_with(suffix)
+
+    def matches_pattern(self, pattern: str) -> FluentAssertion[Any]:
+        return AssertableValue(self).matches_pattern(pattern)
+
+    def is_empty(self) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_empty()
+
+    def is_not_empty(self) -> FluentAssertion[Any]:
+        return AssertableValue(self).is_not_empty()
+
+    def has_length(self, length: int) -> FluentAssertion[Any]:
+        return AssertableValue(self).has_length(length)
+
+    def has_length_greater_than(self, length: int) -> FluentAssertion[Any]:
+        return AssertableValue(self).has_length_greater_than(length)
+
+    def contains_item(self, item: Any) -> FluentAssertion[Any]:
+        return AssertableValue(self).contains_item(item)
+
+    def has_key(self, key: str) -> FluentAssertion[Any]:
+        return AssertableValue(self).has_key(key)
+
+    def has_keys(self, *keys: str) -> FluentAssertion[Any]:
+        return AssertableValue(self).has_keys(*keys)
+
+    def key_value_equals(self, key: str, expected: Any) -> FluentAssertion[Any]:
+        return AssertableValue(self).key_value_equals(key, expected)
 
 
 # ---------------------------------------------------------------------------

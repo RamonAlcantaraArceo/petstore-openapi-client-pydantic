@@ -23,7 +23,7 @@ from pydantic import validate_call, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field, StrictInt, StrictStr, conlist
 
 from typing import Any, Dict, List, Optional
 
@@ -513,7 +513,7 @@ class PetApi:
         return await _impl(self, status, **kwargs)
 
     @validate_call
-    async def find_pets_by_tags_api_v1_pet_find_by_tags_get(self, tags : Annotated[List[StrictStr], Field(..., description="Tags to filter by")], **kwargs) -> List[Pet]:  # noqa: E501
+    async def find_pets_by_tags_api_v1_pet_find_by_tags_get(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> List[Pet]:  # noqa: E501
         """Find Pets By Tags  # noqa: E501
 
         Find pets by tags.  Args:     tags: Tag names to filter by.     service: Injected PetService.  Returns:     List of pets matching any of the given tags.  # noqa: E501
@@ -536,7 +536,7 @@ class PetApi:
         return await self.find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(tags, **kwargs)  # noqa: E501
 
     @validate_call
-    async def find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(self, tags : Annotated[List[StrictStr], Field(..., description="Tags to filter by")], **kwargs) -> ApiResponse:  # noqa: E501
+    async def find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> ApiResponse:  # noqa: E501
         """Find Pets By Tags  # noqa: E501
 
         Find pets by tags.  Args:     tags: Tag names to filter by.     service: Injected PetService.  Returns:     List of pets matching any of the given tags.  # noqa: E501
