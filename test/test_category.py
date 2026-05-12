@@ -11,43 +11,34 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+from openapi_client.models.category import Category
 
-import unittest
-import datetime
+class TestCategory:
+    """Category model tests."""
 
-from openapi_client.models.category import Category  # noqa: E501
+    def test_category_optional_fields(self) -> None:
+        category = Category(id=1, name="dogs")
 
-class TestCategory(unittest.TestCase):
-    """Category unit test stubs"""
+        assert category.id == 1
+        assert category.name == "dogs"
 
-    def setUp(self):
-        pass
+    def test_category_allows_empty_instance(self) -> None:
+        category = Category()
 
-    def tearDown(self):
-        pass
+        assert category.id is None
+        assert category.name is None
 
-    def make_instance(self, include_optional) -> Category:
-        """Test Category
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `Category`
-        """
-        model = Category()  # noqa: E501
-        if include_optional:
-            return Category(
-                id = 56,
-                name = ''
-            )
-        else:
-            return Category(
-        )
-        """
+    def test_category_serialization_round_trip(self) -> None:
+        category = Category(id=3, name="cats")
 
-    def testCategory(self):
-        """Test Category"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        as_dict = category.to_dict()
+        assert as_dict == {"id": 3, "name": "cats"}
 
-if __name__ == '__main__':
-    unittest.main()
+        from_dict = Category.from_dict(as_dict)
+        assert from_dict == category
+
+        as_json = category.to_json()
+        from_json = Category.from_json(as_json)
+        assert from_json == category
+
+        assert "cats" in category.to_str()

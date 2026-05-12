@@ -11,41 +11,29 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+from openapi_client.models.location_inner import LocationInner
 
-import unittest
-import datetime
+class TestLocationInner:
+    """LocationInner model tests."""
 
-from openapi_client.models.location_inner import LocationInner  # noqa: E501
+    def test_location_inner_with_string(self) -> None:
+        location = LocationInner("body")
 
-class TestLocationInner(unittest.TestCase):
-    """LocationInner unit test stubs"""
+        assert location.actual_instance == "body"
 
-    def setUp(self):
-        pass
+    def test_location_inner_with_int(self) -> None:
+        location = LocationInner(5)
 
-    def tearDown(self):
-        pass
+        assert location.actual_instance == 5
 
-    def make_instance(self, include_optional) -> LocationInner:
-        """Test LocationInner
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `LocationInner`
-        """
-        model = LocationInner()  # noqa: E501
-        if include_optional:
-            return LocationInner(
-            )
-        else:
-            return LocationInner(
-        )
-        """
+    def test_location_inner_serialization_round_trip(self) -> None:
+        location = LocationInner("body")
 
-    def testLocationInner(self):
-        """Test LocationInner"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        as_json = location.to_json()
+        from_json = LocationInner.from_json(as_json)
+        assert from_json.actual_instance == "body"
 
-if __name__ == '__main__':
-    unittest.main()
+        as_dict = location.to_dict()
+        assert as_dict == "body"
+
+        assert "body" in location.to_str()

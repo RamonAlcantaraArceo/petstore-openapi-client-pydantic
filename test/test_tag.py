@@ -11,43 +11,34 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+from openapi_client.models.tag import Tag
 
-import unittest
-import datetime
+class TestTag:
+    """Tag model tests."""
 
-from openapi_client.models.tag import Tag  # noqa: E501
+    def test_tag_optional_fields(self) -> None:
+        tag = Tag(id=2, name="friendly")
 
-class TestTag(unittest.TestCase):
-    """Tag unit test stubs"""
+        assert tag.id == 2
+        assert tag.name == "friendly"
 
-    def setUp(self):
-        pass
+    def test_tag_allows_empty_instance(self) -> None:
+        tag = Tag()
 
-    def tearDown(self):
-        pass
+        assert tag.id is None
+        assert tag.name is None
 
-    def make_instance(self, include_optional) -> Tag:
-        """Test Tag
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `Tag`
-        """
-        model = Tag()  # noqa: E501
-        if include_optional:
-            return Tag(
-                id = 56,
-                name = ''
-            )
-        else:
-            return Tag(
-        )
-        """
+    def test_tag_serialization_round_trip(self) -> None:
+        tag = Tag(id=4, name="active")
 
-    def testTag(self):
-        """Test Tag"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        as_dict = tag.to_dict()
+        assert as_dict == {"id": 4, "name": "active"}
 
-if __name__ == '__main__':
-    unittest.main()
+        from_dict = Tag.from_dict(as_dict)
+        assert from_dict == tag
+
+        as_json = tag.to_json()
+        from_json = Tag.from_json(as_json)
+        assert from_json == tag
+
+        assert "active" in tag.to_str()

@@ -1,0 +1,61 @@
+# coding: utf-8
+
+{{>partial_header}}
+
+import pytest
+
+{{#models}}
+{{#model}}
+from {{modelPackage}}.{{classFilename}} import {{classname}}
+
+class Test{{classname}}:
+    """{{classname}} unit test stubs"""
+{{^isEnum}}
+
+    def make_instance(self, include_optional: bool) -> {{classname}}:
+        """Create an {{classname}} instance for testing.
+
+        Args:
+            include_optional (bool):
+                If False, only the required parameters should be included.
+                If True, both required and optional parameters should be included.
+
+        Returns:
+            {{classname}}: A populated {{classname}} model instance.
+
+        TODO:
+            Replace the placeholder example values below with meaningful test data
+            appropriate for your API. These are only illustrative defaults.
+
+        Example:
+            if include_optional:
+                return {{classname}}(
+                    {{#vars}}
+                    {{name}} = {{{example}}}{{^example}}None{{/example}}{{^-last}},{{/-last}}
+                    {{/vars}}
+                )
+            else:
+                return {{classname}}(
+                    {{#vars}}
+                    {{#required}}
+                    {{name}} = {{{example}}}{{^example}}None{{/example}},
+                    {{/required}}
+                    {{/vars}}
+            )
+        """
+        raise NotImplementedError("Populate example values before using this helper.")
+{{/isEnum}}
+
+    @pytest.mark.skip(reason="Generated stub test - implement assertions")
+    def test{{classname}}(self):
+        """Test {{classname}}"""
+{{^isEnum}}
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
+{{/isEnum}}
+{{#isEnum}}
+        # inst = {{{classname}}}()
+        # assert inst
+{{/isEnum}}
+{{/model}}
+{{/models}}

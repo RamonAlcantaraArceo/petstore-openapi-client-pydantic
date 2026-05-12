@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Ruff Format",
+            "type": "shell",
+            "command": "uv run --with ruff ruff format",
+            "group": "build"
+        },
+        {
+            "label": "Ruff Check",
+            "type": "shell",
+            "command": "uv run --with ruff ruff check openapi_client/ test/",
+            "group": "build"
+        },
+        {
+            "label": "Mypy",
+            "type": "shell",
+            "command": "uv run --with mypy mypy openapi_client/ test/",
+            "group": "build"
+        },
+        {
+            "label": "Run All Checks",
+            "dependsOn": [
+                "Ruff Format",
+                "Ruff Check",
+                "Mypy"
+            ],
+            "group": "build",
+            "dependsOrder": "sequence"
+        }
+    ]
+}

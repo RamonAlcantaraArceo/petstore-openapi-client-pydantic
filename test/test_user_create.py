@@ -11,48 +11,58 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+from openapi_client.models.user_create import UserCreate
 
-import unittest
-import datetime
+class TestUserCreate:
+    """UserCreate model tests."""
 
-from openapi_client.models.user_create import UserCreate  # noqa: E501
+    def test_user_create_allows_empty_instance(self) -> None:
+        user_create = UserCreate()
 
-class TestUserCreate(unittest.TestCase):
-    """UserCreate unit test stubs"""
+        assert user_create.username is None
+        assert user_create.password is None
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def make_instance(self, include_optional) -> UserCreate:
-        """Test UserCreate
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `UserCreate`
-        """
-        model = UserCreate()  # noqa: E501
-        if include_optional:
-            return UserCreate(
-                username = '',
-                first_name = '',
-                last_name = '',
-                email = '',
-                phone = '',
-                user_status = 56,
-                password = ''
-            )
-        else:
-            return UserCreate(
+    def test_user_create_with_optional_fields(self) -> None:
+        user_create = UserCreate(
+            username="new-user",
+            first_name="New",
+            last_name="User",
+            email="new@example.com",
+            phone="555-2000",
+            user_status=2,
+            password="secret",
         )
-        """
 
-    def testUserCreate(self):
-        """Test UserCreate"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert user_create.username == "new-user"
+        assert user_create.first_name == "New"
+        assert user_create.last_name == "User"
+        assert user_create.email == "new@example.com"
+        assert user_create.phone == "555-2000"
+        assert user_create.user_status == 2
+        assert user_create.password == "secret"
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_user_create_serialization_round_trip(self) -> None:
+        user_create = UserCreate(
+            username="new-user",
+            first_name="New",
+            last_name="User",
+            email="new@example.com",
+            phone="555-2000",
+            user_status=2,
+            password="secret",
+        )
+
+        as_dict = user_create.to_dict()
+        assert as_dict["username"] == "new-user"
+        assert as_dict["password"] == "secret"
+
+        from_dict = UserCreate.from_dict(as_dict)
+        assert from_dict.username == user_create.username
+        assert from_dict.password == user_create.password
+
+        as_json = user_create.to_json()
+        from_json = UserCreate.from_json(as_json)
+        assert from_json.username == user_create.username
+        assert from_json.password == user_create.password
+
+        assert "new-user" in user_create.to_str()

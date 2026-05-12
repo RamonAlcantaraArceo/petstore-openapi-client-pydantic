@@ -11,53 +11,62 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import pytest
 
-import unittest
-import datetime
+from openapi_client.models.location_inner import LocationInner
+from openapi_client.models.validation_error import ValidationError
 
-from openapi_client.models.validation_error import ValidationError  # noqa: E501
+class TestValidationError:
+    """ValidationError model tests."""
 
-class TestValidationError(unittest.TestCase):
-    """ValidationError unit test stubs"""
+    def test_validation_error_requires_loc_msg_type(self) -> None:
+        with pytest.raises(ValueError):
+            ValidationError()
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def make_instance(self, include_optional) -> ValidationError:
-        """Test ValidationError
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `ValidationError`
-        """
-        model = ValidationError()  # noqa: E501
-        if include_optional:
-            return ValidationError(
-                loc = [
-                    null
-                    ],
-                msg = '',
-                type = '',
-                input = None,
-                ctx = openapi_client.models.context.Context()
-            )
-        else:
-            return ValidationError(
-                loc = [
-                    null
-                    ],
-                msg = '',
-                type = '',
+    def test_validation_error_with_required_only(self) -> None:
+        error = ValidationError(
+            loc=[LocationInner("body"), LocationInner("field")],
+            msg="field required",
+            type="missing",
         )
-        """
 
-    def testValidationError(self):
-        """Test ValidationError"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert len(error.loc) == 2
+        assert error.msg == "field required"
+        assert error.type == "missing"
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_validation_error_with_optional_fields(self) -> None:
+        error = ValidationError(
+            loc=[LocationInner("query"), LocationInner("limit")],
+            msg="invalid",
+            type="value_error",
+            input="abc",
+            ctx={"limit": 10},
+        )
+
+        assert error.input == "abc"
+        assert error.ctx == {"limit": 10}
+
+    def test_validation_error_serialization_round_trip(self) -> None:
+        error = ValidationError(
+            loc=[LocationInner("body"), LocationInner("field")],
+            msg="field required",
+            type="missing",
+            input=None,
+            ctx={"source": "test"},
+        )
+
+        as_dict = error.to_dict()
+        assert as_dict["msg"] == "field required"
+        assert as_dict["type"] == "missing"
+        assert as_dict["loc"] == ["body", "field"]
+
+        from_dict = ValidationError.from_dict(as_dict)
+        assert from_dict.msg == error.msg
+        assert from_dict.type == error.type
+
+        as_json = error.to_json()
+        from_json = ValidationError.from_json(as_json)
+        assert from_json.msg == error.msg
+        assert from_json.type == error.type
+
+        assert "field required" in error.to_str()

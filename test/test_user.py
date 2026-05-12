@@ -11,48 +11,58 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+from openapi_client.models.user import User
 
-import unittest
-import datetime
+class TestUser:
+    """User model tests."""
 
-from openapi_client.models.user import User  # noqa: E501
+    def test_user_allows_empty_instance(self) -> None:
+        user = User()
 
-class TestUser(unittest.TestCase):
-    """User unit test stubs"""
+        assert user.username is None
+        assert user.id is None
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def make_instance(self, include_optional) -> User:
-        """Test User
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `User`
-        """
-        model = User()  # noqa: E501
-        if include_optional:
-            return User(
-                username = '',
-                first_name = '',
-                last_name = '',
-                email = '',
-                phone = '',
-                user_status = 56,
-                id = 56
-            )
-        else:
-            return User(
+    def test_user_with_optional_fields(self) -> None:
+        user = User(
+            username="jdoe",
+            first_name="John",
+            last_name="Doe",
+            email="jdoe@example.com",
+            phone="555-1000",
+            user_status=1,
+            id=9,
         )
-        """
 
-    def testUser(self):
-        """Test User"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert user.username == "jdoe"
+        assert user.first_name == "John"
+        assert user.last_name == "Doe"
+        assert user.email == "jdoe@example.com"
+        assert user.phone == "555-1000"
+        assert user.user_status == 1
+        assert user.id == 9
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_user_serialization_round_trip(self) -> None:
+        user = User(
+            username="jdoe",
+            first_name="John",
+            last_name="Doe",
+            email="jdoe@example.com",
+            phone="555-1000",
+            user_status=1,
+            id=9,
+        )
+
+        as_dict = user.to_dict()
+        assert as_dict["username"] == "jdoe"
+        assert as_dict["id"] == 9
+
+        from_dict = User.from_dict(as_dict)
+        assert from_dict.username == user.username
+        assert from_dict.id == user.id
+
+        as_json = user.to_json()
+        from_json = User.from_json(as_json)
+        assert from_json.username == user.username
+        assert from_json.id == user.id
+
+        assert "jdoe" in user.to_str()

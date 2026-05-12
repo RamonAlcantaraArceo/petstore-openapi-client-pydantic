@@ -11,24 +11,15 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+from openapi_client.models.order_status import OrderStatus
 
-import unittest
-import datetime
+class TestOrderStatus:
+    """OrderStatus enum tests."""
 
-from openapi_client.models.order_status import OrderStatus  # noqa: E501
+    def test_order_status_values(self) -> None:
+        assert OrderStatus.PLACED.value == "placed"
+        assert OrderStatus.APPROVED.value == "approved"
+        assert OrderStatus.DELIVERED.value == "delivered"
 
-class TestOrderStatus(unittest.TestCase):
-    """OrderStatus unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testOrderStatus(self):
-        """Test OrderStatus"""
-        # inst = OrderStatus()
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_order_status_from_value(self) -> None:
+        assert OrderStatus("approved") == OrderStatus.APPROVED

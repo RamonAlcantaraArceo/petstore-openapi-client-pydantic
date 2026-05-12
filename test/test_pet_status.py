@@ -11,24 +11,15 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+from openapi_client.models.pet_status import PetStatus
 
-import unittest
-import datetime
+class TestPetStatus:
+    """PetStatus enum tests."""
 
-from openapi_client.models.pet_status import PetStatus  # noqa: E501
+    def test_pet_status_values(self) -> None:
+        assert PetStatus.AVAILABLE.value == "available"
+        assert PetStatus.PENDING.value == "pending"
+        assert PetStatus.SOLD.value == "sold"
 
-class TestPetStatus(unittest.TestCase):
-    """PetStatus unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testPetStatus(self):
-        """Test PetStatus"""
-        # inst = PetStatus()
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_pet_status_from_value(self) -> None:
+        assert PetStatus("available") == PetStatus.AVAILABLE

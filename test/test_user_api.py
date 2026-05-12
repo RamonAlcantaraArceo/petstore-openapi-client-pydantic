@@ -11,70 +11,161 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-import unittest
+import pytest
+import pytest_asyncio
+from openapi_client.exceptions import ApiException
 
 from openapi_client.api.user_api import UserApi  # noqa: E501
+from openapi_client import ApiClient
+from openapi_client.models.user import User
+from openapi_client.models.user_create import UserCreate
+from openapi_client.models.user_update import UserUpdate
 
 
-class TestUserApi(unittest.TestCase):
+@pytest_asyncio.fixture()
+async def user_api_client(api_client: ApiClient):
+    api = UserApi(api_client=api_client)
+    yield api
+
+
+@pytest.mark.asyncio
+class TestUserApi:
     """UserApi unit test stubs"""
 
-    def setUp(self) -> None:
-        self.api = UserApi()
+    @staticmethod
+    def _build_user_create(username: str) -> UserCreate:
+        return UserCreate(
+            username=username,
+            first_name="Integration",
+            last_name="User",
+            email=f"{username}@example.com",
+            phone="555-0101",
+            user_status=1,
+            password="integration-password",
+        )
 
-    def tearDown(self) -> None:
-        self.api.api_client.close()
-
-    def test_create_user_api_v1_user_post(self) -> None:
+    async def test_create_user_api_v1_user_post(self, user_api_client: UserApi) -> None:
         """Test case for create_user_api_v1_user_post
 
         Create User  # noqa: E501
         """
-        pass
+        created_user = await user_api_client.create_user_api_v1_user_post(
+            self._build_user_create(username="integration-create-user")
+        )
 
-    def test_create_users_with_list_api_v1_user_create_with_list_post(self) -> None:
+        assert isinstance(created_user, User)
+        assert created_user.id is not None
+        assert created_user.username == "integration-create-user"
+
+    async def test_create_users_with_list_api_v1_user_create_with_list_post(self, user_api_client: UserApi) -> None:
         """Test case for create_users_with_list_api_v1_user_create_with_list_post
 
         Create Users With List  # noqa: E501
         """
-        pass
+        users = await user_api_client.create_users_with_list_api_v1_user_create_with_list_post(
+            [
+                self._build_user_create(username="integration-list-user-1"),
+                self._build_user_create(username="integration-list-user-2"),
+            ]
+        )
 
-    def test_delete_user_api_v1_user_username_delete(self) -> None:
+        assert isinstance(users, list)
+        assert len(users) == 2
+        usernames = {user.username for user in users}
+        assert "integration-list-user-1" in usernames
+        assert "integration-list-user-2" in usernames
+
+    async def test_delete_user_api_v1_user_username_delete(self, user_api_client: UserApi) -> None:
         """Test case for delete_user_api_v1_user_username_delete
 
         Delete User  # noqa: E501
         """
-        pass
+        username = "integration-delete-user"
+        await user_api_client.create_user_api_v1_user_post(
+            self._build_user_create(username=username)
+        )
 
-    def test_get_user_by_name_api_v1_user_username_get(self) -> None:
+        delete_result = await user_api_client.delete_user_api_v1_user_username_delete(
+            username
+        )
+
+        assert isinstance(delete_result, dict)
+        assert delete_result
+
+        with pytest.raises(ApiException) as exc_info:
+            await user_api_client.get_user_by_name_api_v1_user_username_get(username)
+        assert exc_info.value.status == 404
+
+    async def test_get_user_by_name_api_v1_user_username_get(self, user_api_client: UserApi) -> None:
         """Test case for get_user_by_name_api_v1_user_username_get
 
         Get User By Name  # noqa: E501
         """
-        pass
+        username = "integration-get-user"
+        await user_api_client.create_user_api_v1_user_post(
+            self._build_user_create(username=username)
+        )
 
-    def test_login_user_api_v1_user_login_get(self) -> None:
+        fetched_user = await user_api_client.get_user_by_name_api_v1_user_username_get(
+            username
+        )
+
+        assert isinstance(fetched_user, User)
+        assert fetched_user.username == username
+
+    async def test_login_user_api_v1_user_login_get(self, user_api_client: UserApi) -> None:
         """Test case for login_user_api_v1_user_login_get
 
         Login User  # noqa: E501
         """
-        pass
+        username = "integration-login-user"
+        password = "integration-password"
+        await user_api_client.create_user_api_v1_user_post(
+            self._build_user_create(username=username)
+        )
 
-    def test_logout_user_api_v1_user_logout_get(self) -> None:
+        login_result = await user_api_client.login_user_api_v1_user_login_get(
+            username=username,
+            password=password,
+        )
+
+        assert isinstance(login_result, dict)
+        assert login_result
+
+    async def test_logout_user_api_v1_user_logout_get(self, user_api_client: UserApi) -> None:
         """Test case for logout_user_api_v1_user_logout_get
 
         Logout User  # noqa: E501
         """
-        pass
+        logout_result = await user_api_client.logout_user_api_v1_user_logout_get()
 
-    def test_update_user_api_v1_user_username_put(self) -> None:
+        assert isinstance(logout_result, dict)
+        assert logout_result
+
+    async def test_update_user_api_v1_user_username_put(self, user_api_client: UserApi) -> None:
         """Test case for update_user_api_v1_user_username_put
 
         Update User  # noqa: E501
         """
-        pass
+        username = "integration-update-user"
+        await user_api_client.create_user_api_v1_user_post(
+            self._build_user_create(username=username)
+        )
 
+        updated_user = await user_api_client.update_user_api_v1_user_username_put(
+            username=username,
+            user_update=UserUpdate(
+                username=username,
+                first_name="Updated",
+                last_name="User",
+                email=f"{username}@example.com",
+                phone="555-0102",
+                user_status=2,
+                password="integration-password",
+            ),
+        )
 
-if __name__ == '__main__':
-    unittest.main()
+        assert isinstance(updated_user, User)
+        assert updated_user.username == username
+        assert updated_user.first_name == "Updated"
+

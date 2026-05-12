@@ -11,57 +11,69 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import pytest
 
-import unittest
-import datetime
+from openapi_client.models.category import Category
+from openapi_client.models.pet_update import PetUpdate
+from openapi_client.models.pet_status import PetStatus
+from openapi_client.models.tag import Tag
 
-from openapi_client.models.pet_update import PetUpdate  # noqa: E501
+class TestPetUpdate:
+    """PetUpdate model tests."""
 
-class TestPetUpdate(unittest.TestCase):
-    """PetUpdate unit test stubs"""
+    def test_pet_update_requires_name_and_id(self) -> None:
+        with pytest.raises(ValueError):
+            PetUpdate(name="pet")
 
-    def setUp(self):
-        pass
+        with pytest.raises(ValueError):
+            PetUpdate(id=1)
 
-    def tearDown(self):
-        pass
+    def test_pet_update_with_required_only(self) -> None:
+        pet = PetUpdate(name="pet-required", id=10)
 
-    def make_instance(self, include_optional) -> PetUpdate:
-        """Test PetUpdate
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `PetUpdate`
-        """
-        model = PetUpdate()  # noqa: E501
-        if include_optional:
-            return PetUpdate(
-                name = '0',
-                photo_urls = [
-                    ''
-                    ],
-                category = openapi_client.models.category.Category(
-                    id = 56, 
-                    name = '', ),
-                tags = [
-                    openapi_client.models.tag.Tag(
-                        id = 56, 
-                        name = '', )
-                    ],
-                status = 'available',
-                id = 56
-            )
-        else:
-            return PetUpdate(
-                name = '0',
-                id = 56,
+        assert pet.name == "pet-required"
+        assert pet.id == 10
+
+    def test_pet_update_with_optional_fields(self) -> None:
+        pet = PetUpdate(
+            id=11,
+            name="pet-optional",
+            photo_urls=["https://example.com/photo.png"],
+            category=Category(id=1, name="cats"),
+            tags=[Tag(id=2, name="young")],
+            status=PetStatus.PENDING,
         )
-        """
 
-    def testPetUpdate(self):
-        """Test PetUpdate"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert pet.photo_urls == ["https://example.com/photo.png"]
+        assert pet.category is not None
+        assert pet.category.name == "cats"
+        assert pet.tags is not None
+        assert pet.tags[0].name == "young"
+        assert pet.status == PetStatus.PENDING
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_pet_update_serialization_round_trip(self) -> None:
+        pet = PetUpdate(
+            id=12,
+            name="pet-serialize",
+            photo_urls=["https://example.com/photo.png"],
+            category=Category(id=1, name="cats"),
+            tags=[Tag(id=2, name="young")],
+            status=PetStatus.PENDING,
+        )
+
+        as_dict = pet.to_dict()
+        assert as_dict["id"] == 12
+        assert as_dict["name"] == "pet-serialize"
+        assert as_dict["status"] == "pending"
+
+        from_dict = PetUpdate.from_dict(as_dict)
+        assert from_dict.id == pet.id
+        assert from_dict.name == pet.name
+        assert from_dict.status == pet.status
+
+        as_json = pet.to_json()
+        from_json = PetUpdate.from_json(as_json)
+        assert from_json.id == pet.id
+        assert from_json.status == pet.status
+
+        assert "pet-serialize" in pet.to_str()

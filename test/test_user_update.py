@@ -11,48 +11,58 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+from openapi_client.models.user_update import UserUpdate
 
-import unittest
-import datetime
+class TestUserUpdate:
+    """UserUpdate model tests."""
 
-from openapi_client.models.user_update import UserUpdate  # noqa: E501
+    def test_user_update_allows_empty_instance(self) -> None:
+        user_update = UserUpdate()
 
-class TestUserUpdate(unittest.TestCase):
-    """UserUpdate unit test stubs"""
+        assert user_update.username is None
+        assert user_update.password is None
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def make_instance(self, include_optional) -> UserUpdate:
-        """Test UserUpdate
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `UserUpdate`
-        """
-        model = UserUpdate()  # noqa: E501
-        if include_optional:
-            return UserUpdate(
-                username = '',
-                first_name = '',
-                last_name = '',
-                email = '',
-                phone = '',
-                user_status = 56,
-                password = ''
-            )
-        else:
-            return UserUpdate(
+    def test_user_update_with_optional_fields(self) -> None:
+        user_update = UserUpdate(
+            username="updated-user",
+            first_name="Updated",
+            last_name="User",
+            email="updated@example.com",
+            phone="555-3000",
+            user_status=3,
+            password="new-secret",
         )
-        """
 
-    def testUserUpdate(self):
-        """Test UserUpdate"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert user_update.username == "updated-user"
+        assert user_update.first_name == "Updated"
+        assert user_update.last_name == "User"
+        assert user_update.email == "updated@example.com"
+        assert user_update.phone == "555-3000"
+        assert user_update.user_status == 3
+        assert user_update.password == "new-secret"
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_user_update_serialization_round_trip(self) -> None:
+        user_update = UserUpdate(
+            username="updated-user",
+            first_name="Updated",
+            last_name="User",
+            email="updated@example.com",
+            phone="555-3000",
+            user_status=3,
+            password="new-secret",
+        )
+
+        as_dict = user_update.to_dict()
+        assert as_dict["username"] == "updated-user"
+        assert as_dict["password"] == "new-secret"
+
+        from_dict = UserUpdate.from_dict(as_dict)
+        assert from_dict.username == user_update.username
+        assert from_dict.password == user_update.password
+
+        as_json = user_update.to_json()
+        from_json = UserUpdate.from_json(as_json)
+        assert from_json.username == user_update.username
+        assert from_json.password == user_update.password
+
+        assert "updated-user" in user_update.to_str()

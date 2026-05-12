@@ -11,28 +11,31 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-import unittest
+import pytest
+import pytest_asyncio
 
 from openapi_client.api.health_api import HealthApi  # noqa: E501
+from openapi_client import ApiClient
 
 
-class TestHealthApi(unittest.TestCase):
+@pytest_asyncio.fixture()
+async def health_api_client(api_client: ApiClient):
+    api = HealthApi(api_client=api_client)
+    yield api
+
+
+@pytest.mark.asyncio
+class TestHealthApi:
     """HealthApi unit test stubs"""
 
-    def setUp(self) -> None:
-        self.api = HealthApi()
-
-    def tearDown(self) -> None:
-        self.api.api_client.close()
-
-    def test_health_check_health_get(self) -> None:
+    async def test_health_check_health_get(self, health_api_client: HealthApi) -> None:
         """Test case for health_check_health_get
 
         Health Check  # noqa: E501
         """
-        pass
+        response = await health_api_client.health_check_health_get()
 
+        assert response is not None
+        if isinstance(response, dict):
+            assert "status" in response
 
-if __name__ == '__main__':
-    unittest.main()

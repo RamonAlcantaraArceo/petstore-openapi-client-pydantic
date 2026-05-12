@@ -1,0 +1,54 @@
+[project]
+name = "{{{packageName}}}"
+version = "{{{packageVersion}}}"
+description = "{{{appName}}}"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "{{infoName}}{{^infoName}}OpenAPI Generator Community{{/infoName}}", email = "{{infoEmail}}{{^infoEmail}}team@openapitools.org{{/infoEmail}}" }]
+license = "{{{licenseInfo}}}{{^licenseInfo}}Unlicense{{/licenseInfo}}"
+keywords = ["OpenAPI", "OpenAPI-Generator", "{{{appName}}}"]
+dependencies = [
+	"urllib3>=2.0.0",
+	"python-dateutil>=2.9.0",
+{{#asyncio}}
+	"aiohttp>=3.10.0",
+{{/asyncio}}
+{{#tornado}}
+	"tornado>=4.2,<5",
+{{/tornado}}
+{{#hasHttpSignatureMethods}}
+	"pem>=19.3.0",
+	"pycryptodome>=3.9.0",
+{{/hasHttpSignatureMethods}}
+	"pydantic>=2.0.0,<3",
+	"aenum>=3.1.17",
+]
+
+[project.urls]
+Repository = "https://{{{gitHost}}}/{{{gitUserId}}}/{{{gitRepoId}}}"
+
+[project.optional-dependencies]
+dev = [
+	"pytest>=8.3.0",
+	"pytest-cov>=6.0.0",
+	"pytest-randomly>=3.15.0",
+{{#asyncio}}
+	"pytest-asyncio>=0.24.0",
+{{/asyncio}}
+	"tox>=4.14.0",
+	"flake8>=7.1.0",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = false
+packages = ["{{{packageName}}}"]
+
+[tool.setuptools.package-data]
+{{{packageName}}} = ["py.typed"]
+
+[tool.pylint.'MESSAGES CONTROL']
+extension-pkg-whitelist = "pydantic"

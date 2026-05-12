@@ -11,47 +11,69 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+from datetime import datetime
 
-import unittest
-import datetime
+import pytest
 
-from openapi_client.models.order import Order  # noqa: E501
+from openapi_client.models.order import Order
+from openapi_client.models.order_status import OrderStatus
 
-class TestOrder(unittest.TestCase):
-    """Order unit test stubs"""
+class TestOrder:
+    """Order model tests."""
 
-    def setUp(self):
-        pass
+    def test_order_allows_empty_instance(self) -> None:
+        order = Order()
 
-    def tearDown(self):
-        pass
+        assert order.id is None
+        assert order.status is None
 
-    def make_instance(self, include_optional) -> Order:
-        """Test Order
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `Order`
-        """
-        model = Order()  # noqa: E501
-        if include_optional:
-            return Order(
-                pet_id = 56,
-                quantity = 56,
-                ship_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                status = 'placed',
-                complete = True,
-                id = 56
-            )
-        else:
-            return Order(
+    def test_order_with_optional_fields(self) -> None:
+        ship_date = datetime(2024, 1, 2, 3, 4, 5)
+        order = Order(
+            pet_id=10,
+            quantity=2,
+            ship_date=ship_date,
+            status=OrderStatus.PLACED,
+            complete=True,
+            id=100,
         )
-        """
 
-    def testOrder(self):
-        """Test Order"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        assert order.pet_id == 10
+        assert order.quantity == 2
+        assert order.ship_date == ship_date
+        assert order.status == OrderStatus.PLACED
+        assert order.complete is True
+        assert order.id == 100
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_order_serialization_round_trip(self) -> None:
+        ship_date = datetime(2024, 1, 2, 3, 4, 5)
+        order = Order(
+            pet_id=10,
+            quantity=2,
+            ship_date=ship_date,
+            status=OrderStatus.PLACED,
+            complete=True,
+            id=100,
+        )
+
+        as_dict = order.to_dict()
+        assert as_dict["id"] == 100
+        assert as_dict["status"] == "placed"
+
+        from_dict = Order.from_dict(as_dict)
+        assert from_dict.id == order.id
+        assert from_dict.status == order.status
+
+        # Generated model currently does not JSON-encode datetime in to_json.
+        with pytest.raises(TypeError):
+            order.to_json()
+
+        json_payload = (
+            '{"pet_id": 10, "quantity": 2, "ship_date": "2024-01-02T03:04:05", '
+            '"status": "placed", "complete": true, "id": 100}'
+        )
+        from_json = Order.from_json(json_payload)
+        assert from_json.id == order.id
+        assert from_json.status == order.status
+
+        assert "placed" in order.to_str()
