@@ -35,12 +35,16 @@ class TestPetApi:
     """PetApi unit test stubs"""
 
     @staticmethod
-    def _build_pet_create(name: str, tag_name: str | None = None) -> PetCreate:
+    def _build_pet_create(
+        name: str,
+        tag_name: str | None = None,
+        status: PetStatus = PetStatus.AVAILABLE,
+    ) -> PetCreate:
         tags = [Tag(name=tag_name)] if tag_name else None
         return PetCreate(
             name=name,
             photo_urls=["https://example.com/pet.png"],
-            status=PetStatus.AVAILABLE,
+            status=status,
             tags=tags,
         )
 
@@ -84,11 +88,38 @@ class TestPetApi:
 
         Find Pets By Status  # noqa: E501
         """
-        
-        created_pet = await pet_api_client.add_pet_api_v1_pet_post(
-            self._build_pet_create(name="integration-status-pet")
-        )
+        # Create one pet per supported status value
+        pet_by_status: dict[PetStatus, Pet] = {}
+        for status in PetStatus:
+            pet = await pet_api_client.add_pet_api_v1_pet_post(
+                self._build_pet_create(
+                    name=f"integration-status-{status.value}-pet",
+                    status=status,
+                )
+            )
+            pet_by_status[status] = pet
 
+        # For each valid status, verify that:
+        #   - the pet created with that status appears in the results
+        #   - the pets created with every other status do NOT appear
+        for status in PetStatus:
+            pets = await pet_api_client.find_pets_by_status_api_v1_pet_find_by_status_get(
+                status=status
+            )
+            assert isinstance(pets, list)
+            returned_ids = {pet.id for pet in pets if pet.id is not None}
+            assert pet_by_status[status].id in returned_ids, (
+                f"Expected pet with status={status.value} to be in results"
+            )
+            for other_status, other_pet in pet_by_status.items():
+                if other_status != status:
+                    assert other_pet.id not in returned_ids, (
+                        f"Pet with status={other_status.value} should not appear "
+                        f"when filtering by status={status.value}"
+                    )
+
+    async def test_find_pets_by_status_invalid_value_returns_422(self, pet_api_client: PetApi) -> None:
+        """The API must reject an unrecognised status value with 422."""
         with pytest.raises(ApiException) as exc_info:
             await pet_api_client.find_pets_by_status_api_v1_pet_find_by_status_get_without_validation(
                 status="foobar"
