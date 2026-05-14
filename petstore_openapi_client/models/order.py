@@ -23,19 +23,20 @@ from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, StrictBool, StrictInt
 from pydantic import ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
-from openapi_client.models.order_status import OrderStatus
+from petstore_openapi_client.assertions import AssertableModelMixin
+from petstore_openapi_client.models.order_status import OrderStatus
 
-class OrderCreate(AssertableModelMixin, BaseModel):
+class Order(AssertableModelMixin, BaseModel):
     """
-    Schema for creating a new order.  # noqa: E501
+    Full order schema including server-assigned fields.  Attributes:     id: Order identifier.  # noqa: E501
     """
     pet_id: Optional[StrictInt] = None
     quantity: Optional[StrictInt] = None
     ship_date: Optional[datetime] = None
     status: Optional[OrderStatus] = None
     complete: Optional[StrictBool] = None
-    __properties = ["pet_id", "quantity", "ship_date", "status", "complete"]
+    id: Optional[StrictInt] = None
+    __properties = ["pet_id", "quantity", "ship_date", "status", "complete", "id"]
 
     model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
@@ -48,8 +49,8 @@ class OrderCreate(AssertableModelMixin, BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> OrderCreate:
-        """Create an instance of OrderCreate from a JSON string"""
+    def from_json(cls, json_str: str) -> Order:
+        """Create an instance of Order from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -83,23 +84,29 @@ class OrderCreate(AssertableModelMixin, BaseModel):
         if self.complete is None and "complete" in self.model_fields_set:
             _dict['complete'] = None
 
+        # set to None if id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> OrderCreate:
-        """Create an instance of OrderCreate from a dict"""
+    def from_dict(cls, obj: dict) -> Order:
+        """Create an instance of Order from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return OrderCreate.model_validate(obj)
+            return Order.model_validate(obj)
 
-        _obj = OrderCreate.model_validate({
+        _obj = Order.model_validate({
             "pet_id": obj.get("pet_id"),
             "quantity": obj.get("quantity"),
             "ship_date": obj.get("ship_date"),
             "status": obj.get("status"),
-            "complete": obj.get("complete")
+            "complete": obj.get("complete"),
+            "id": obj.get("id")
         })
         return _obj
 

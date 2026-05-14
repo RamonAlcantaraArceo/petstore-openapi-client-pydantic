@@ -20,18 +20,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, StrictInt, StrictStr
+from typing import List, Optional
+from pydantic import BaseModel, conlist
 from pydantic import ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
+from petstore_openapi_client.assertions import AssertableModelMixin
+from petstore_openapi_client.models.validation_error import ValidationError
 
-class Category(AssertableModelMixin, BaseModel):
+class HTTPValidationError(AssertableModelMixin, BaseModel):
     """
-    Pet category.  Attributes:     id: Category identifier.     name: Category name.  # noqa: E501
+    HTTPValidationError
     """
-    id: Optional[StrictInt] = None
-    name: Optional[StrictStr] = None
-    __properties = ["id", "name"]
+    detail: Optional[conlist(ValidationError)] = None
+    __properties = ["detail"]
 
     model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
@@ -44,8 +44,8 @@ class Category(AssertableModelMixin, BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Category:
-        """Create an instance of Category from a JSON string"""
+    def from_json(cls, json_str: str) -> HTTPValidationError:
+        """Create an instance of HTTPValidationError from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -54,30 +54,26 @@ class Category(AssertableModelMixin, BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # set to None if id (nullable) is None
-        # and __fields_set__ contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
-
-        # set to None if name (nullable) is None
-        # and __fields_set__ contains the field
-        if self.name is None and "name" in self.model_fields_set:
-            _dict['name'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in detail (list)
+        _items = []
+        if self.detail:
+            for _item in self.detail:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['detail'] = _items
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Category:
-        """Create an instance of Category from a dict"""
+    def from_dict(cls, obj: dict) -> HTTPValidationError:
+        """Create an instance of HTTPValidationError from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Category.model_validate(obj)
+            return HTTPValidationError.model_validate(obj)
 
-        _obj = Category.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name")
+        _obj = HTTPValidationError.model_validate({
+            "detail": [ValidationError.from_dict(_item) for _item in obj.get("detail")] if obj.get("detail") is not None else None
         })
         return _obj
 

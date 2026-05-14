@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.location_inner import LocationInner
+from petstore_openapi_client.models.location_inner import LocationInner
 
 # TODO update the JSON string below
 json = "{}"

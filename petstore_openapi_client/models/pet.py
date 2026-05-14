@@ -21,23 +21,24 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, constr
 from pydantic import ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
-from openapi_client.models.category import Category
-from openapi_client.models.pet_status import PetStatus
-from openapi_client.models.tag import Tag
+from petstore_openapi_client.assertions import AssertableModelMixin
+from petstore_openapi_client.models.category import Category
+from petstore_openapi_client.models.pet_status import PetStatus
+from petstore_openapi_client.models.tag import Tag
 
-class PetCreate(AssertableModelMixin, BaseModel):
+class Pet(AssertableModelMixin, BaseModel):
     """
-    Schema for creating a new pet.  # noqa: E501
+    Full pet schema including server-assigned fields.  Attributes:     id: Pet identifier.  # noqa: E501
     """
     name: constr(strict=True, min_length=1) = Field(...)
     photo_urls: Optional[conlist(StrictStr)] = Field(default=None, alias="photoUrls")
     category: Optional[Category] = None
     tags: Optional[conlist(Tag)] = None
     status: Optional[PetStatus] = None
-    __properties = ["name", "photoUrls", "category", "tags", "status"]
+    id: Optional[StrictInt] = None
+    __properties = ["name", "photoUrls", "category", "tags", "status", "id"]
 
     model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
@@ -50,8 +51,8 @@ class PetCreate(AssertableModelMixin, BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PetCreate:
-        """Create an instance of PetCreate from a JSON string"""
+    def from_json(cls, json_str: str) -> Pet:
+        """Create an instance of Pet from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -85,23 +86,29 @@ class PetCreate(AssertableModelMixin, BaseModel):
         if self.status is None and "status" in self.model_fields_set:
             _dict['status'] = None
 
+        # set to None if id (nullable) is None
+        # and __fields_set__ contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PetCreate:
-        """Create an instance of PetCreate from a dict"""
+    def from_dict(cls, obj: dict) -> Pet:
+        """Create an instance of Pet from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PetCreate.model_validate(obj)
+            return Pet.model_validate(obj)
 
-        _obj = PetCreate.model_validate({
+        _obj = Pet.model_validate({
             "name": obj.get("name"),
             "photo_urls": obj.get("photoUrls"),
             "category": Category.from_dict(obj.get("category")) if obj.get("category") is not None else None,
             "tags": [Tag.from_dict(_item) for _item in obj.get("tags")] if obj.get("tags") is not None else None,
-            "status": obj.get("status")
+            "status": obj.get("status"),
+            "id": obj.get("id")
         })
         return _obj
 

@@ -24,7 +24,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr, ValidationError, validator
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field, ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
+from petstore_openapi_client.assertions import AssertableModelMixin
 
 LOCATIONINNER_ANY_OF_SCHEMAS = ["int", "str"]
 

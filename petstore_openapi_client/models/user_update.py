@@ -23,11 +23,11 @@ import json
 from typing import Optional
 from pydantic import BaseModel, StrictInt, StrictStr
 from pydantic import ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
+from petstore_openapi_client.assertions import AssertableModelMixin
 
-class User(AssertableModelMixin, BaseModel):
+class UserUpdate(AssertableModelMixin, BaseModel):
     """
-    Full user schema including server-assigned fields.  Attributes:     id: User identifier.  # noqa: E501
+    Schema for updating an existing user.  Attributes:     password: New password (optional).  # noqa: E501
     """
     username: Optional[StrictStr] = None
     first_name: Optional[StrictStr] = None
@@ -35,8 +35,8 @@ class User(AssertableModelMixin, BaseModel):
     email: Optional[StrictStr] = None
     phone: Optional[StrictStr] = None
     user_status: Optional[StrictInt] = None
-    id: Optional[StrictInt] = None
-    __properties = ["username", "first_name", "last_name", "email", "phone", "user_status", "id"]
+    password: Optional[StrictStr] = None
+    __properties = ["username", "first_name", "last_name", "email", "phone", "user_status", "password"]
 
     model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
@@ -49,8 +49,8 @@ class User(AssertableModelMixin, BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> User:
-        """Create an instance of User from a JSON string"""
+    def from_json(cls, json_str: str) -> UserUpdate:
+        """Create an instance of UserUpdate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -89,30 +89,30 @@ class User(AssertableModelMixin, BaseModel):
         if self.user_status is None and "user_status" in self.model_fields_set:
             _dict['user_status'] = None
 
-        # set to None if id (nullable) is None
+        # set to None if password (nullable) is None
         # and __fields_set__ contains the field
-        if self.id is None and "id" in self.model_fields_set:
-            _dict['id'] = None
+        if self.password is None and "password" in self.model_fields_set:
+            _dict['password'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> User:
-        """Create an instance of User from a dict"""
+    def from_dict(cls, obj: dict) -> UserUpdate:
+        """Create an instance of UserUpdate from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return User.model_validate(obj)
+            return UserUpdate.model_validate(obj)
 
-        _obj = User.model_validate({
+        _obj = UserUpdate.model_validate({
             "username": obj.get("username"),
             "first_name": obj.get("first_name"),
             "last_name": obj.get("last_name"),
             "email": obj.get("email"),
             "phone": obj.get("phone"),
             "user_status": obj.get("user_status"),
-            "id": obj.get("id")
+            "password": obj.get("password")
         })
         return _obj
 

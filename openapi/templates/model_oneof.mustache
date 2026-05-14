@@ -11,7 +11,7 @@ import re  # noqa: F401
 {{/vendorExtensions.x-py-model-imports}}
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field, ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
+from {{packageName}}.assertions import AssertableModelMixin
 
 {{#lambda.uppercase}}{{{classname}}}{{/lambda.uppercase}}_ONE_OF_SCHEMAS = [{{#oneOf}}"{{.}}"{{^-last}}, {{/-last}}{{/oneOf}}]
 

@@ -21,24 +21,23 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, StrictStr, conlist, constr
 from pydantic import ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
-from openapi_client.models.category import Category
-from openapi_client.models.pet_status import PetStatus
-from openapi_client.models.tag import Tag
+from petstore_openapi_client.assertions import AssertableModelMixin
+from petstore_openapi_client.models.category import Category
+from petstore_openapi_client.models.pet_status import PetStatus
+from petstore_openapi_client.models.tag import Tag
 
-class PetUpdate(AssertableModelMixin, BaseModel):
+class PetCreate(AssertableModelMixin, BaseModel):
     """
-    Schema for updating an existing pet.  Attributes:     id: Pet identifier (required for updates).  # noqa: E501
+    Schema for creating a new pet.  # noqa: E501
     """
     name: constr(strict=True, min_length=1) = Field(...)
     photo_urls: Optional[conlist(StrictStr)] = Field(default=None, alias="photoUrls")
     category: Optional[Category] = None
     tags: Optional[conlist(Tag)] = None
     status: Optional[PetStatus] = None
-    id: StrictInt = Field(...)
-    __properties = ["name", "photoUrls", "category", "tags", "status", "id"]
+    __properties = ["name", "photoUrls", "category", "tags", "status"]
 
     model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
@@ -51,8 +50,8 @@ class PetUpdate(AssertableModelMixin, BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PetUpdate:
-        """Create an instance of PetUpdate from a JSON string"""
+    def from_json(cls, json_str: str) -> PetCreate:
+        """Create an instance of PetCreate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -89,21 +88,20 @@ class PetUpdate(AssertableModelMixin, BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PetUpdate:
-        """Create an instance of PetUpdate from a dict"""
+    def from_dict(cls, obj: dict) -> PetCreate:
+        """Create an instance of PetCreate from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PetUpdate.model_validate(obj)
+            return PetCreate.model_validate(obj)
 
-        _obj = PetUpdate.model_validate({
+        _obj = PetCreate.model_validate({
             "name": obj.get("name"),
             "photo_urls": obj.get("photoUrls"),
             "category": Category.from_dict(obj.get("category")) if obj.get("category") is not None else None,
             "tags": [Tag.from_dict(_item) for _item in obj.get("tags")] if obj.get("tags") is not None else None,
-            "status": obj.get("status"),
-            "id": obj.get("id")
+            "status": obj.get("status")
         })
         return _obj
 

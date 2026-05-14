@@ -26,12 +26,12 @@ from pydantic import StrictInt
 
 from typing import Dict, List
 
-from openapi_client.models.order import Order
-from openapi_client.models.order_create import OrderCreate
+from petstore_openapi_client.models.order import Order
+from petstore_openapi_client.models.order_create import OrderCreate
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from petstore_openapi_client.api_client import ApiClient
+from petstore_openapi_client.api_response import ApiResponse
+from petstore_openapi_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

@@ -1,4 +1,4 @@
-# openapi_client.PetApi
+# petstore_openapi_client.PetApi
 
 All URIs are relative to *http://localhost:8000*
 
@@ -35,15 +35,15 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.models.pet import Pet
-from openapi_client.models.pet_create import PetCreate
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.models.pet import Pet
+from petstore_openapi_client.models.pet_create import PetCreate
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -61,10 +61,10 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.PetApi(api_client)
-        pet_create = openapi_client.PetCreate() # PetCreate | 
+        api_instance = petstore_openapi_client.PetApi(api_client)
+        pet_create = petstore_openapi_client.PetCreate() # PetCreate | 
 
         try:
             # Add Pet
@@ -128,13 +128,13 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -152,9 +152,9 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.PetApi(api_client)
+        api_instance = petstore_openapi_client.PetApi(api_client)
         pet_id = 56 # int | 
 
         try:
@@ -219,14 +219,14 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.models.pet import Pet
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.models.pet import Pet
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -244,10 +244,10 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.PetApi(api_client)
-        status = openapi_client.PetStatus() # PetStatus | Status values to filter by (optional)
+        api_instance = petstore_openapi_client.PetApi(api_client)
+        status = petstore_openapi_client.PetStatus() # PetStatus | Status values to filter by (optional)
 
         try:
             # Find Pets By Status
@@ -311,14 +311,14 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.models.pet import Pet
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.models.pet import Pet
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -336,9 +336,9 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.PetApi(api_client)
+        api_instance = petstore_openapi_client.PetApi(api_client)
         tags = ['tags_example'] # List[str] | Tags to filter by
 
         try:
@@ -403,14 +403,14 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.models.pet import Pet
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.models.pet import Pet
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -428,9 +428,9 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.PetApi(api_client)
+        api_instance = petstore_openapi_client.PetApi(api_client)
         pet_id = 56 # int | 
 
         try:
@@ -495,15 +495,15 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.models.pet import Pet
-from openapi_client.models.pet_update import PetUpdate
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.models.pet import Pet
+from petstore_openapi_client.models.pet_update import PetUpdate
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -521,10 +521,10 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.PetApi(api_client)
-        pet_update = openapi_client.PetUpdate() # PetUpdate | 
+        api_instance = petstore_openapi_client.PetApi(api_client)
+        pet_update = petstore_openapi_client.PetUpdate() # PetUpdate | 
 
         try:
             # Update Pet
@@ -590,14 +590,14 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.models.pet import Pet
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.models.pet import Pet
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -615,9 +615,9 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.PetApi(api_client)
+        api_instance = petstore_openapi_client.PetApi(api_client)
         pet_id = 56 # int | 
         name = 'name_example' # str |  (optional)
         status = 'status_example' # str |  (optional)
@@ -688,13 +688,13 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -712,9 +712,9 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.PetApi(api_client)
+        api_instance = petstore_openapi_client.PetApi(api_client)
         pet_id = 56 # int | 
         file = 'file_example' # str |  (optional)
         additional_metadata = 'additional_metadata_example' # str |  (optional)

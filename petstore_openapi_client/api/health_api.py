@@ -25,9 +25,9 @@ from typing import overload, Optional, Union, Awaitable
 from typing import Any
 
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from petstore_openapi_client.api_client import ApiClient
+from petstore_openapi_client.api_response import ApiResponse
+from petstore_openapi_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

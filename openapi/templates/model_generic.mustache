@@ -7,7 +7,7 @@ import json
 {{#vendorExtensions.x-py-typing-imports}}{{#-first}}from typing import{{/-first}} {{{.}}}{{^-last}},{{/-last}}{{/vendorExtensions.x-py-typing-imports}}
 {{#vendorExtensions.x-py-pydantic-imports}}{{#-first}}from pydantic import{{/-first}} {{{.}}}{{^-last}},{{/-last}}{{/vendorExtensions.x-py-pydantic-imports}}
 from pydantic import ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
+from {{packageName}}.assertions import AssertableModelMixin
 {{#vendorExtensions.x-py-model-imports}}
 {{{.}}}
 {{/vendorExtensions.x-py-model-imports}}

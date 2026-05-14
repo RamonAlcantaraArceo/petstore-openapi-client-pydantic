@@ -23,7 +23,7 @@ import json
 from typing import Optional
 from pydantic import BaseModel, StrictInt, StrictStr
 from pydantic import ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
+from petstore_openapi_client.assertions import AssertableModelMixin
 
 class Tag(AssertableModelMixin, BaseModel):
     """

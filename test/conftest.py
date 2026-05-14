@@ -2,7 +2,7 @@ import os
 
 import pytest_asyncio
 
-from openapi_client import ApiClient, Configuration
+from petstore_openapi_client import ApiClient, Configuration
 
 
 def _get_default_host() -> str:

@@ -1,5 +1,5 @@
 [project]
-name = "openapi_client"
+name = "petstore_openapi_client"
 version = "0.0.0"
 description = "Petstore API"
 readme = "README.md"
@@ -34,10 +34,10 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 include-package-data = false
-packages = ["openapi_client"]
+packages = ["petstore_openapi_client"]
 
 [tool.setuptools.package-data]
-openapi_client = ["py.typed"]
+petstore_openapi_client = ["py.typed"]
 
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"

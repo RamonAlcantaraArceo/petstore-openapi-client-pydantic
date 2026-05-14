@@ -23,8 +23,8 @@ import json
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
 from pydantic import ConfigDict, field_validator
-from openapi_client.assertions import AssertableModelMixin
-from openapi_client.models.location_inner import LocationInner
+from petstore_openapi_client.assertions import AssertableModelMixin
+from petstore_openapi_client.models.location_inner import LocationInner
 
 class ValidationError(AssertableModelMixin, BaseModel):
     """
