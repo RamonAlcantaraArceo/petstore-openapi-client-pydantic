@@ -49,12 +49,12 @@ class TestPetApi:
             tags=tags,
         )
 
-    async def test_add_pet_api_v1_pet_post(self, pet_api_client: PetApi) -> None:
-        """Test case for add_pet_api_v1_pet_post
+    async def test_add_pet(self, pet_api_client: PetApi) -> None:
+        """Test case for add_pet
 
         Add Pet  # noqa: E501
         """
-        created_pet: Pet = await pet_api_client.add_pet_api_v1_pet_post(
+        created_pet: Pet = await pet_api_client.add_pet(
             self._build_pet_create(name="integration-add-pet")
         )
 
@@ -63,17 +63,17 @@ class TestPetApi:
         assert_that(created_pet.name).equals("integration-add-pet")
         assert_that(created_pet.status).equals(PetStatus.AVAILABLE)
 
-    async def test_delete_pet_api_v1_pet_pet_id_delete(self, pet_api_client: PetApi) -> None:
-        """Test case for delete_pet_api_v1_pet_pet_id_delete
+    async def test_delete_pet(self, pet_api_client: PetApi) -> None:
+        """Test case for delete_pet
 
         Delete Pet  # noqa: E501
         """
-        created_pet = await pet_api_client.add_pet_api_v1_pet_post(
+        created_pet = await pet_api_client.add_pet(
             self._build_pet_create(name="integration-delete-pet")
         )
         assert created_pet.id is not None
 
-        delete_result = await pet_api_client.delete_pet_api_v1_pet_pet_id_delete(
+        delete_result = await pet_api_client.delete_pet(
             created_pet.id
         )
 
@@ -81,18 +81,18 @@ class TestPetApi:
         assert delete_result
 
         with pytest.raises(ApiException) as exc_info:
-            await pet_api_client.get_pet_by_id_api_v1_pet_pet_id_get(created_pet.id)
+            await pet_api_client.get_pet_by_id(created_pet.id)
         assert exc_info.value.status == 404
 
-    async def test_find_pets_by_status_api_v1_pet_find_by_status_get(self, pet_api_client: PetApi) -> None:
-        """Test case for find_pets_by_status_api_v1_pet_find_by_status_get
+    async def test_find_pets_by_status(self, pet_api_client: PetApi) -> None:
+        """Test case for find_pets_by_status
 
         Find Pets By Status  # noqa: E501
         """
         # Create one pet per supported status value
         pet_by_status: dict[PetStatus, Pet] = {}
         for status in PetStatus:
-            pet = await pet_api_client.add_pet_api_v1_pet_post(
+            pet = await pet_api_client.add_pet(
                 self._build_pet_create(
                     name=f"integration-status-{status.value}-pet",
                     status=status,
@@ -104,7 +104,7 @@ class TestPetApi:
         #   - the pet created with that status appears in the results
         #   - the pets created with every other status do NOT appear
         for status in PetStatus:
-            pets = await pet_api_client.find_pets_by_status_api_v1_pet_find_by_status_get(
+            pets = await pet_api_client.find_pets_by_status(
                 status=status
             )
             assert isinstance(pets, list)
@@ -122,39 +122,39 @@ class TestPetApi:
     async def test_find_pets_by_status_invalid_value_returns_422(self, pet_api_client: PetApi) -> None:
         """The API must reject an unrecognised status value with 422."""
         with pytest.raises(ApiException) as exc_info:
-            await pet_api_client.find_pets_by_status_api_v1_pet_find_by_status_get_without_validation(
+            await pet_api_client.find_pets_by_status_without_validation(
                 status="foobar"
             )
         assert exc_info.value.status == 422
 
-    async def test_find_pets_by_tags_api_v1_pet_find_by_tags_get(self, pet_api_client: PetApi) -> None:
-        """Test case for find_pets_by_tags_api_v1_pet_find_by_tags_get
+    async def test_find_pets_by_tags(self, pet_api_client: PetApi) -> None:
+        """Test case for find_pets_by_tags
 
         Find Pets By Tags  # noqa: E501
         """
         tag_name = "integration-tag"
-        created_pet = await pet_api_client.add_pet_api_v1_pet_post(
+        created_pet = await pet_api_client.add_pet(
             self._build_pet_create(name="integration-tag-pet", tag_name=tag_name)
         )
 
-        pets = await pet_api_client.find_pets_by_tags_api_v1_pet_find_by_tags_get(
+        pets = await pet_api_client.find_pets_by_tags(
             tags=[tag_name]
         )
 
         assert isinstance(pets, list)
         assert any(pet.id == created_pet.id for pet in pets if pet.id is not None)
 
-    async def test_get_pet_by_id_api_v1_pet_pet_id_get(self, pet_api_client: PetApi) -> None:
-        """Test case for get_pet_by_id_api_v1_pet_pet_id_get
+    async def test_get_pet_by_id(self, pet_api_client: PetApi) -> None:
+        """Test case for get_pet_by_id
 
         Get Pet By Id  # noqa: E501
         """
-        created_pet = await pet_api_client.add_pet_api_v1_pet_post(
+        created_pet = await pet_api_client.add_pet(
             self._build_pet_create(name="integration-get-pet")
         )
         assert created_pet.id is not None
 
-        fetched_pet = await pet_api_client.get_pet_by_id_api_v1_pet_pet_id_get(
+        fetched_pet = await pet_api_client.get_pet_by_id(
             created_pet.id
         )
 
@@ -162,17 +162,17 @@ class TestPetApi:
         assert fetched_pet.id == created_pet.id
         assert fetched_pet.name == "integration-get-pet"
 
-    async def test_update_pet_api_v1_pet_put(self, pet_api_client: PetApi) -> None:
-        """Test case for update_pet_api_v1_pet_put
+    async def test_update_pet(self, pet_api_client: PetApi) -> None:
+        """Test case for update_pet
 
         Update Pet  # noqa: E501
         """
-        created_pet = await pet_api_client.add_pet_api_v1_pet_post(
+        created_pet = await pet_api_client.add_pet(
             self._build_pet_create(name="integration-update-pet")
         )
         assert created_pet.id is not None
 
-        updated_pet = await pet_api_client.update_pet_api_v1_pet_put(
+        updated_pet = await pet_api_client.update_pet(
             PetUpdate(
                 id=created_pet.id,
                 name="integration-update-pet-new",
@@ -186,17 +186,17 @@ class TestPetApi:
         assert updated_pet.name == "integration-update-pet-new"
         assert updated_pet.status == PetStatus.PENDING
 
-    async def test_update_pet_with_form_api_v1_pet_pet_id_post(self, pet_api_client: PetApi) -> None:
-        """Test case for update_pet_with_form_api_v1_pet_pet_id_post
+    async def test_update_pet_with_form(self, pet_api_client: PetApi) -> None:
+        """Test case for update_pet_with_form
 
         Update Pet With Form  # noqa: E501
         """
-        created_pet = await pet_api_client.add_pet_api_v1_pet_post(
+        created_pet = await pet_api_client.add_pet(
             self._build_pet_create(name="integration-form-pet")
         )
         assert created_pet.id is not None
 
-        updated_pet = await pet_api_client.update_pet_with_form_api_v1_pet_pet_id_post(
+        updated_pet = await pet_api_client.update_pet_with_form(
             pet_id=created_pet.id,
             name="integration-form-pet-new",
             status=PetStatus.SOLD.value,
@@ -208,19 +208,19 @@ class TestPetApi:
         assert updated_pet.status == PetStatus.SOLD
 
     @pytest.mark.xfail(reason="Investigation Pending")
-    async def test_upload_file_api_v1_pet_pet_id_upload_file_post(self, pet_api_client: PetApi) -> None:
-        """Test case for upload_file_api_v1_pet_pet_id_upload_file_post
+    async def test_upload_file(self, pet_api_client: PetApi) -> None:
+        """Test case for upload_file
 
         Upload File  # noqa: E501
         """
-        created_pet = await pet_api_client.add_pet_api_v1_pet_post(
+        created_pet = await pet_api_client.add_pet(
             self._build_pet_create(name="integration-upload-pet")
         )
         assert created_pet.id is not None
 
         # Current generated client maps multipart file field as StrictStr,
         # while the service expects UploadFile, so this call is expected to fail.
-        await pet_api_client.upload_file_api_v1_pet_pet_id_upload_file_post(
+        await pet_api_client.upload_file(
             pet_id=created_pet.id,
             file="test-image-content",
             additional_metadata="integration-upload",

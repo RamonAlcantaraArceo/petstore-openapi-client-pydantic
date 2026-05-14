@@ -3,6 +3,8 @@ README.md
 docs/Category.md
 docs/HTTPValidationError.md
 docs/HealthApi.md
+docs/HealthDetails.md
+docs/HealthResponse.md
 docs/LocationInner.md
 docs/Order.md
 docs/OrderCreate.md
@@ -33,6 +35,8 @@ petstore_openapi_client/configuration.py
 petstore_openapi_client/exceptions.py
 petstore_openapi_client/models/__init__.py
 petstore_openapi_client/models/category.py
+petstore_openapi_client/models/health_details.py
+petstore_openapi_client/models/health_response.py
 petstore_openapi_client/models/http_validation_error.py
 petstore_openapi_client/models/location_inner.py
 petstore_openapi_client/models/order.py

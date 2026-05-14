@@ -9,13 +9,51 @@
         },
         "version": "v1"
     },
-    "servers": [
-        {
-            "url": "http://localhost:8000",
-            "description": "Local development server"
-        }
-    ],
     "paths": {
+        "/health": {
+            "get": {
+                "tags": [
+                    "health"
+                ],
+                "summary": "Health Check",
+                "description": "Return service health status.\n\nReturns:\n    Typed health payload with runtime mode and build metadata.",
+                "operationId": "health_check_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HealthResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/health": {
+            "get": {
+                "tags": [
+                    "health"
+                ],
+                "summary": "Health Check",
+                "description": "Return service health status.\n\nReturns:\n    Typed health payload with runtime mode and build metadata.",
+                "operationId": "health_check_api_v1_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HealthResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/pet": {
             "put": {
                 "tags": [
@@ -23,7 +61,7 @@
                 ],
                 "summary": "Update Pet",
                 "description": "Update an existing pet.\n\nArgs:\n    pet: Updated pet data from request body.\n    service: Injected PetService.\n\nReturns:\n    The updated pet.",
-                "operationId": "update_pet_api_v1_pet_put",
+                "operationId": "update_pet",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -68,7 +106,7 @@
                 ],
                 "summary": "Add Pet",
                 "description": "Add a new pet to the store.\n\nArgs:\n    pet: Pet data from request body.\n    service: Injected PetService.\n\nReturns:\n    The created pet.",
-                "operationId": "add_pet_api_v1_pet_post",
+                "operationId": "add_pet",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -115,7 +153,7 @@
                 ],
                 "summary": "Find Pets By Status",
                 "description": "Find pets by status.\n\nArgs:\n    status: Availability status to filter by.\n    service: Injected PetService.\n\nReturns:\n    List of pets matching the given status.",
-                "operationId": "find_pets_by_status_api_v1_pet_findByStatus_get",
+                "operationId": "find_pets_by_status",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -144,7 +182,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/Pet"
                                     },
-                                    "title": "Response Find Pets By Status Api V1 Pet Findbystatus Get"
+                                    "title": "Response Find Pets By Status"
                                 }
                             }
                         }
@@ -169,7 +207,7 @@
                 ],
                 "summary": "Find Pets By Tags",
                 "description": "Find pets by tags.\n\nArgs:\n    tags: Tag names to filter by.\n    service: Injected PetService.\n\nReturns:\n    List of pets matching any of the given tags.",
-                "operationId": "find_pets_by_tags_api_v1_pet_findByTags_get",
+                "operationId": "find_pets_by_tags",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -201,7 +239,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/Pet"
                                     },
-                                    "title": "Response Find Pets By Tags Api V1 Pet Findbytags Get"
+                                    "title": "Response Find Pets By Tags"
                                 }
                             }
                         }
@@ -226,7 +264,7 @@
                 ],
                 "summary": "Get Pet By Id",
                 "description": "Find pet by ID.\n\nArgs:\n    pet_id: The pet's unique identifier.\n    service: Injected PetService.\n\nReturns:\n    The pet with the given ID.",
-                "operationId": "get_pet_by_id_api_v1_pet__pet_id__get",
+                "operationId": "get_pet_by_id",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -272,7 +310,7 @@
                 ],
                 "summary": "Update Pet With Form",
                 "description": "Update a pet with form data.\n\nArgs:\n    pet_id: The pet's unique identifier.\n    service: Injected PetService.\n    name: New name for the pet.\n    status: New status for the pet.\n\nReturns:\n    The updated pet.",
-                "operationId": "update_pet_with_form_api_v1_pet__pet_id__post",
+                "operationId": "update_pet_with_form",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -293,7 +331,7 @@
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_update_pet_with_form_api_v1_pet__pet_id__post"
+                                "$ref": "#/components/schemas/Body_update_pet_with_form"
                             }
                         }
                     }
@@ -327,7 +365,7 @@
                 ],
                 "summary": "Delete Pet",
                 "description": "Delete a pet.\n\nArgs:\n    pet_id: The pet's unique identifier.\n    service: Injected PetService.\n\nReturns:\n    Confirmation message.",
-                "operationId": "delete_pet_api_v1_pet__pet_id__delete",
+                "operationId": "delete_pet",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -354,7 +392,7 @@
                                     "additionalProperties": {
                                         "type": "string"
                                     },
-                                    "title": "Response Delete Pet Api V1 Pet  Pet Id  Delete"
+                                    "title": "Response Delete Pet"
                                 }
                             }
                         }
@@ -379,7 +417,7 @@
                 ],
                 "summary": "Upload File",
                 "description": "Upload an image for a pet.\n\nArgs:\n    pet_id: The pet's unique identifier.\n    service: Injected PetService.\n    file: The image file to upload.\n    additional_metadata: Optional metadata string.\n\nReturns:\n    Confirmation message with file info.",
-                "operationId": "upload_file_api_v1_pet__pet_id__uploadFile_post",
+                "operationId": "upload_file",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -400,7 +438,7 @@
                     "content": {
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_upload_file_api_v1_pet__pet_id__uploadFile_post"
+                                "$ref": "#/components/schemas/Body_upload_file"
                             }
                         }
                     }
@@ -415,7 +453,7 @@
                                     "additionalProperties": {
                                         "type": "string"
                                     },
-                                    "title": "Response Upload File Api V1 Pet  Pet Id  Uploadfile Post"
+                                    "title": "Response Upload File"
                                 }
                             }
                         }
@@ -440,7 +478,7 @@
                 ],
                 "summary": "Get Inventory",
                 "description": "Return all orders in the store.\n\nArgs:\n    service: Injected OrderService.\n\nReturns:\n    List of all orders.",
-                "operationId": "get_inventory_api_v1_store_inventory_get",
+                "operationId": "get_inventory",
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -451,7 +489,7 @@
                                         "$ref": "#/components/schemas/Order"
                                     },
                                     "type": "array",
-                                    "title": "Response Get Inventory Api V1 Store Inventory Get"
+                                    "title": "Response Get Inventory"
                                 }
                             }
                         }
@@ -471,7 +509,7 @@
                 ],
                 "summary": "Place Order",
                 "description": "Place an order for a pet.\n\nArgs:\n    order: Order data from request body.\n    service: Injected OrderService.\n\nReturns:\n    The placed order.",
-                "operationId": "place_order_api_v1_store_order_post",
+                "operationId": "place_order",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -518,7 +556,7 @@
                 ],
                 "summary": "Get Order By Id",
                 "description": "Find purchase order by ID.\n\nArgs:\n    order_id: The order's unique identifier (1–10).\n    service: Injected OrderService.\n\nReturns:\n    The order with the given ID.",
-                "operationId": "get_order_by_id_api_v1_store_order__order_id__get",
+                "operationId": "get_order_by_id",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -564,7 +602,7 @@
                 ],
                 "summary": "Delete Order",
                 "description": "Delete purchase order by ID.\n\nArgs:\n    order_id: The order's unique identifier.\n    service: Injected OrderService.\n\nReturns:\n    Confirmation message.",
-                "operationId": "delete_order_api_v1_store_order__order_id__delete",
+                "operationId": "delete_order",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -591,7 +629,7 @@
                                     "additionalProperties": {
                                         "type": "string"
                                     },
-                                    "title": "Response Delete Order Api V1 Store Order  Order Id  Delete"
+                                    "title": "Response Delete Order"
                                 }
                             }
                         }
@@ -616,7 +654,7 @@
                 ],
                 "summary": "Create User",
                 "description": "Create a new user.\n\nArgs:\n    user: User data from request body.\n    service: Injected UserService.\n\nReturns:\n    The created user.",
-                "operationId": "create_user_api_v1_user_post",
+                "operationId": "create_user",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -663,7 +701,7 @@
                 ],
                 "summary": "Create Users With List",
                 "description": "Create users from a list.\n\nArgs:\n    users: List of user data from request body.\n    service: Injected UserService.\n\nReturns:\n    List of created users.",
-                "operationId": "create_users_with_list_api_v1_user_createWithList_post",
+                "operationId": "create_users_with_list",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -688,7 +726,7 @@
                                         "$ref": "#/components/schemas/User"
                                     },
                                     "type": "array",
-                                    "title": "Response Create Users With List Api V1 User Createwithlist Post"
+                                    "title": "Response Create Users With List"
                                 }
                             }
                         }
@@ -718,7 +756,7 @@
                 ],
                 "summary": "Login User",
                 "description": "Log user into the system.\n\nArgs:\n    username: The username to log in with.\n    password: The password to log in with.\n    service: Injected UserService.\n\nReturns:\n    Dict containing the session token.",
-                "operationId": "login_user_api_v1_user_login_get",
+                "operationId": "login_user",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -758,7 +796,7 @@
                                     "additionalProperties": {
                                         "type": "string"
                                     },
-                                    "title": "Response Login User Api V1 User Login Get"
+                                    "title": "Response Login User"
                                 }
                             }
                         }
@@ -783,7 +821,7 @@
                 ],
                 "summary": "Logout User",
                 "description": "Log out current logged-in user session.\n\nArgs:\n    service: Injected UserService.\n\nReturns:\n    Confirmation message.",
-                "operationId": "logout_user_api_v1_user_logout_get",
+                "operationId": "logout_user",
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -794,7 +832,7 @@
                                         "type": "string"
                                     },
                                     "type": "object",
-                                    "title": "Response Logout User Api V1 User Logout Get"
+                                    "title": "Response Logout User"
                                 }
                             }
                         }
@@ -814,7 +852,7 @@
                 ],
                 "summary": "Get User By Name",
                 "description": "Get user by username.\n\nArgs:\n    username: The user's username.\n    service: Injected UserService.\n\nReturns:\n    The user with the given username.",
-                "operationId": "get_user_by_name_api_v1_user__username__get",
+                "operationId": "get_user_by_name",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -860,7 +898,7 @@
                 ],
                 "summary": "Update User",
                 "description": "Update user by username.\n\nArgs:\n    username: The user's current username.\n    user: Updated user data.\n    service: Injected UserService.\n\nReturns:\n    The updated user.",
-                "operationId": "update_user_api_v1_user__username__put",
+                "operationId": "update_user",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -916,7 +954,7 @@
                 ],
                 "summary": "Delete User",
                 "description": "Delete user by username.\n\nArgs:\n    username: The user's unique username.\n    service: Injected UserService.\n\nReturns:\n    Confirmation message.",
-                "operationId": "delete_user_api_v1_user__username__delete",
+                "operationId": "delete_user",
                 "security": [
                     {
                         "APIKeyHeader": []
@@ -943,7 +981,7 @@
                                     "additionalProperties": {
                                         "type": "string"
                                     },
-                                    "title": "Response Delete User Api V1 User  Username  Delete"
+                                    "title": "Response Delete User"
                                 }
                             }
                         }
@@ -960,31 +998,11 @@
                     }
                 }
             }
-        },
-        "/health": {
-            "get": {
-                "tags": [
-                    "health"
-                ],
-                "summary": "Health Check",
-                "description": "Return service health status.\n\nReturns:\n    JSON response with status and storage mode.",
-                "operationId": "health_check_health_get",
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                }
-            }
         }
     },
     "components": {
         "schemas": {
-            "Body_update_pet_with_form_api_v1_pet__pet_id__post": {
+            "Body_update_pet_with_form": {
                 "properties": {
                     "name": {
                         "anyOf": [
@@ -1010,9 +1028,9 @@
                     }
                 },
                 "type": "object",
-                "title": "Body_update_pet_with_form_api_v1_pet__pet_id__post"
+                "title": "Body_update_pet_with_form"
             },
-            "Body_upload_file_api_v1_pet__pet_id__uploadFile_post": {
+            "Body_upload_file": {
                 "properties": {
                     "file": {
                         "anyOf": [
@@ -1039,7 +1057,7 @@
                     }
                 },
                 "type": "object",
-                "title": "Body_upload_file_api_v1_pet__pet_id__uploadFile_post"
+                "title": "Body_upload_file"
             },
             "Category": {
                 "properties": {
@@ -1082,6 +1100,54 @@
                 },
                 "type": "object",
                 "title": "HTTPValidationError"
+            },
+            "HealthDetails": {
+                "properties": {
+                    "version": {
+                        "type": "string",
+                        "title": "Version"
+                    },
+                    "build_date": {
+                        "type": "string",
+                        "title": "Build Date"
+                    },
+                    "git_commit_sha": {
+                        "type": "string",
+                        "title": "Git Commit Sha"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "version",
+                    "build_date",
+                    "git_commit_sha"
+                ],
+                "title": "HealthDetails",
+                "description": "Additional health metadata.\n\nAttributes:\n    version: Application version.\n    build_date: Build date string.\n    git_commit_sha: Git commit SHA."
+            },
+            "HealthResponse": {
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "const": "ok",
+                        "title": "Status"
+                    },
+                    "mode": {
+                        "type": "string",
+                        "title": "Mode"
+                    },
+                    "details": {
+                        "$ref": "#/components/schemas/HealthDetails"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "status",
+                    "mode",
+                    "details"
+                ],
+                "title": "HealthResponse",
+                "description": "Health check response payload.\n\nAttributes:\n    status: Service status string.\n    mode: Storage mode.\n    details: Build and version metadata."
             },
             "Order": {
                 "properties": {
@@ -1291,6 +1357,7 @@
                         "title": "Id"
                     }
                 },
+                "additionalProperties": false,
                 "type": "object",
                 "required": [
                     "name"
@@ -1348,6 +1415,7 @@
                         "default": "available"
                     }
                 },
+                "additionalProperties": false,
                 "type": "object",
                 "required": [
                     "name"
@@ -1419,6 +1487,7 @@
                         "title": "Id"
                     }
                 },
+                "additionalProperties": false,
                 "type": "object",
                 "required": [
                     "name",
@@ -1757,5 +1826,10 @@
                 "name": "X-API-Key"
             }
         }
-    }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ]
 }

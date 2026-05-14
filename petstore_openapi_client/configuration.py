@@ -406,7 +406,7 @@ conf = petstore_openapi_client.Configuration(
         return [
             {
                 'url': "http://localhost:8000",
-                'description': "Local development server",
+                'description': "No description provided",
             }
         ]
 

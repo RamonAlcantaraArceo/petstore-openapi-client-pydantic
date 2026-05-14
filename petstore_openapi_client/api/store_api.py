@@ -50,7 +50,7 @@ class StoreApi:
         self.api_client = api_client
 
     @validate_call
-    async def delete_order_api_v1_store_order_order_id_delete(self, order_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
+    async def delete_order(self, order_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Delete Order  # noqa: E501
 
         Delete purchase order by ID.  Args:     order_id: The order's unique identifier.     service: Injected OrderService.  Returns:     Confirmation message.  # noqa: E501
@@ -68,12 +68,12 @@ class StoreApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the delete_order_api_v1_store_order_order_id_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the delete_order_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.delete_order_api_v1_store_order_order_id_delete_with_http_info(order_id, **kwargs)  # noqa: E501
+        return await self.delete_order_with_http_info(order_id, **kwargs)  # noqa: E501
 
     @validate_call
-    async def delete_order_api_v1_store_order_order_id_delete_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
+    async def delete_order_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete Order  # noqa: E501
 
         Delete purchase order by ID.  Args:     order_id: The order's unique identifier.     service: Injected OrderService.  Returns:     Confirmation message.  # noqa: E501
@@ -124,7 +124,7 @@ class StoreApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method delete_order_api_v1_store_order_order_id_delete" % _key
+                    " to method delete_order" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -174,15 +174,15 @@ class StoreApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def delete_order_api_v1_store_order_order_id_delete_without_validation(self, order_id=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def delete_order_without_validation(self, order_id=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete Order — without pydantic validation  # noqa: E501
 
-        Like ``delete_order_api_v1_store_order_order_id_delete_with_http_info`` but bypasses ``@validate_call``
+        Like ``delete_order_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``delete_order_api_v1_store_order_order_id_delete_with_http_info`` are forwarded verbatim.
+        supported by ``delete_order_with_http_info`` are forwarded verbatim.
 
         :param order_id: (any value accepted — validation is skipped)
         :param _return_http_data_only: when True (default False), return only
@@ -196,11 +196,11 @@ class StoreApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.delete_order_api_v1_store_order_order_id_delete_with_http_info.__wrapped__
+        _impl = self.delete_order_with_http_info.__wrapped__
         return await _impl(self, order_id, **kwargs)
 
     @validate_call
-    async def get_inventory_api_v1_store_inventory_get(self, **kwargs) -> List[Order]:  # noqa: E501
+    async def get_inventory(self, **kwargs) -> List[Order]:  # noqa: E501
         """Get Inventory  # noqa: E501
 
         Return all orders in the store.  Args:     service: Injected OrderService.  Returns:     List of all orders.  # noqa: E501
@@ -216,12 +216,12 @@ class StoreApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the get_inventory_api_v1_store_inventory_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the get_inventory_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.get_inventory_api_v1_store_inventory_get_with_http_info(**kwargs)  # noqa: E501
+        return await self.get_inventory_with_http_info(**kwargs)  # noqa: E501
 
     @validate_call
-    async def get_inventory_api_v1_store_inventory_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_inventory_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Inventory  # noqa: E501
 
         Return all orders in the store.  Args:     service: Injected OrderService.  Returns:     List of all orders.  # noqa: E501
@@ -269,7 +269,7 @@ class StoreApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_inventory_api_v1_store_inventory_get" % _key
+                    " to method get_inventory" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -315,15 +315,15 @@ class StoreApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def get_inventory_api_v1_store_inventory_get_without_validation(self, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_inventory_without_validation(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Inventory — without pydantic validation  # noqa: E501
 
-        Like ``get_inventory_api_v1_store_inventory_get_with_http_info`` but bypasses ``@validate_call``
+        Like ``get_inventory_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``get_inventory_api_v1_store_inventory_get_with_http_info`` are forwarded verbatim.
+        supported by ``get_inventory_with_http_info`` are forwarded verbatim.
 
         :param _return_http_data_only: when True (default False), return only
                                        the response data rather than an ApiResponse.
@@ -336,11 +336,11 @@ class StoreApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.get_inventory_api_v1_store_inventory_get_with_http_info.__wrapped__
+        _impl = self.get_inventory_with_http_info.__wrapped__
         return await _impl(self, **kwargs)
 
     @validate_call
-    async def get_order_by_id_api_v1_store_order_order_id_get(self, order_id : StrictInt, **kwargs) -> Order:  # noqa: E501
+    async def get_order_by_id(self, order_id : StrictInt, **kwargs) -> Order:  # noqa: E501
         """Get Order By Id  # noqa: E501
 
         Find purchase order by ID.  Args:     order_id: The order's unique identifier (1–10).     service: Injected OrderService.  Returns:     The order with the given ID.  # noqa: E501
@@ -358,12 +358,12 @@ class StoreApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the get_order_by_id_api_v1_store_order_order_id_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the get_order_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.get_order_by_id_api_v1_store_order_order_id_get_with_http_info(order_id, **kwargs)  # noqa: E501
+        return await self.get_order_by_id_with_http_info(order_id, **kwargs)  # noqa: E501
 
     @validate_call
-    async def get_order_by_id_api_v1_store_order_order_id_get_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_order_by_id_with_http_info(self, order_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Order By Id  # noqa: E501
 
         Find purchase order by ID.  Args:     order_id: The order's unique identifier (1–10).     service: Injected OrderService.  Returns:     The order with the given ID.  # noqa: E501
@@ -414,7 +414,7 @@ class StoreApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_order_by_id_api_v1_store_order_order_id_get" % _key
+                    " to method get_order_by_id" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -464,15 +464,15 @@ class StoreApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def get_order_by_id_api_v1_store_order_order_id_get_without_validation(self, order_id=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_order_by_id_without_validation(self, order_id=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Order By Id — without pydantic validation  # noqa: E501
 
-        Like ``get_order_by_id_api_v1_store_order_order_id_get_with_http_info`` but bypasses ``@validate_call``
+        Like ``get_order_by_id_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``get_order_by_id_api_v1_store_order_order_id_get_with_http_info`` are forwarded verbatim.
+        supported by ``get_order_by_id_with_http_info`` are forwarded verbatim.
 
         :param order_id: (any value accepted — validation is skipped)
         :param _return_http_data_only: when True (default False), return only
@@ -486,11 +486,11 @@ class StoreApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.get_order_by_id_api_v1_store_order_order_id_get_with_http_info.__wrapped__
+        _impl = self.get_order_by_id_with_http_info.__wrapped__
         return await _impl(self, order_id, **kwargs)
 
     @validate_call
-    async def place_order_api_v1_store_order_post(self, order_create : OrderCreate, **kwargs) -> Order:  # noqa: E501
+    async def place_order(self, order_create : OrderCreate, **kwargs) -> Order:  # noqa: E501
         """Place Order  # noqa: E501
 
         Place an order for a pet.  Args:     order: Order data from request body.     service: Injected OrderService.  Returns:     The placed order.  # noqa: E501
@@ -508,12 +508,12 @@ class StoreApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the place_order_api_v1_store_order_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the place_order_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.place_order_api_v1_store_order_post_with_http_info(order_create, **kwargs)  # noqa: E501
+        return await self.place_order_with_http_info(order_create, **kwargs)  # noqa: E501
 
     @validate_call
-    async def place_order_api_v1_store_order_post_with_http_info(self, order_create : OrderCreate, **kwargs) -> ApiResponse:  # noqa: E501
+    async def place_order_with_http_info(self, order_create : OrderCreate, **kwargs) -> ApiResponse:  # noqa: E501
         """Place Order  # noqa: E501
 
         Place an order for a pet.  Args:     order: Order data from request body.     service: Injected OrderService.  Returns:     The placed order.  # noqa: E501
@@ -564,7 +564,7 @@ class StoreApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method place_order_api_v1_store_order_post" % _key
+                    " to method place_order" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -621,15 +621,15 @@ class StoreApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def place_order_api_v1_store_order_post_without_validation(self, order_create=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def place_order_without_validation(self, order_create=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Place Order — without pydantic validation  # noqa: E501
 
-        Like ``place_order_api_v1_store_order_post_with_http_info`` but bypasses ``@validate_call``
+        Like ``place_order_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``place_order_api_v1_store_order_post_with_http_info`` are forwarded verbatim.
+        supported by ``place_order_with_http_info`` are forwarded verbatim.
 
         :param order_create: (any value accepted — validation is skipped)
         :param _return_http_data_only: when True (default False), return only
@@ -643,5 +643,5 @@ class StoreApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.place_order_api_v1_store_order_post_with_http_info.__wrapped__
+        _impl = self.place_order_with_http_info.__wrapped__
         return await _impl(self, order_create, **kwargs)

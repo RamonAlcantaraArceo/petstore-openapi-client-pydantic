@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost:8000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_user_api_v1_user_post**](UserApi.md#create_user_api_v1_user_post) | **POST** /api/v1/user | Create User
-[**create_users_with_list_api_v1_user_create_with_list_post**](UserApi.md#create_users_with_list_api_v1_user_create_with_list_post) | **POST** /api/v1/user/createWithList | Create Users With List
-[**delete_user_api_v1_user_username_delete**](UserApi.md#delete_user_api_v1_user_username_delete) | **DELETE** /api/v1/user/{username} | Delete User
-[**get_user_by_name_api_v1_user_username_get**](UserApi.md#get_user_by_name_api_v1_user_username_get) | **GET** /api/v1/user/{username} | Get User By Name
-[**login_user_api_v1_user_login_get**](UserApi.md#login_user_api_v1_user_login_get) | **GET** /api/v1/user/login | Login User
-[**logout_user_api_v1_user_logout_get**](UserApi.md#logout_user_api_v1_user_logout_get) | **GET** /api/v1/user/logout | Logout User
-[**update_user_api_v1_user_username_put**](UserApi.md#update_user_api_v1_user_username_put) | **PUT** /api/v1/user/{username} | Update User
+[**create_user**](UserApi.md#create_user) | **POST** /api/v1/user | Create User
+[**create_users_with_list**](UserApi.md#create_users_with_list) | **POST** /api/v1/user/createWithList | Create Users With List
+[**delete_user**](UserApi.md#delete_user) | **DELETE** /api/v1/user/{username} | Delete User
+[**get_user_by_name**](UserApi.md#get_user_by_name) | **GET** /api/v1/user/{username} | Get User By Name
+[**login_user**](UserApi.md#login_user) | **GET** /api/v1/user/login | Login User
+[**logout_user**](UserApi.md#logout_user) | **GET** /api/v1/user/logout | Logout User
+[**update_user**](UserApi.md#update_user) | **PUT** /api/v1/user/{username} | Update User
 
 
-# **create_user_api_v1_user_post**
-> User create_user_api_v1_user_post(user_create)
+# **create_user**
+> User create_user(user_create)
 
 Create User
 
@@ -67,11 +67,11 @@ async def main():
 
         try:
             # Create User
-            api_response = await api_instance.create_user_api_v1_user_post(user_create)
-            print("The response of UserApi->create_user_api_v1_user_post:\n")
+            api_response = await api_instance.create_user(user_create)
+            print("The response of UserApi->create_user:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling UserApi->create_user_api_v1_user_post: %s\n" % e)
+            print("Exception when calling UserApi->create_user: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
@@ -106,8 +106,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_users_with_list_api_v1_user_create_with_list_post**
-> List[User] create_users_with_list_api_v1_user_create_with_list_post(user_create)
+# **create_users_with_list**
+> List[User] create_users_with_list(user_create)
 
 Create Users With List
 
@@ -160,11 +160,11 @@ async def main():
 
         try:
             # Create Users With List
-            api_response = await api_instance.create_users_with_list_api_v1_user_create_with_list_post(user_create)
-            print("The response of UserApi->create_users_with_list_api_v1_user_create_with_list_post:\n")
+            api_response = await api_instance.create_users_with_list(user_create)
+            print("The response of UserApi->create_users_with_list:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling UserApi->create_users_with_list_api_v1_user_create_with_list_post: %s\n" % e)
+            print("Exception when calling UserApi->create_users_with_list: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
@@ -199,8 +199,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_user_api_v1_user_username_delete**
-> Dict[str, str] delete_user_api_v1_user_username_delete(username)
+# **delete_user**
+> Dict[str, str] delete_user(username)
 
 Delete User
 
@@ -251,11 +251,11 @@ async def main():
 
         try:
             # Delete User
-            api_response = await api_instance.delete_user_api_v1_user_username_delete(username)
-            print("The response of UserApi->delete_user_api_v1_user_username_delete:\n")
+            api_response = await api_instance.delete_user(username)
+            print("The response of UserApi->delete_user:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling UserApi->delete_user_api_v1_user_username_delete: %s\n" % e)
+            print("Exception when calling UserApi->delete_user: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
@@ -290,8 +290,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_user_by_name_api_v1_user_username_get**
-> User get_user_by_name_api_v1_user_username_get(username)
+# **get_user_by_name**
+> User get_user_by_name(username)
 
 Get User By Name
 
@@ -343,11 +343,11 @@ async def main():
 
         try:
             # Get User By Name
-            api_response = await api_instance.get_user_by_name_api_v1_user_username_get(username)
-            print("The response of UserApi->get_user_by_name_api_v1_user_username_get:\n")
+            api_response = await api_instance.get_user_by_name(username)
+            print("The response of UserApi->get_user_by_name:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling UserApi->get_user_by_name_api_v1_user_username_get: %s\n" % e)
+            print("Exception when calling UserApi->get_user_by_name: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
@@ -382,8 +382,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **login_user_api_v1_user_login_get**
-> Dict[str, str] login_user_api_v1_user_login_get(username, password)
+# **login_user**
+> Dict[str, str] login_user(username, password)
 
 Login User
 
@@ -436,11 +436,11 @@ async def main():
 
         try:
             # Login User
-            api_response = await api_instance.login_user_api_v1_user_login_get(username, password)
-            print("The response of UserApi->login_user_api_v1_user_login_get:\n")
+            api_response = await api_instance.login_user(username, password)
+            print("The response of UserApi->login_user:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling UserApi->login_user_api_v1_user_login_get: %s\n" % e)
+            print("Exception when calling UserApi->login_user: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
@@ -476,8 +476,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **logout_user_api_v1_user_logout_get**
-> Dict[str, str] logout_user_api_v1_user_logout_get()
+# **logout_user**
+> Dict[str, str] logout_user()
 
 Logout User
 
@@ -526,11 +526,11 @@ async def main():
 
         try:
             # Logout User
-            api_response = await api_instance.logout_user_api_v1_user_logout_get()
-            print("The response of UserApi->logout_user_api_v1_user_logout_get:\n")
+            api_response = await api_instance.logout_user()
+            print("The response of UserApi->logout_user:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling UserApi->logout_user_api_v1_user_logout_get: %s\n" % e)
+            print("Exception when calling UserApi->logout_user: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
@@ -561,8 +561,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_user_api_v1_user_username_put**
-> User update_user_api_v1_user_username_put(username, user_update)
+# **update_user**
+> User update_user(username, user_update)
 
 Update User
 
@@ -617,11 +617,11 @@ async def main():
 
         try:
             # Update User
-            api_response = await api_instance.update_user_api_v1_user_username_put(username, user_update)
-            print("The response of UserApi->update_user_api_v1_user_username_put:\n")
+            api_response = await api_instance.update_user(username, user_update)
+            print("The response of UserApi->update_user:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling UserApi->update_user_api_v1_user_username_put: %s\n" % e)
+            print("Exception when calling UserApi->update_user: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())

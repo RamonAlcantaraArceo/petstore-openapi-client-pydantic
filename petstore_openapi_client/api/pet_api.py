@@ -53,7 +53,7 @@ class PetApi:
         self.api_client = api_client
 
     @validate_call
-    async def add_pet_api_v1_pet_post(self, pet_create : PetCreate, **kwargs) -> Pet:  # noqa: E501
+    async def add_pet(self, pet_create : PetCreate, **kwargs) -> Pet:  # noqa: E501
         """Add Pet  # noqa: E501
 
         Add a new pet to the store.  Args:     pet: Pet data from request body.     service: Injected PetService.  Returns:     The created pet.  # noqa: E501
@@ -71,12 +71,12 @@ class PetApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the add_pet_api_v1_pet_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the add_pet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.add_pet_api_v1_pet_post_with_http_info(pet_create, **kwargs)  # noqa: E501
+        return await self.add_pet_with_http_info(pet_create, **kwargs)  # noqa: E501
 
     @validate_call
-    async def add_pet_api_v1_pet_post_with_http_info(self, pet_create : PetCreate, **kwargs) -> ApiResponse:  # noqa: E501
+    async def add_pet_with_http_info(self, pet_create : PetCreate, **kwargs) -> ApiResponse:  # noqa: E501
         """Add Pet  # noqa: E501
 
         Add a new pet to the store.  Args:     pet: Pet data from request body.     service: Injected PetService.  Returns:     The created pet.  # noqa: E501
@@ -127,7 +127,7 @@ class PetApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method add_pet_api_v1_pet_post" % _key
+                    " to method add_pet" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -184,15 +184,15 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def add_pet_api_v1_pet_post_without_validation(self, pet_create=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def add_pet_without_validation(self, pet_create=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Add Pet — without pydantic validation  # noqa: E501
 
-        Like ``add_pet_api_v1_pet_post_with_http_info`` but bypasses ``@validate_call``
+        Like ``add_pet_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``add_pet_api_v1_pet_post_with_http_info`` are forwarded verbatim.
+        supported by ``add_pet_with_http_info`` are forwarded verbatim.
 
         :param pet_create: (any value accepted — validation is skipped)
         :param _return_http_data_only: when True (default False), return only
@@ -206,11 +206,11 @@ class PetApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.add_pet_api_v1_pet_post_with_http_info.__wrapped__
+        _impl = self.add_pet_with_http_info.__wrapped__
         return await _impl(self, pet_create, **kwargs)
 
     @validate_call
-    async def delete_pet_api_v1_pet_pet_id_delete(self, pet_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
+    async def delete_pet(self, pet_id : StrictInt, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Delete Pet  # noqa: E501
 
         Delete a pet.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.  Returns:     Confirmation message.  # noqa: E501
@@ -228,12 +228,12 @@ class PetApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the delete_pet_api_v1_pet_pet_id_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the delete_pet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.delete_pet_api_v1_pet_pet_id_delete_with_http_info(pet_id, **kwargs)  # noqa: E501
+        return await self.delete_pet_with_http_info(pet_id, **kwargs)  # noqa: E501
 
     @validate_call
-    async def delete_pet_api_v1_pet_pet_id_delete_with_http_info(self, pet_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
+    async def delete_pet_with_http_info(self, pet_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete Pet  # noqa: E501
 
         Delete a pet.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.  Returns:     Confirmation message.  # noqa: E501
@@ -284,7 +284,7 @@ class PetApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method delete_pet_api_v1_pet_pet_id_delete" % _key
+                    " to method delete_pet" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -334,15 +334,15 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def delete_pet_api_v1_pet_pet_id_delete_without_validation(self, pet_id=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def delete_pet_without_validation(self, pet_id=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete Pet — without pydantic validation  # noqa: E501
 
-        Like ``delete_pet_api_v1_pet_pet_id_delete_with_http_info`` but bypasses ``@validate_call``
+        Like ``delete_pet_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``delete_pet_api_v1_pet_pet_id_delete_with_http_info`` are forwarded verbatim.
+        supported by ``delete_pet_with_http_info`` are forwarded verbatim.
 
         :param pet_id: (any value accepted — validation is skipped)
         :param _return_http_data_only: when True (default False), return only
@@ -356,11 +356,11 @@ class PetApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.delete_pet_api_v1_pet_pet_id_delete_with_http_info.__wrapped__
+        _impl = self.delete_pet_with_http_info.__wrapped__
         return await _impl(self, pet_id, **kwargs)
 
     @validate_call
-    async def find_pets_by_status_api_v1_pet_find_by_status_get(self, status : Annotated[Optional[PetStatus], Field(description="Status values to filter by")] = None, **kwargs) -> List[Pet]:  # noqa: E501
+    async def find_pets_by_status(self, status : Annotated[Optional[PetStatus], Field(description="Status values to filter by")] = None, **kwargs) -> List[Pet]:  # noqa: E501
         """Find Pets By Status  # noqa: E501
 
         Find pets by status.  Args:     status: Availability status to filter by.     service: Injected PetService.  Returns:     List of pets matching the given status.  # noqa: E501
@@ -378,12 +378,12 @@ class PetApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the find_pets_by_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(status, **kwargs)  # noqa: E501
+        return await self.find_pets_by_status_with_http_info(status, **kwargs)  # noqa: E501
 
     @validate_call
-    async def find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info(self, status : Annotated[Optional[PetStatus], Field(description="Status values to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def find_pets_by_status_with_http_info(self, status : Annotated[Optional[PetStatus], Field(description="Status values to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Find Pets By Status  # noqa: E501
 
         Find pets by status.  Args:     status: Availability status to filter by.     service: Injected PetService.  Returns:     List of pets matching the given status.  # noqa: E501
@@ -434,7 +434,7 @@ class PetApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method find_pets_by_status_api_v1_pet_find_by_status_get" % _key
+                    " to method find_pets_by_status" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -487,15 +487,15 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def find_pets_by_status_api_v1_pet_find_by_status_get_without_validation(self, status=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def find_pets_by_status_without_validation(self, status=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Find Pets By Status — without pydantic validation  # noqa: E501
 
-        Like ``find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info`` but bypasses ``@validate_call``
+        Like ``find_pets_by_status_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info`` are forwarded verbatim.
+        supported by ``find_pets_by_status_with_http_info`` are forwarded verbatim.
 
         :param status: Status values to filter by (any value accepted — validation is skipped)
         :param _return_http_data_only: when True (default False), return only
@@ -509,11 +509,11 @@ class PetApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.find_pets_by_status_api_v1_pet_find_by_status_get_with_http_info.__wrapped__
+        _impl = self.find_pets_by_status_with_http_info.__wrapped__
         return await _impl(self, status, **kwargs)
 
     @validate_call
-    async def find_pets_by_tags_api_v1_pet_find_by_tags_get(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> List[Pet]:  # noqa: E501
+    async def find_pets_by_tags(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> List[Pet]:  # noqa: E501
         """Find Pets By Tags  # noqa: E501
 
         Find pets by tags.  Args:     tags: Tag names to filter by.     service: Injected PetService.  Returns:     List of pets matching any of the given tags.  # noqa: E501
@@ -531,12 +531,12 @@ class PetApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the find_pets_by_tags_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(tags, **kwargs)  # noqa: E501
+        return await self.find_pets_by_tags_with_http_info(tags, **kwargs)  # noqa: E501
 
     @validate_call
-    async def find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> ApiResponse:  # noqa: E501
+    async def find_pets_by_tags_with_http_info(self, tags : Annotated[conlist(StrictStr), Field(..., description="Tags to filter by")], **kwargs) -> ApiResponse:  # noqa: E501
         """Find Pets By Tags  # noqa: E501
 
         Find pets by tags.  Args:     tags: Tag names to filter by.     service: Injected PetService.  Returns:     List of pets matching any of the given tags.  # noqa: E501
@@ -587,7 +587,7 @@ class PetApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method find_pets_by_tags_api_v1_pet_find_by_tags_get" % _key
+                    " to method find_pets_by_tags" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -641,15 +641,15 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def find_pets_by_tags_api_v1_pet_find_by_tags_get_without_validation(self, tags=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def find_pets_by_tags_without_validation(self, tags=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Find Pets By Tags — without pydantic validation  # noqa: E501
 
-        Like ``find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info`` but bypasses ``@validate_call``
+        Like ``find_pets_by_tags_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info`` are forwarded verbatim.
+        supported by ``find_pets_by_tags_with_http_info`` are forwarded verbatim.
 
         :param tags: Tags to filter by (any value accepted — validation is skipped)
         :param _return_http_data_only: when True (default False), return only
@@ -663,11 +663,11 @@ class PetApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.find_pets_by_tags_api_v1_pet_find_by_tags_get_with_http_info.__wrapped__
+        _impl = self.find_pets_by_tags_with_http_info.__wrapped__
         return await _impl(self, tags, **kwargs)
 
     @validate_call
-    async def get_pet_by_id_api_v1_pet_pet_id_get(self, pet_id : StrictInt, **kwargs) -> Pet:  # noqa: E501
+    async def get_pet_by_id(self, pet_id : StrictInt, **kwargs) -> Pet:  # noqa: E501
         """Get Pet By Id  # noqa: E501
 
         Find pet by ID.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.  Returns:     The pet with the given ID.  # noqa: E501
@@ -685,12 +685,12 @@ class PetApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the get_pet_by_id_api_v1_pet_pet_id_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the get_pet_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.get_pet_by_id_api_v1_pet_pet_id_get_with_http_info(pet_id, **kwargs)  # noqa: E501
+        return await self.get_pet_by_id_with_http_info(pet_id, **kwargs)  # noqa: E501
 
     @validate_call
-    async def get_pet_by_id_api_v1_pet_pet_id_get_with_http_info(self, pet_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_pet_by_id_with_http_info(self, pet_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Pet By Id  # noqa: E501
 
         Find pet by ID.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.  Returns:     The pet with the given ID.  # noqa: E501
@@ -741,7 +741,7 @@ class PetApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_pet_by_id_api_v1_pet_pet_id_get" % _key
+                    " to method get_pet_by_id" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -791,15 +791,15 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def get_pet_by_id_api_v1_pet_pet_id_get_without_validation(self, pet_id=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def get_pet_by_id_without_validation(self, pet_id=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Pet By Id — without pydantic validation  # noqa: E501
 
-        Like ``get_pet_by_id_api_v1_pet_pet_id_get_with_http_info`` but bypasses ``@validate_call``
+        Like ``get_pet_by_id_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``get_pet_by_id_api_v1_pet_pet_id_get_with_http_info`` are forwarded verbatim.
+        supported by ``get_pet_by_id_with_http_info`` are forwarded verbatim.
 
         :param pet_id: (any value accepted — validation is skipped)
         :param _return_http_data_only: when True (default False), return only
@@ -813,11 +813,11 @@ class PetApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.get_pet_by_id_api_v1_pet_pet_id_get_with_http_info.__wrapped__
+        _impl = self.get_pet_by_id_with_http_info.__wrapped__
         return await _impl(self, pet_id, **kwargs)
 
     @validate_call
-    async def update_pet_api_v1_pet_put(self, pet_update : PetUpdate, **kwargs) -> Pet:  # noqa: E501
+    async def update_pet(self, pet_update : PetUpdate, **kwargs) -> Pet:  # noqa: E501
         """Update Pet  # noqa: E501
 
         Update an existing pet.  Args:     pet: Updated pet data from request body.     service: Injected PetService.  Returns:     The updated pet.  # noqa: E501
@@ -835,12 +835,12 @@ class PetApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the update_pet_api_v1_pet_put_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the update_pet_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.update_pet_api_v1_pet_put_with_http_info(pet_update, **kwargs)  # noqa: E501
+        return await self.update_pet_with_http_info(pet_update, **kwargs)  # noqa: E501
 
     @validate_call
-    async def update_pet_api_v1_pet_put_with_http_info(self, pet_update : PetUpdate, **kwargs) -> ApiResponse:  # noqa: E501
+    async def update_pet_with_http_info(self, pet_update : PetUpdate, **kwargs) -> ApiResponse:  # noqa: E501
         """Update Pet  # noqa: E501
 
         Update an existing pet.  Args:     pet: Updated pet data from request body.     service: Injected PetService.  Returns:     The updated pet.  # noqa: E501
@@ -891,7 +891,7 @@ class PetApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method update_pet_api_v1_pet_put" % _key
+                    " to method update_pet" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -948,15 +948,15 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def update_pet_api_v1_pet_put_without_validation(self, pet_update=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def update_pet_without_validation(self, pet_update=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update Pet — without pydantic validation  # noqa: E501
 
-        Like ``update_pet_api_v1_pet_put_with_http_info`` but bypasses ``@validate_call``
+        Like ``update_pet_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``update_pet_api_v1_pet_put_with_http_info`` are forwarded verbatim.
+        supported by ``update_pet_with_http_info`` are forwarded verbatim.
 
         :param pet_update: (any value accepted — validation is skipped)
         :param _return_http_data_only: when True (default False), return only
@@ -970,11 +970,11 @@ class PetApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.update_pet_api_v1_pet_put_with_http_info.__wrapped__
+        _impl = self.update_pet_with_http_info.__wrapped__
         return await _impl(self, pet_update, **kwargs)
 
     @validate_call
-    async def update_pet_with_form_api_v1_pet_pet_id_post(self, pet_id : StrictInt, name : Optional[StrictStr] = None, status : Optional[StrictStr] = None, **kwargs) -> Pet:  # noqa: E501
+    async def update_pet_with_form(self, pet_id : StrictInt, name : Optional[StrictStr] = None, status : Optional[StrictStr] = None, **kwargs) -> Pet:  # noqa: E501
         """Update Pet With Form  # noqa: E501
 
         Update a pet with form data.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.     name: New name for the pet.     status: New status for the pet.  Returns:     The updated pet.  # noqa: E501
@@ -996,12 +996,12 @@ class PetApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the update_pet_with_form_api_v1_pet_pet_id_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the update_pet_with_form_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.update_pet_with_form_api_v1_pet_pet_id_post_with_http_info(pet_id, name, status, **kwargs)  # noqa: E501
+        return await self.update_pet_with_form_with_http_info(pet_id, name, status, **kwargs)  # noqa: E501
 
     @validate_call
-    async def update_pet_with_form_api_v1_pet_pet_id_post_with_http_info(self, pet_id : StrictInt, name : Optional[StrictStr] = None, status : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def update_pet_with_form_with_http_info(self, pet_id : StrictInt, name : Optional[StrictStr] = None, status : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update Pet With Form  # noqa: E501
 
         Update a pet with form data.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.     name: New name for the pet.     status: New status for the pet.  Returns:     The updated pet.  # noqa: E501
@@ -1058,7 +1058,7 @@ class PetApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method update_pet_with_form_api_v1_pet_pet_id_post" % _key
+                    " to method update_pet_with_form" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -1121,15 +1121,15 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def update_pet_with_form_api_v1_pet_pet_id_post_without_validation(self, pet_id=None, name=None, status=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def update_pet_with_form_without_validation(self, pet_id=None, name=None, status=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update Pet With Form — without pydantic validation  # noqa: E501
 
-        Like ``update_pet_with_form_api_v1_pet_pet_id_post_with_http_info`` but bypasses ``@validate_call``
+        Like ``update_pet_with_form_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``update_pet_with_form_api_v1_pet_pet_id_post_with_http_info`` are forwarded verbatim.
+        supported by ``update_pet_with_form_with_http_info`` are forwarded verbatim.
 
         :param pet_id: (any value accepted — validation is skipped)
         :param name: (any value accepted — validation is skipped)
@@ -1145,11 +1145,11 @@ class PetApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.update_pet_with_form_api_v1_pet_pet_id_post_with_http_info.__wrapped__
+        _impl = self.update_pet_with_form_with_http_info.__wrapped__
         return await _impl(self, pet_id, name, status, **kwargs)
 
     @validate_call
-    async def upload_file_api_v1_pet_pet_id_upload_file_post(self, pet_id : StrictInt, file : Optional[StrictStr] = None, additional_metadata : Optional[StrictStr] = None, **kwargs) -> Dict[str, str]:  # noqa: E501
+    async def upload_file(self, pet_id : StrictInt, file : Optional[StrictStr] = None, additional_metadata : Optional[StrictStr] = None, **kwargs) -> Dict[str, str]:  # noqa: E501
         """Upload File  # noqa: E501
 
         Upload an image for a pet.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.     file: The image file to upload.     additional_metadata: Optional metadata string.  Returns:     Confirmation message with file info.  # noqa: E501
@@ -1171,12 +1171,12 @@ class PetApi:
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the upload_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return await self.upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info(pet_id, file, additional_metadata, **kwargs)  # noqa: E501
+        return await self.upload_file_with_http_info(pet_id, file, additional_metadata, **kwargs)  # noqa: E501
 
     @validate_call
-    async def upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info(self, pet_id : StrictInt, file : Optional[StrictStr] = None, additional_metadata : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def upload_file_with_http_info(self, pet_id : StrictInt, file : Optional[StrictStr] = None, additional_metadata : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload File  # noqa: E501
 
         Upload an image for a pet.  Args:     pet_id: The pet's unique identifier.     service: Injected PetService.     file: The image file to upload.     additional_metadata: Optional metadata string.  Returns:     Confirmation message with file info.  # noqa: E501
@@ -1233,7 +1233,7 @@ class PetApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method upload_file_api_v1_pet_pet_id_upload_file_post" % _key
+                    " to method upload_file" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -1296,15 +1296,15 @@ class PetApi:
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    async def upload_file_api_v1_pet_pet_id_upload_file_post_without_validation(self, pet_id=None, file=None, additional_metadata=None, **kwargs) -> ApiResponse:  # noqa: E501
+    async def upload_file_without_validation(self, pet_id=None, file=None, additional_metadata=None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload File — without pydantic validation  # noqa: E501
 
-        Like ``upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info`` but bypasses ``@validate_call``
+        Like ``upload_file_with_http_info`` but bypasses ``@validate_call``
         pydantic validation entirely.  Intended for tests that need to send
         deliberately invalid payloads and assert on the API's error responses.
 
         All parameters are accepted as-is (no type checking).  The same kwargs
-        supported by ``upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info`` are forwarded verbatim.
+        supported by ``upload_file_with_http_info`` are forwarded verbatim.
 
         :param pet_id: (any value accepted — validation is skipped)
         :param file: (any value accepted — validation is skipped)
@@ -1320,5 +1320,5 @@ class PetApi:
         # Retrieve the original undecorated implementation stored by pydantic's
         # @validate_call on the _with_http_info method, then call it
         # directly to skip all pydantic coercion / validation.
-        _impl = self.upload_file_api_v1_pet_pet_id_upload_file_post_with_http_info.__wrapped__
+        _impl = self.upload_file_with_http_info.__wrapped__
         return await _impl(self, pet_id, file, additional_metadata, **kwargs)

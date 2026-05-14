@@ -35,6 +35,8 @@ __all__ = [
     "ApiException",
     "Category",
     "HTTPValidationError",
+    "HealthDetails",
+    "HealthResponse",
     "LocationInner",
     "Order",
     "OrderCreate",
@@ -70,6 +72,8 @@ from petstore_openapi_client.exceptions import ApiException as ApiException
 # import models into sdk package
 from petstore_openapi_client.models.category import Category as Category
 from petstore_openapi_client.models.http_validation_error import HTTPValidationError as HTTPValidationError
+from petstore_openapi_client.models.health_details import HealthDetails as HealthDetails
+from petstore_openapi_client.models.health_response import HealthResponse as HealthResponse
 from petstore_openapi_client.models.location_inner import LocationInner as LocationInner
 from petstore_openapi_client.models.order import Order as Order
 from petstore_openapi_client.models.order_create import OrderCreate as OrderCreate

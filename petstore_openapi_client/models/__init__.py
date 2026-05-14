@@ -18,6 +18,8 @@ from __future__ import annotations
 # import models into model package
 from petstore_openapi_client.models.category import Category
 from petstore_openapi_client.models.http_validation_error import HTTPValidationError
+from petstore_openapi_client.models.health_details import HealthDetails
+from petstore_openapi_client.models.health_response import HealthResponse
 from petstore_openapi_client.models.location_inner import LocationInner
 from petstore_openapi_client.models.order import Order
 from petstore_openapi_client.models.order_create import OrderCreate

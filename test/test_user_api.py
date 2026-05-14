@@ -44,12 +44,12 @@ class TestUserApi:
             password="integration-password",
         )
 
-    async def test_create_user_api_v1_user_post(self, user_api_client: UserApi) -> None:
-        """Test case for create_user_api_v1_user_post
+    async def test_create_user(self, user_api_client: UserApi) -> None:
+        """Test case for create_user
 
         Create User  # noqa: E501
         """
-        created_user = await user_api_client.create_user_api_v1_user_post(
+        created_user = await user_api_client.create_user(
             self._build_user_create(username="integration-create-user")
         )
 
@@ -57,12 +57,12 @@ class TestUserApi:
         assert created_user.id is not None
         assert created_user.username == "integration-create-user"
 
-    async def test_create_users_with_list_api_v1_user_create_with_list_post(self, user_api_client: UserApi) -> None:
-        """Test case for create_users_with_list_api_v1_user_create_with_list_post
+    async def test_create_users_with_list(self, user_api_client: UserApi) -> None:
+        """Test case for create_users_with_list
 
         Create Users With List  # noqa: E501
         """
-        users = await user_api_client.create_users_with_list_api_v1_user_create_with_list_post(
+        users = await user_api_client.create_users_with_list(
             [
                 self._build_user_create(username="integration-list-user-1"),
                 self._build_user_create(username="integration-list-user-2"),
@@ -75,17 +75,17 @@ class TestUserApi:
         assert "integration-list-user-1" in usernames
         assert "integration-list-user-2" in usernames
 
-    async def test_delete_user_api_v1_user_username_delete(self, user_api_client: UserApi) -> None:
-        """Test case for delete_user_api_v1_user_username_delete
+    async def test_delete_user(self, user_api_client: UserApi) -> None:
+        """Test case for delete_user
 
         Delete User  # noqa: E501
         """
         username = "integration-delete-user"
-        await user_api_client.create_user_api_v1_user_post(
+        await user_api_client.create_user(
             self._build_user_create(username=username)
         )
 
-        delete_result = await user_api_client.delete_user_api_v1_user_username_delete(
+        delete_result = await user_api_client.delete_user(
             username
         )
 
@@ -93,38 +93,38 @@ class TestUserApi:
         assert delete_result
 
         with pytest.raises(ApiException) as exc_info:
-            await user_api_client.get_user_by_name_api_v1_user_username_get(username)
+            await user_api_client.get_user_by_name(username)
         assert exc_info.value.status == 404
 
-    async def test_get_user_by_name_api_v1_user_username_get(self, user_api_client: UserApi) -> None:
-        """Test case for get_user_by_name_api_v1_user_username_get
+    async def test_get_user_by_name(self, user_api_client: UserApi) -> None:
+        """Test case for get_user_by_name
 
         Get User By Name  # noqa: E501
         """
         username = "integration-get-user"
-        await user_api_client.create_user_api_v1_user_post(
+        await user_api_client.create_user(
             self._build_user_create(username=username)
         )
 
-        fetched_user = await user_api_client.get_user_by_name_api_v1_user_username_get(
+        fetched_user = await user_api_client.get_user_by_name(
             username
         )
 
         assert isinstance(fetched_user, User)
         assert fetched_user.username == username
 
-    async def test_login_user_api_v1_user_login_get(self, user_api_client: UserApi) -> None:
-        """Test case for login_user_api_v1_user_login_get
+    async def test_login_user(self, user_api_client: UserApi) -> None:
+        """Test case for login_user
 
         Login User  # noqa: E501
         """
         username = "integration-login-user"
         password = "integration-password"
-        await user_api_client.create_user_api_v1_user_post(
+        await user_api_client.create_user(
             self._build_user_create(username=username)
         )
 
-        login_result = await user_api_client.login_user_api_v1_user_login_get(
+        login_result = await user_api_client.login_user(
             username=username,
             password=password,
         )
@@ -132,27 +132,27 @@ class TestUserApi:
         assert isinstance(login_result, dict)
         assert login_result
 
-    async def test_logout_user_api_v1_user_logout_get(self, user_api_client: UserApi) -> None:
-        """Test case for logout_user_api_v1_user_logout_get
+    async def test_logout_user(self, user_api_client: UserApi) -> None:
+        """Test case for logout_user
 
         Logout User  # noqa: E501
         """
-        logout_result = await user_api_client.logout_user_api_v1_user_logout_get()
+        logout_result = await user_api_client.logout_user()
 
         assert isinstance(logout_result, dict)
         assert logout_result
 
-    async def test_update_user_api_v1_user_username_put(self, user_api_client: UserApi) -> None:
-        """Test case for update_user_api_v1_user_username_put
+    async def test_update_user(self, user_api_client: UserApi) -> None:
+        """Test case for update_user
 
         Update User  # noqa: E501
         """
         username = "integration-update-user"
-        await user_api_client.create_user_api_v1_user_post(
+        await user_api_client.create_user(
             self._build_user_create(username=username)
         )
 
-        updated_user = await user_api_client.update_user_api_v1_user_username_put(
+        updated_user = await user_api_client.update_user(
             username=username,
             user_update=UserUpdate(
                 username=username,
