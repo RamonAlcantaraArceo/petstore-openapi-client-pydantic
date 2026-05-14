@@ -13,8 +13,8 @@
 
 import pytest
 
-from openapi_client.models.location_inner import LocationInner
-from openapi_client.models.validation_error import ValidationError
+from petstore_openapi_client.models.location_inner import LocationInner
+from petstore_openapi_client.models.validation_error import ValidationError
 
 class TestValidationError:
     """ValidationError model tests."""

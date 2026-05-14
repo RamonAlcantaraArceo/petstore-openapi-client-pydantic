@@ -13,13 +13,13 @@
 
 import pytest
 import pytest_asyncio
-from openapi_client.exceptions import ApiException
+from petstore_openapi_client.exceptions import ApiException
 
-from openapi_client.api.store_api import StoreApi  # noqa: E501
-from openapi_client import ApiClient
-from openapi_client.models.order import Order
-from openapi_client.models.order_create import OrderCreate
-from openapi_client.models.order_status import OrderStatus
+from petstore_openapi_client.api.store_api import StoreApi  # noqa: E501
+from petstore_openapi_client import ApiClient
+from petstore_openapi_client.models.order import Order
+from petstore_openapi_client.models.order_create import OrderCreate
+from petstore_openapi_client.models.order_status import OrderStatus
 
 
 @pytest_asyncio.fixture()

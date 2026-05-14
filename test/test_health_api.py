@@ -14,9 +14,9 @@
 import pytest
 import pytest_asyncio
 
-from openapi_client.api.health_api import HealthApi  # noqa: E501
-from openapi_client import ApiClient
-from openapi_client.assertions import assert_that
+from petstore_openapi_client.api.health_api import HealthApi  # noqa: E501
+from petstore_openapi_client import ApiClient
+from petstore_openapi_client.assertions import assert_that
 
 @pytest_asyncio.fixture()
 async def health_api_client(api_client: ApiClient):

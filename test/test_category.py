@@ -11,7 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-from openapi_client.models.category import Category
+from petstore_openapi_client.models.category import Category
 
 class TestCategory:
     """Category model tests."""

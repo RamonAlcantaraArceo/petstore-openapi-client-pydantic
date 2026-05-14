@@ -11,7 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-from openapi_client.models.user_update import UserUpdate
+from petstore_openapi_client.models.user_update import UserUpdate
 
 class TestUserUpdate:
     """UserUpdate model tests."""

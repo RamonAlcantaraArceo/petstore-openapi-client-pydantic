@@ -11,7 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-from openapi_client.models.tag import Tag
+from petstore_openapi_client.models.tag import Tag
 
 class TestTag:
     """Tag model tests."""

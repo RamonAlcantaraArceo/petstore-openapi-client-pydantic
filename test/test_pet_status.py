@@ -11,7 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-from openapi_client.models.pet_status import PetStatus
+from petstore_openapi_client.models.pet_status import PetStatus
 
 class TestPetStatus:
     """PetStatus enum tests."""

@@ -35,6 +35,16 @@ generate-debug:
 	rm ./tmp-gen/setup.cfg
 	rm ./tmp-gen/.travis.yml
 
+
+generate-vanilla:
+	rm -rf tmp-gen
+
+	docker run --rm \
+	-v ${PWD}:/local openapitools/openapi-generator-cli generate \
+	--generator-name python-pydantic-v1 \
+	--input-spec /local/openapi/openapi.json \
+	--output /local/tmp-gen 
+
 get-templates:
 	docker run --rm \
 	-v ${PWD}:/local openapitools/openapi-generator-cli author \

@@ -13,10 +13,10 @@
 
 import pytest
 
-from openapi_client.models.category import Category
-from openapi_client.models.pet_update import PetUpdate
-from openapi_client.models.pet_status import PetStatus
-from openapi_client.models.tag import Tag
+from petstore_openapi_client.models.category import Category
+from petstore_openapi_client.models.pet_update import PetUpdate
+from petstore_openapi_client.models.pet_status import PetStatus
+from petstore_openapi_client.models.tag import Tag
 
 class TestPetUpdate:
     """PetUpdate model tests."""

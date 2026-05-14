@@ -15,8 +15,8 @@ from datetime import datetime
 
 import pytest
 
-from openapi_client.models.order import Order
-from openapi_client.models.order_status import OrderStatus
+from petstore_openapi_client.models.order import Order
+from petstore_openapi_client.models.order_status import OrderStatus
 
 class TestOrder:
     """Order model tests."""

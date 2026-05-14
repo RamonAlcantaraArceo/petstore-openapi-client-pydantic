@@ -11,7 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-from openapi_client.models.order_status import OrderStatus
+from petstore_openapi_client.models.order_status import OrderStatus
 
 class TestOrderStatus:
     """OrderStatus enum tests."""

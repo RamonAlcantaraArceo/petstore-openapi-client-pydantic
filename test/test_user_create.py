@@ -11,7 +11,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-from openapi_client.models.user_create import UserCreate
+from petstore_openapi_client.models.user_create import UserCreate
 
 class TestUserCreate:
     """UserCreate model tests."""

@@ -10,19 +10,19 @@
 
     Do not edit the class manually.
 """  # noqa: E501
-from openapi_client.assertions import assert_that
+from petstore_openapi_client.assertions import assert_that
 
 import pytest
 import pytest_asyncio
-from openapi_client.exceptions import ApiException
+from petstore_openapi_client.exceptions import ApiException
 
-from openapi_client.api.pet_api import PetApi  # noqa: E501
-from openapi_client import ApiClient
-from openapi_client.models.pet import Pet
-from openapi_client.models.pet_create import PetCreate
-from openapi_client.models.pet_status import PetStatus
-from openapi_client.models.pet_update import PetUpdate
-from openapi_client.models.tag import Tag
+from petstore_openapi_client.api.pet_api import PetApi  # noqa: E501
+from petstore_openapi_client import ApiClient
+from petstore_openapi_client.models.pet import Pet
+from petstore_openapi_client.models.pet_create import PetCreate
+from petstore_openapi_client.models.pet_status import PetStatus
+from petstore_openapi_client.models.pet_update import PetUpdate
+from petstore_openapi_client.models.tag import Tag
 
 
 @pytest_asyncio.fixture()

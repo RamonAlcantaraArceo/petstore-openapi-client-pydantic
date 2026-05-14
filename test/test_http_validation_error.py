@@ -11,9 +11,9 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-from openapi_client.models.http_validation_error import HTTPValidationError
-from openapi_client.models.location_inner import LocationInner
-from openapi_client.models.validation_error import ValidationError
+from petstore_openapi_client.models.http_validation_error import HTTPValidationError
+from petstore_openapi_client.models.location_inner import LocationInner
+from petstore_openapi_client.models.validation_error import ValidationError
 
 class TestHTTPValidationError:
     """HTTPValidationError model tests."""
