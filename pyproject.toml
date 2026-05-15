@@ -35,7 +35,7 @@ build-backend = "setuptools.build_meta"
 include-package-data = false
 
 [tool.setuptools.packages.find]
-where = ["petstore_openapi_client"]
+where = ["."]
 
 [tool.setuptools.package-data]
 petstore_openapi_client = ["py.typed"]
