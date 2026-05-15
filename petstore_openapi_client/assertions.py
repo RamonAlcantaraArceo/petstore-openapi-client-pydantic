@@ -38,23 +38,23 @@ class FluentAssertion[T]:
 
     def equals(self, expected: Any) -> FluentAssertion[T]:
         """Assert *value* == *expected*."""
-        assert (
-            self._value == expected
-        ), f"Expected {self._desc} to equal {expected!r}, but got {self._value!r}"
+        assert self._value == expected, (
+            f"Expected {self._desc} to equal {expected!r}, but got {self._value!r}"
+        )
         return self
 
     def not_equals(self, unexpected: Any) -> FluentAssertion[T]:
         """Assert *value* != *unexpected*."""
-        assert (
-            self._value != unexpected
-        ), f"Expected {self._desc} not to equal {unexpected!r}"
+        assert self._value != unexpected, (
+            f"Expected {self._desc} not to equal {unexpected!r}"
+        )
         return self
 
     def is_none(self) -> FluentAssertion[T]:
         """Assert *value* is ``None``."""
-        assert (
-            self._value is None
-        ), f"Expected {self._desc} to be None, got {self._value!r}"
+        assert self._value is None, (
+            f"Expected {self._desc} to be None, got {self._value!r}"
+        )
         return self
 
     def is_not_none(self) -> FluentAssertion[T]:
@@ -69,9 +69,9 @@ class FluentAssertion[T]:
 
     def is_false(self) -> FluentAssertion[T]:
         """Assert *value* is falsy."""
-        assert (
-            not self._value
-        ), f"Expected {self._desc} to be falsy, got {self._value!r}"
+        assert not self._value, (
+            f"Expected {self._desc} to be falsy, got {self._value!r}"
+        )
         return self
 
     def is_instance_of(self, type_: type) -> FluentAssertion[T]:
@@ -87,27 +87,27 @@ class FluentAssertion[T]:
     # ------------------------------------------------------------------
 
     def is_greater_than(self, other: Any) -> FluentAssertion[T]:
-        assert (
-            self._value > other
-        ), f"Expected {self._desc} > {other!r}, got {self._value!r}"
+        assert self._value > other, (
+            f"Expected {self._desc} > {other!r}, got {self._value!r}"
+        )
         return self
 
     def is_less_than(self, other: Any) -> FluentAssertion[T]:
-        assert (
-            self._value < other
-        ), f"Expected {self._desc} < {other!r}, got {self._value!r}"
+        assert self._value < other, (
+            f"Expected {self._desc} < {other!r}, got {self._value!r}"
+        )
         return self
 
     def is_greater_than_or_equal_to(self, other: Any) -> FluentAssertion[T]:
-        assert (
-            self._value >= other
-        ), f"Expected {self._desc} >= {other!r}, got {self._value!r}"
+        assert self._value >= other, (
+            f"Expected {self._desc} >= {other!r}, got {self._value!r}"
+        )
         return self
 
     def is_less_than_or_equal_to(self, other: Any) -> FluentAssertion[T]:
-        assert (
-            self._value <= other
-        ), f"Expected {self._desc} <= {other!r}, got {self._value!r}"
+        assert self._value <= other, (
+            f"Expected {self._desc} <= {other!r}, got {self._value!r}"
+        )
         return self
 
     # ------------------------------------------------------------------
@@ -116,30 +116,30 @@ class FluentAssertion[T]:
 
     def contains(self, substring: str) -> FluentAssertion[T]:
         """Assert the string *value* contains *substring*."""
-        assert isinstance(
-            self._value, str
-        ), f"Expected a string, got {type(self._value)}"
-        assert (
-            substring in self._value
-        ), f"Expected {self._desc} to contain {substring!r}"
+        assert isinstance(self._value, str), (
+            f"Expected a string, got {type(self._value)}"
+        )
+        assert substring in self._value, (
+            f"Expected {self._desc} to contain {substring!r}"
+        )
         return self
 
     def starts_with(self, prefix: str) -> FluentAssertion[T]:
-        assert isinstance(
-            self._value, str
-        ), f"Expected a string, got {type(self._value)}"
-        assert self._value.startswith(
-            prefix
-        ), f"Expected {self._desc} to start with {prefix!r}"
+        assert isinstance(self._value, str), (
+            f"Expected a string, got {type(self._value)}"
+        )
+        assert self._value.startswith(prefix), (
+            f"Expected {self._desc} to start with {prefix!r}"
+        )
         return self
 
     def ends_with(self, suffix: str) -> FluentAssertion[T]:
-        assert isinstance(
-            self._value, str
-        ), f"Expected a string, got {type(self._value)}"
-        assert self._value.endswith(
-            suffix
-        ), f"Expected {self._desc} to end with {suffix!r}"
+        assert isinstance(self._value, str), (
+            f"Expected a string, got {type(self._value)}"
+        )
+        assert self._value.endswith(suffix), (
+            f"Expected {self._desc} to end with {suffix!r}"
+        )
         return self
 
     def matches_pattern(self, pattern: str) -> FluentAssertion[T]:
@@ -147,12 +147,12 @@ class FluentAssertion[T]:
         __tracebackhide__ = True
         import re
 
-        assert isinstance(
-            self._value, str
-        ), f"Expected a string, got {type(self._value)}"
-        assert re.search(
-            pattern, self._value
-        ), f"Expected {self._desc} to match pattern {pattern!r}"
+        assert isinstance(self._value, str), (
+            f"Expected a string, got {type(self._value)}"
+        )
+        assert re.search(pattern, self._value), (
+            f"Expected {self._desc} to match pattern {pattern!r}"
+        )
         return self
 
     # ------------------------------------------------------------------
@@ -175,16 +175,16 @@ class FluentAssertion[T]:
 
     def has_length(self, length: int) -> FluentAssertion[T]:
         actual = len(self._value)  # type: ignore[arg-type]
-        assert (
-            actual == length
-        ), f"Expected {self._desc} to have length {length}, got {actual}"
+        assert actual == length, (
+            f"Expected {self._desc} to have length {length}, got {actual}"
+        )
         return self
 
     def has_length_greater_than(self, length: int) -> FluentAssertion[T]:
         actual = len(self._value)  # type: ignore[arg-type]
-        assert (
-            actual > length
-        ), f"Expected {self._desc} to have length > {length}, got {actual}"
+        assert actual > length, (
+            f"Expected {self._desc} to have length > {length}, got {actual}"
+        )
         return self
 
     def contains_item(self, item: Any) -> FluentAssertion[T]:
@@ -214,9 +214,9 @@ class FluentAssertion[T]:
         """Assert ``value[key] == expected``."""
         self.has_key(key)
         actual = self._value[key]  # type: ignore[index]
-        assert (
-            actual == expected
-        ), f"Expected {self._desc}[{key!r}] == {expected!r}, got {actual!r}"
+        assert actual == expected, (
+            f"Expected {self._desc}[{key!r}] == {expected!r}, got {actual!r}"
+        )
         return self
 
 
@@ -268,14 +268,22 @@ class AssertableModelMixin:
             return value
 
         # Keep generated model internals working with raw values.
-        if name in {"actual_instance", "anyof_schema_1_validator", "anyof_schema_2_validator"}:
+        if name in {
+            "actual_instance",
+            "anyof_schema_1_validator",
+            "anyof_schema_2_validator",
+        }:
             if isinstance(value, AssertableValue):
                 return value.raw
             return value
 
         fields = getattr(type(self), "model_fields", {})
         scalar_types = (type(None), bool, int, float, complex, str, bytes, Enum)
-        if name in fields and not isinstance(value, AssertableModelMixin) and not isinstance(value, scalar_types):
+        if (
+            name in fields
+            and not isinstance(value, AssertableModelMixin)
+            and not isinstance(value, scalar_types)
+        ):
             return AssertableValue(value, description=f"{type(self).__name__}.{name}")
         return value
 
@@ -362,9 +370,9 @@ class ResponseAssertion:
 
     def has_status(self, code: int) -> ResponseAssertion:
         actual = self._response.status_code
-        assert (
-            actual == code
-        ), f"Expected HTTP {code}, got {actual}. Body: {self._response.text[:200]}"
+        assert actual == code, (
+            f"Expected HTTP {code}, got {actual}. Body: {self._response.text[:200]}"
+        )
         return self
 
     def is_ok(self) -> ResponseAssertion:
@@ -376,9 +384,9 @@ class ResponseAssertion:
     def is_client_error(self) -> ResponseAssertion:
         """Assert response is a 4xx client error."""
         actual = self._response.status_code
-        assert (
-            400 <= actual < 500
-        ), f"Expected HTTP 4xx client error, got {actual}. Body: {self._response.text[:200]}"
+        assert 400 <= actual < 500, (
+            f"Expected HTTP 4xx client error, got {actual}. Body: {self._response.text[:200]}"
+        )
         return self
 
     def is_unauthorized(self) -> ResponseAssertion:
@@ -390,9 +398,9 @@ class ResponseAssertion:
     def is_server_error(self) -> ResponseAssertion:
         """Assert response is a 500 server error."""
         actual = self._response.status_code
-        assert (
-            actual == 500
-        ), f"Expected HTTP 500 server error, got {actual}. Body: {self._response.text[:200]}"
+        assert actual == 500, (
+            f"Expected HTTP 500 server error, got {actual}. Body: {self._response.text[:200]}"
+        )
 
         return self
 
@@ -406,16 +414,16 @@ class ResponseAssertion:
     def json_has_key(self, key: str) -> ResponseAssertion:
         __tracebackhide__ = True
         data = self._response.json()
-        assert (
-            key in data
-        ), f"Expected JSON body to have key {key!r}. Got keys: {list(data)}"
+        assert key in data, (
+            f"Expected JSON body to have key {key!r}. Got keys: {list(data)}"
+        )
         return self
 
     def json_key_equals(self, key: str, expected: Any) -> ResponseAssertion:
         data = self._response.json()
-        assert (
-            data.get(key) == expected
-        ), f"Expected JSON[{key!r}] == {expected!r}, got {data.get(key)!r}"
+        assert data.get(key) == expected, (
+            f"Expected JSON[{key!r}] == {expected!r}, got {data.get(key)!r}"
+        )
         return self
 
 

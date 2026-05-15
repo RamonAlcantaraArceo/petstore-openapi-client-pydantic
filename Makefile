@@ -20,7 +20,8 @@ generate:
 	-rm ./setup.cfg
 	-rm ./.travis.yml
 
-	@echo "Running ruff to fix formatting issues..."
+	@echo "Running ruff to fix formatting and linting issues..."
+	@uv run ruff format .
 	@uv run ruff check . --fix --unsafe-fixes
 	@echo "... Done"
 
