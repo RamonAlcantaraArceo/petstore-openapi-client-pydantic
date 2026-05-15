@@ -3,7 +3,7 @@ name = "petstore-openapi-client-pydantic"
 version = "0.0.0"
 description = "Petstore API"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 authors = [{ name = "Ramon Alcantara Arceo", email = "ramalc.ms@outlook.com" }]
 license = "Unlicense"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Petstore API"]
