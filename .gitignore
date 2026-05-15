@@ -68,4 +68,6 @@ target/
 # OpenAPI Generator
 .templates/
 tmp/
-tmp-gen/
+tmp-gen/site/
+site/
+.DS_Store
