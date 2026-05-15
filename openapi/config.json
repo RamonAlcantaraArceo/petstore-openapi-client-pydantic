@@ -2,7 +2,7 @@
     "library": "asyncio",
     "gitUserId": "RamonAlcantaraArceo",
     "gitRepoId": "petstore-openapi-client-pydantic",
-    "packageName": "openapi_client",
+    "packageName": "petstore_openapi_client",
     "packageVersion": "0.0.0",
     "additionalProperties":{},
     "files":{
@@ -10,6 +10,16 @@
             "templateType": "SupportingFiles",
             "destinationFilename": "conftest.py",
             "folder": "test"
+        },
+        "assertions.mustache":{
+            "templateType": "SupportingFiles",
+            "destinationFilename": "assertions.py",
+            "folder": "petstore_openapi_client"
+        },
+        "logging_utils.mustache":{
+            "templateType": "SupportingFiles",
+            "destinationFilename": "logging_utils.py",
+            "folder": "petstore_openapi_client"
         },
         "openapi-generator-ignore.mustache":{
             "templateType": "SupportingFiles",

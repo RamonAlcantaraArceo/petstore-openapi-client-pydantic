@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.order import Order
+from petstore_openapi_client.models.order import Order
 
 # TODO update the JSON string below
 json = "{}"

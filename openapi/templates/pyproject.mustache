@@ -1,14 +1,16 @@
 [project]
-name = "{{{packageName}}}"
+name = "{{{gitRepoId}}}"
 version = "{{{packageVersion}}}"
 description = "{{{appName}}}"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 authors = [{ name = "{{infoName}}{{^infoName}}OpenAPI Generator Community{{/infoName}}", email = "{{infoEmail}}{{^infoEmail}}team@openapitools.org{{/infoEmail}}" }]
 license = "{{{licenseInfo}}}{{^licenseInfo}}Unlicense{{/licenseInfo}}"
 keywords = ["OpenAPI", "OpenAPI-Generator", "{{{appName}}}"]
 dependencies = [
+{{^asyncio}}
 	"urllib3>=2.0.0",
+{{/asyncio}}
 	"python-dateutil>=2.9.0",
 {{#asyncio}}
 	"aiohttp>=3.10.0",
@@ -36,7 +38,7 @@ dev = [
 	"pytest-asyncio>=0.24.0",
 {{/asyncio}}
 	"tox>=4.14.0",
-	"flake8>=7.1.0",
+	"ruff>=0.15.13",
 ]
 
 [build-system]

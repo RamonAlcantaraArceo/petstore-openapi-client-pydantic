@@ -1,17 +1,17 @@
-# openapi_client.StoreApi
+# petstore_openapi_client.StoreApi
 
 All URIs are relative to *http://localhost:8000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_order_api_v1_store_order_order_id_delete**](StoreApi.md#delete_order_api_v1_store_order_order_id_delete) | **DELETE** /api/v1/store/order/{order_id} | Delete Order
-[**get_inventory_api_v1_store_inventory_get**](StoreApi.md#get_inventory_api_v1_store_inventory_get) | **GET** /api/v1/store/inventory | Get Inventory
-[**get_order_by_id_api_v1_store_order_order_id_get**](StoreApi.md#get_order_by_id_api_v1_store_order_order_id_get) | **GET** /api/v1/store/order/{order_id} | Get Order By Id
-[**place_order_api_v1_store_order_post**](StoreApi.md#place_order_api_v1_store_order_post) | **POST** /api/v1/store/order | Place Order
+[**delete_order**](StoreApi.md#delete_order) | **DELETE** /api/v1/store/order/{order_id} | Delete Order
+[**get_inventory**](StoreApi.md#get_inventory) | **GET** /api/v1/store/inventory | Get Inventory
+[**get_order_by_id**](StoreApi.md#get_order_by_id) | **GET** /api/v1/store/order/{order_id} | Get Order By Id
+[**place_order**](StoreApi.md#place_order) | **POST** /api/v1/store/order | Place Order
 
 
-# **delete_order_api_v1_store_order_order_id_delete**
-> Dict[str, str] delete_order_api_v1_store_order_order_id_delete(order_id)
+# **delete_order**
+> Dict[str, str] delete_order(order_id)
 
 Delete Order
 
@@ -31,13 +31,13 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -55,18 +55,18 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.StoreApi(api_client)
+        api_instance = petstore_openapi_client.StoreApi(api_client)
         order_id = 56 # int | 
 
         try:
             # Delete Order
-            api_response = await api_instance.delete_order_api_v1_store_order_order_id_delete(order_id)
-            print("The response of StoreApi->delete_order_api_v1_store_order_order_id_delete:\n")
+            api_response = await api_instance.delete_order(order_id)
+            print("The response of StoreApi->delete_order:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling StoreApi->delete_order_api_v1_store_order_order_id_delete: %s\n" % e)
+            print("Exception when calling StoreApi->delete_order: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
@@ -101,8 +101,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_inventory_api_v1_store_inventory_get**
-> List[Order] get_inventory_api_v1_store_inventory_get()
+# **get_inventory**
+> List[Order] get_inventory()
 
 Get Inventory
 
@@ -121,14 +121,14 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.models.order import Order
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.models.order import Order
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -146,17 +146,17 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.StoreApi(api_client)
+        api_instance = petstore_openapi_client.StoreApi(api_client)
 
         try:
             # Get Inventory
-            api_response = await api_instance.get_inventory_api_v1_store_inventory_get()
-            print("The response of StoreApi->get_inventory_api_v1_store_inventory_get:\n")
+            api_response = await api_instance.get_inventory()
+            print("The response of StoreApi->get_inventory:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling StoreApi->get_inventory_api_v1_store_inventory_get: %s\n" % e)
+            print("Exception when calling StoreApi->get_inventory: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
@@ -187,8 +187,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_order_by_id_api_v1_store_order_order_id_get**
-> Order get_order_by_id_api_v1_store_order_order_id_get(order_id)
+# **get_order_by_id**
+> Order get_order_by_id(order_id)
 
 Get Order By Id
 
@@ -208,14 +208,14 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.models.order import Order
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.models.order import Order
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -233,18 +233,18 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.StoreApi(api_client)
+        api_instance = petstore_openapi_client.StoreApi(api_client)
         order_id = 56 # int | 
 
         try:
             # Get Order By Id
-            api_response = await api_instance.get_order_by_id_api_v1_store_order_order_id_get(order_id)
-            print("The response of StoreApi->get_order_by_id_api_v1_store_order_order_id_get:\n")
+            api_response = await api_instance.get_order_by_id(order_id)
+            print("The response of StoreApi->get_order_by_id:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling StoreApi->get_order_by_id_api_v1_store_order_order_id_get: %s\n" % e)
+            print("Exception when calling StoreApi->get_order_by_id: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
@@ -279,8 +279,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **place_order_api_v1_store_order_post**
-> Order place_order_api_v1_store_order_post(order_create)
+# **place_order**
+> Order place_order(order_create)
 
 Place Order
 
@@ -300,15 +300,15 @@ Returns:
 import asyncio 
 import time
 import os
-import openapi_client
-from openapi_client.models.order import Order
-from openapi_client.models.order_create import OrderCreate
-from openapi_client.rest import ApiException
+import petstore_openapi_client
+from petstore_openapi_client.models.order import Order
+from petstore_openapi_client.models.order_create import OrderCreate
+from petstore_openapi_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = petstore_openapi_client.Configuration(
     host = "http://localhost:8000"
 )
 
@@ -326,18 +326,18 @@ configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 async def main():
 
     # Enter a context with an instance of the API client
-    async with openapi_client.ApiClient(configuration) as api_client:
+    async with petstore_openapi_client.ApiClient(configuration) as api_client:
         # Create an instance of the API class
-        api_instance = openapi_client.StoreApi(api_client)
-        order_create = openapi_client.OrderCreate() # OrderCreate | 
+        api_instance = petstore_openapi_client.StoreApi(api_client)
+        order_create = petstore_openapi_client.OrderCreate() # OrderCreate | 
 
         try:
             # Place Order
-            api_response = await api_instance.place_order_api_v1_store_order_post(order_create)
-            print("The response of StoreApi->place_order_api_v1_store_order_post:\n")
+            api_response = await api_instance.place_order(order_create)
+            print("The response of StoreApi->place_order:\n")
             pprint(api_response)
         except Exception as e:
-            print("Exception when calling StoreApi->place_order_api_v1_store_order_post: %s\n" % e)
+            print("Exception when calling StoreApi->place_order: %s\n" % e)
 
 if __name__ == '__main__':
     asyncio.run(main())
