@@ -12,46 +12,44 @@
 """  # noqa: E501
 from __future__ import annotations
 
-import pytest
-
 from petstore_openapi_client.models.health_details import HealthDetails
 
 class TestHealthDetails:
-    """HealthDetails unit test stubs"""
+    """HealthDetails model tests."""
 
-    def make_instance(self, include_optional: bool) -> HealthDetails:
-        """Create an HealthDetails instance for testing.
+    def test_health_details_required_fields(self) -> None:
+        details = HealthDetails(
+            version="1.2.3",
+            build_date="2026-05-15T12:00:00Z",
+            git_commit_sha="abc123def456",
+        )
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert details.version == "1.2.3"
+        assert details.build_date == "2026-05-15T12:00:00Z"
+        assert details.git_commit_sha == "abc123def456"
 
-        Returns:
-            HealthDetails: A populated HealthDetails model instance.
+    def test_health_details_serialization_round_trip(self) -> None:
+        details = HealthDetails(
+            version="2.0.0",
+            build_date="2026-05-10T08:30:00Z",
+            git_commit_sha="deadbeef",
+        )
 
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
+        as_dict = details.to_dict()
+        assert as_dict == {
+            "version": "2.0.0",
+            "build_date": "2026-05-10T08:30:00Z",
+            "git_commit_sha": "deadbeef",
+        }
 
-        Example:
-            if include_optional:
-                return HealthDetails(
-                    version = '',
-                    build_date = '',
-                    git_commit_sha = ''
-                )
-            else:
-                return HealthDetails(
-                    version = '',
-                    build_date = '',
-                    git_commit_sha = '',
-            )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
+        from_dict = HealthDetails.from_dict(as_dict)
+        assert from_dict == details
 
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testHealthDetails(self):
-        """Test HealthDetails"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        as_json = details.to_json()
+        from_json = HealthDetails.from_json(as_json)
+        assert from_json == details
+
+        assert "2.0.0" in details.to_str()
+
+    def test_health_details_from_dict_none_returns_none(self) -> None:
+        assert HealthDetails.from_dict(None) is None

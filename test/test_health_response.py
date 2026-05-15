@@ -14,50 +14,69 @@ from __future__ import annotations
 
 import pytest
 
+from petstore_openapi_client.models.health_details import HealthDetails
 from petstore_openapi_client.models.health_response import HealthResponse
 
 class TestHealthResponse:
-    """HealthResponse unit test stubs"""
+    """HealthResponse model tests."""
 
-    def make_instance(self, include_optional: bool) -> HealthResponse:
-        """Create an HealthResponse instance for testing.
+    def test_health_response_accepts_valid_status(self) -> None:
+        response = HealthResponse(
+            status="ok",
+            mode="standalone",
+            details=HealthDetails(
+                version="1.0.0",
+                build_date="2026-05-15T12:00:00Z",
+                git_commit_sha="cafebabe",
+            ),
+        )
 
-        Args:
-            include_optional (bool):
-                If False, only the required parameters should be included.
-                If True, both required and optional parameters should be included.
+        assert response.status == "ok"
+        assert response.mode == "standalone"
+        assert response.details.version == "1.0.0"
 
-        Returns:
-            HealthResponse: A populated HealthResponse model instance.
-
-        TODO:
-            Replace the placeholder example values below with meaningful test data
-            appropriate for your API. These are only illustrative defaults.
-
-        Example:
-            if include_optional:
-                return HealthResponse(
-                    status = 'ok',
-                    mode = '',
-                    details = petstore_openapi_client.models.health_details.HealthDetails(
-                    version = '', 
-                    build_date = '', 
-                    git_commit_sha = '', )
-                )
-            else:
-                return HealthResponse(
-                    status = 'ok',
-                    mode = '',
-                    details = petstore_openapi_client.models.health_details.HealthDetails(
-                    version = '', 
-                    build_date = '', 
-                    git_commit_sha = '', ),
+    def test_health_response_rejects_invalid_status(self) -> None:
+        with pytest.raises(ValueError, match="must be one of enum values"):
+            HealthResponse(
+                status="down",
+                mode="standalone",
+                details=HealthDetails(
+                    version="1.0.0",
+                    build_date="2026-05-15T12:00:00Z",
+                    git_commit_sha="cafebabe",
+                ),
             )
-        """
-        raise NotImplementedError("Populate example values before using this helper.")
 
-    @pytest.mark.skip(reason="Generated stub test - implement assertions")
-    def testHealthResponse(self):
-        """Test HealthResponse"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    def test_health_response_serialization_round_trip(self) -> None:
+        response = HealthResponse(
+            status="ok",
+            mode="readonly",
+            details=HealthDetails(
+                version="2.1.0",
+                build_date="2026-05-10T08:30:00Z",
+                git_commit_sha="facefeed",
+            ),
+        )
+
+        as_dict = response.to_dict()
+        assert as_dict == {
+            "status": "ok",
+            "mode": "readonly",
+            "details": {
+                "version": "2.1.0",
+                "build_date": "2026-05-10T08:30:00Z",
+                "git_commit_sha": "facefeed",
+            },
+        }
+
+        from_dict = HealthResponse.from_dict(as_dict)
+        assert from_dict == response
+
+        as_json = response.to_json()
+        from_json = HealthResponse.from_json(as_json)
+        assert from_json == response
+
+        assert "readonly" in response.to_str()
+
+    def test_health_response_from_dict_none_returns_none(self) -> None:
+        assert HealthResponse.from_dict(None) is None
