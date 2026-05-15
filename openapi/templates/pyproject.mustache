@@ -1,5 +1,5 @@
 [project]
-name = "{{{packageName}}}"
+name = "{{{gitRepoId}}}"
 version = "{{{packageVersion}}}"
 description = "{{{appName}}}"
 readme = "README.md"
@@ -8,7 +8,9 @@ authors = [{ name = "{{infoName}}{{^infoName}}OpenAPI Generator Community{{/info
 license = "{{{licenseInfo}}}{{^licenseInfo}}Unlicense{{/licenseInfo}}"
 keywords = ["OpenAPI", "OpenAPI-Generator", "{{{appName}}}"]
 dependencies = [
+{{^asyncio}}
 	"urllib3>=2.0.0",
+{{/asyncio}}
 	"python-dateutil>=2.9.0",
 {{#asyncio}}
 	"aiohttp>=3.10.0",

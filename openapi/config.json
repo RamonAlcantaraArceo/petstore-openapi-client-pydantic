@@ -16,6 +16,11 @@
             "destinationFilename": "assertions.py",
             "folder": "petstore_openapi_client"
         },
+        "logging_utils.mustache":{
+            "templateType": "SupportingFiles",
+            "destinationFilename": "logging_utils.py",
+            "folder": "petstore_openapi_client"
+        },
         "openapi-generator-ignore.mustache":{
             "templateType": "SupportingFiles",
             "destinationFilename": ".openapi-generator-ignore"

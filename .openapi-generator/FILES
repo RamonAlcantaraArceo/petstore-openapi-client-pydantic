@@ -33,6 +33,7 @@ petstore_openapi_client/api_response.py
 petstore_openapi_client/assertions.py
 petstore_openapi_client/configuration.py
 petstore_openapi_client/exceptions.py
+petstore_openapi_client/logging_utils.py
 petstore_openapi_client/models/__init__.py
 petstore_openapi_client/models/category.py
 petstore_openapi_client/models/health_details.py
