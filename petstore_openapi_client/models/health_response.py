@@ -21,7 +21,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, StrictStr
 from pydantic import ConfigDict, field_validator
 from petstore_openapi_client.assertions import AssertableModelMixin
 from petstore_openapi_client.models.health_details import HealthDetails

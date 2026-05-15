@@ -20,9 +20,9 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
-from pydantic import ConfigDict, field_validator
+from pydantic import ConfigDict
 from petstore_openapi_client.assertions import AssertableModelMixin
 from petstore_openapi_client.models.location_inner import LocationInner
 

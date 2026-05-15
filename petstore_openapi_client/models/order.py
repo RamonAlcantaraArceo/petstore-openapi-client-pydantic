@@ -22,7 +22,7 @@ import json
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, StrictBool, StrictInt
-from pydantic import ConfigDict, field_validator
+from pydantic import ConfigDict
 from petstore_openapi_client.assertions import AssertableModelMixin
 from petstore_openapi_client.models.order_status import OrderStatus
 

@@ -22,7 +22,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, StrictInt, StrictStr
-from pydantic import ConfigDict, field_validator
+from pydantic import ConfigDict
 from petstore_openapi_client.assertions import AssertableModelMixin
 
 class User(AssertableModelMixin, BaseModel):

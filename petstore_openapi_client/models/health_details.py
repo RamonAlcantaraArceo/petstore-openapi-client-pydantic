@@ -22,7 +22,7 @@ import json
 
 
 from pydantic import BaseModel, Field, StrictStr
-from pydantic import ConfigDict, field_validator
+from pydantic import ConfigDict
 from petstore_openapi_client.assertions import AssertableModelMixin
 
 class HealthDetails(AssertableModelMixin, BaseModel):

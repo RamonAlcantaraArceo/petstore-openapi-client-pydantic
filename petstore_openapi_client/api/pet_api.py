@@ -15,17 +15,15 @@ from __future__ import annotations
 
 
 import re  # noqa: F401
-import io
-import warnings
 
 from aenum import Enum
-from pydantic import validate_call, ValidationError
-from typing import overload, Optional, Union, Awaitable
+from pydantic import validate_call
+from typing import Optional
 
 from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr, conlist
 
-from typing import Any, Dict, List, Optional
+from typing import Dict, List
 
 from petstore_openapi_client.models.pet import Pet
 from petstore_openapi_client.models.pet_create import PetCreate

@@ -15,15 +15,14 @@ from __future__ import annotations
 
 
 from __future__ import annotations
-from inspect import getfullargspec
 import json
 import pprint
 import re  # noqa: F401
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, ValidationError, validator
+from pydantic import BaseModel, StrictInt, StrictStr, ValidationError
 from typing import Union, Any, List, TYPE_CHECKING
-from pydantic import StrictStr, Field, ConfigDict, field_validator
+from pydantic import ConfigDict, field_validator
 from petstore_openapi_client.assertions import AssertableModelMixin
 
 LOCATIONINNER_ANY_OF_SCHEMAS = ["int", "str"]

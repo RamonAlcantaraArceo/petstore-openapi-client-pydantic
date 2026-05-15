@@ -20,6 +20,10 @@ generate:
 	-rm ./setup.cfg
 	-rm ./.travis.yml
 
+	@echo "Running ruff to fix formatting issues..."
+	@uv run ruff check . --fix --unsafe-fixes
+	@echo "... Done"
+
 generate-debug:
 	rm -rf tmp-gen/test
 
