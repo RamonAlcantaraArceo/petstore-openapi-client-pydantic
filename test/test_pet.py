@@ -36,7 +36,7 @@ class TestPet:
         pet = Pet(
             id=7,
             name="pet-optional",
-            photo_urls=["https://example.com/pet.png"],
+            photoUrls=["https://example.com/pet.png"],
             category=Category(id=1, name="birds"),
             tags=[Tag(id=1, name="flying")],
             status=PetStatus.SOLD,
@@ -54,7 +54,7 @@ class TestPet:
         pet = Pet(
             id=8,
             name="pet-serialize",
-            photo_urls=["https://example.com/pet.png"],
+            photoUrls=["https://example.com/pet.png"],
             category=Category(id=1, name="birds"),
             tags=[Tag(id=1, name="flying")],
             status=PetStatus.SOLD,
@@ -64,15 +64,18 @@ class TestPet:
         assert as_dict["id"] == 8
         assert as_dict["name"] == "pet-serialize"
         assert as_dict["status"] == "sold"
+        assert as_dict["photoUrls"] == ["https://example.com/pet.png"]
 
         from_dict = Pet.from_dict(as_dict)
         assert from_dict.id == pet.id
         assert from_dict.name == pet.name
         assert from_dict.status == pet.status
+        assert from_dict.photo_urls == pet.photo_urls
 
         as_json = pet.to_json()
         from_json = Pet.from_json(as_json)
         assert from_json.id == pet.id
         assert from_json.status == pet.status
+        assert from_json.photo_urls == pet.photo_urls
 
         assert "pet-serialize" in pet.to_str()
